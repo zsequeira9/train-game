@@ -1,23 +1,35 @@
 'use client';
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "./page.module.css";
 import { MouseEvent } from "react";
+import { Route, RouteColor, Player, PlayerColor } from "../../interfaces";
 
-const logo = require("../../public/ticket2-nobg.svg") as string;
+// const logo = require("../../public/ticket2-nobg.svg") as string;
+
+const Player1 = new Player(
+  "Zelia",
+  PlayerColor.YELLOW
+)
+
+const Player2 = new Player(
+  "Chris",
+  PlayerColor.PURPLE
+)
+
 
 
 export default function Home() {
-
-  enum PlayerColor {
-    RED = "red",
-    GREEN = "green",
-    BLUE = "blue",
-    YELLOW = "yellow",
-    BLACK = "black",
-  } 
+  const ssmt = new Route(
+    "ssm-t", 
+    "Sault St Marie",
+    "Toronto",
+    2,
+    RouteColor.GRAY,
+    )
 
   function changeColor(clickEvent: MouseEvent) {
-    console.log(clickEvent);
+    console.log(clickEvent.target);
+    ssmt.color = RouteColor.YELLOW;
   }
   return (
     <main className={styles.main}>
@@ -44,13 +56,13 @@ export default function Home() {
               <title>Sault St Marie-Toronto</title>
               <rect
                 x="147.238" y="16.687" width="18.012" height="6" 
-                style={{stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: "rgb(216, 216, 216)"}} 
+                style={{stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: ssmt.color}} 
                 transform="matrix(0.987688, 0.156436, -0.156436, 0.987688, 263.402391, 51.80272)">
                 <title>TILE</title>
               </rect>
               <rect
                 x="147.238" y="16.687" width="18.012" height="6" 
-                style={{ stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: "rgb(216, 216, 216)"}}
+                style={{ stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: ssmt.color}}
                 transform="matrix(0.987688, 0.156436, -0.156436, 0.987688, 283.462572, 55.555542)">
                 <title>TILE</title>
               </rect>
