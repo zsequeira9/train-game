@@ -1,4 +1,4 @@
-export class Route implements Route{
+export class Route implements IRoute{
   id: string;
   city1: string;
   city2: string;
@@ -12,17 +12,21 @@ export class Route implements Route{
     city2: string,
     slots: number,
     color: RouteColor,
+    owner?: Player,
   ) {
     this.id = id;
     this.city1 = city1;
     this.city2 = city2;
     this.slots = slots;
     this.color = color;
+    if (owner) {
+      this.owner = owner;
+    }
   }
   
 }
 
-export class Player implements Player{
+export class Player implements IPlayer{
   name: string;
   trains: number = 40;
   color: PlayerColor;
@@ -55,9 +59,10 @@ export enum PlayerColor {
   BLUE = "blue",
   YELLOW = "yellow",
   BLACK = "black",
+  PURPLE = "purple",
 } 
 
-export interface Route {
+export interface IRoute {
   id: string;
   city1: string;
   city2: string;
@@ -67,12 +72,12 @@ export interface Route {
 }
 
 
-export interface Player {
+export interface IPlayer {
   trains: number;
   color: PlayerColor;
 }
 
-export interface RouteCard {
+export interface IRouteCard {
   city1: string;
   city2: string;
   points: number;

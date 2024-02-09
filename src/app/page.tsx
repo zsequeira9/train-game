@@ -1,10 +1,11 @@
 'use client';
-// import Image from "next/image";
 import styles from "./page.module.css";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import { Route, RouteColor, Player, PlayerColor } from "../../interfaces";
 
-// const logo = require("../../public/ticket2-nobg.svg") as string;
+// TODO: mapping between object route and svg route
+// TODO: route component
+
 
 const Player1 = new Player(
   "Zelia",
@@ -19,7 +20,7 @@ const Player2 = new Player(
 
 
 export default function Home() {
-  const ssmt = new Route(
+  const r = new Route(
     "ssm-t", 
     "Sault St Marie",
     "Toronto",
@@ -27,9 +28,36 @@ export default function Home() {
     RouteColor.GRAY,
     )
 
+  let [turn, setTurn] = useState<string>(Player1.name);
+
+  const [route, setRoute] = useState<Route>(r);
+
   function changeColor(clickEvent: MouseEvent) {
-    console.log(clickEvent.target);
-    ssmt.color = RouteColor.YELLOW;
+    // Set color and ownership of route
+    if (turn === Player1.name) {
+      const newRoute = new Route(
+        route.id,
+        route.city1,
+        route.city2,
+        route.slots,
+        RouteColor.YELLOW,
+        Player1,
+      );
+      setRoute(newRoute);
+      setTurn(Player2.name);
+    }
+    else {
+      const newRoute = new Route(
+        route.id,
+        route.city1,
+        route.city2,
+        route.slots,
+        RouteColor.GREEN,
+        Player2,
+      );
+      setRoute(newRoute);
+      setTurn(Player1.name);
+    }
   }
   return (
     <main className={styles.main}>
@@ -56,13 +84,13 @@ export default function Home() {
               <title>Sault St Marie-Toronto</title>
               <rect
                 x="147.238" y="16.687" width="18.012" height="6" 
-                style={{stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: ssmt.color}} 
+                style={{stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: route.color}} 
                 transform="matrix(0.987688, 0.156436, -0.156436, 0.987688, 263.402391, 51.80272)">
                 <title>TILE</title>
               </rect>
               <rect
                 x="147.238" y="16.687" width="18.012" height="6" 
-                style={{ stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: ssmt.color}}
+                style={{ stroke: "rgb(0, 0, 0)", transformOrigin: "156.244px 19.687px", fill: route.color}}
                 transform="matrix(0.987688, 0.156436, -0.156436, 0.987688, 283.462572, 55.555542)">
                 <title>TILE</title>
               </rect>
