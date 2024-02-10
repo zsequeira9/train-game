@@ -39,10 +39,11 @@ export default function Home() {
         route.id,
         route.city1,
         route.city2,
-        route.slots,
+        route.length,
         RouteColor.YELLOW,
         Player1,
       );
+      Player1.playTrains(2);
       setRoute(newRoute);
       setTurn(Player2.name);
     }
@@ -51,11 +52,12 @@ export default function Home() {
         route.id,
         route.city1,
         route.city2,
-        route.slots,
+        route.length,
         RouteColor.GREEN,
         Player2,
       );
       setRoute(newRoute);
+      Player2.playTrains(2);
       setTurn(Player1.name);
     }
   }
