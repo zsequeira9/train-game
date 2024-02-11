@@ -1,7 +1,8 @@
 'use client';
 import styles from "./page.module.css";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useState, } from "react";
 import { Route, RouteColor, Player, PlayerColor } from "../../interfaces";
+import Gameboard from "./gameboard";
 
 // TODO: mapping between object route and svg route
 // TODO: route component
@@ -43,7 +44,7 @@ export default function Home() {
         RouteColor.YELLOW,
         Player1,
       );
-      Player1.playTrains(2);
+      Player1.playTrains(route.length);
       setRoute(newRoute);
       setTurn(Player2.name);
     }
@@ -57,13 +58,14 @@ export default function Home() {
         Player2,
       );
       setRoute(newRoute);
-      Player2.playTrains(2);
+      Player2.playTrains(route.length);
       setTurn(Player1.name);
     }
   }
   return (
     <main className={styles.main}>
       <div className={styles.center}>
+        {/* <Gameboard/> */}
         <svg viewBox="0 0 575 363" width={1500} height={500} xmlns="http://www.w3.org/2000/svg">
           <defs>
           </defs>
