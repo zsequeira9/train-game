@@ -1,26 +1,35 @@
 'use client';
 import styles from "./page.module.css";
 import { MouseEvent, useState, } from "react";
-import { Route, RouteColor, Player, PlayerColor } from "../../interfaces";
+import { 
+  Route, 
+  RouteColor, 
+  Player, 
+  PlayerColor, 
+  Controller } from "../../interfaces";
 import Gameboard from "./gameboard";
 
 // TODO: mapping between object route and svg route
 // TODO: route component
 
-
 const Player1 = new Player(
   "Zelia",
-  PlayerColor.YELLOW
+  PlayerColor.YELLOW, 
+  RouteColor.YELLOW,
 )
 
 const Player2 = new Player(
   "Chris",
-  PlayerColor.PURPLE
+  PlayerColor.PURPLE,
+  RouteColor.ORANGE,
 )
 
-
+const gameController = new Controller(
+  [Player1, Player2],
+)
 
 export default function Home() {
+
   const r = new Route(
     "ssm-t", 
     "Sault St Marie",
@@ -29,41 +38,56 @@ export default function Home() {
     RouteColor.GRAY,
     )
 
-  let [turn, setTurn] = useState<string>(Player1.name);
-
   const [route, setRoute] = useState<Route>(r);
 
   function changeColor(clickEvent: MouseEvent) {
     // Set color and ownership of route
-    if (turn === Player1.name) {
-      const newRoute = new Route(
-        route.id,
-        route.city1,
-        route.city2,
-        route.length,
-        RouteColor.YELLOW,
-        Player1,
-      );
-      Player1.playTrains(route.length);
-      setRoute(newRoute);
-      setTurn(Player2.name);
-    }
-    else {
-      const newRoute = new Route(
-        route.id,
-        route.city1,
-        route.city2,
-        route.length,
-        RouteColor.GREEN,
-        Player2,
-      );
-      setRoute(newRoute);
-      Player2.playTrains(route.length);
-      setTurn(Player1.name);
-    }
+    let currentPlayer = gameController.currentPlayer;
+
+    const newRoute = new Route(
+      route.id,
+      route.city1,
+      route.city2,
+      route.length,
+      currentPlayer.routeColor,
+      currentPlayer,
+    );
+    currentPlayer.playTrains(route.length);
+    setRoute(newRoute);
+    gameController.endTurn();
   }
+
+  function drawRoutes(clickEvent: MouseEvent) {
+
+    let currentPlayer = gameController.currentPlayer;
+    let newRoutes = gameController.routeStack.drawRoutes(1);
+
+    currentPlayer.routes.push(...newRoutes);
+    console.log(currentPlayer.routeString)
+    gameController.endTurn();
+  }
+
   return (
     <main className={styles.main}>
+        <div className={styles.card}>
+          <h1>
+            {Player1.name}
+          </h1>
+          <p>Number of trains: {Player1.trains}</p>
+          <p>Routes: {Player1.routeString}</p>
+        </div>
+        <div className={styles.card}>
+          <h1>
+            {Player2.name}
+          </h1>
+          <p>Number of trains: {Player2.trains}</p>
+          <p>Routes: {Player2.routeString}</p>
+        </div>
+        <div className={styles.card}>
+          <button onClick={drawRoutes}>
+            Draw Routes
+          </button>
+        </div>
       <div className={styles.center}>
         {/* <Gameboard/> */}
         <svg viewBox="0 0 575 363" width={1500} height={500} xmlns="http://www.w3.org/2000/svg">

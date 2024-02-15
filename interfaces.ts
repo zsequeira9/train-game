@@ -29,6 +29,7 @@ export class Route implements IRoute{
 export class Player implements IPlayer{
   name: string;
   color: PlayerColor;
+  routeColor: RouteColor;
   trains: number = 10;
   routes: IRouteCard[] = [];
   trainCards: ITrainHand = {
@@ -46,14 +47,86 @@ export class Player implements IPlayer{
   constructor(
     name: string,
     color: PlayerColor,
+    routeColor: RouteColor,
   ) {
     this.name = name;
     this.color = color;
+    this.routeColor = routeColor;
   }
 
   playTrains(cost: number) {
     this.trains = this.trains - cost;
     console.log(this);
+  }
+
+  get routeString(): string {
+    return this.routes.reduce((accumulator: string, route: IRouteCard) =>
+       accumulator + route.city1 + "-" + route.city2 + ", ",
+       "",
+    );
+  }
+
+}
+
+export class Controller implements IController {
+  playerSequence: Player[];
+  currentPlayerIndex: number;
+  routeStack: RouteStack;
+  trainDeck: string[] = [];
+  trainFaceUp: string[] = [];
+  gameLog: IEvent[] = [];
+  trainDiscard: string[] = [];
+
+  constructor(
+    playerSequence: Player[],
+  ) {
+    // TODO: pass in array or push on construction?
+    this.playerSequence = playerSequence;
+
+    this.currentPlayerIndex = 0;
+
+    this.routeStack = new RouteStack();
+  }
+
+  get currentPlayer(): Player {
+    return this.playerSequence[this.currentPlayerIndex];
+  }
+
+  endTurn(): void {
+    this.currentPlayerIndex = (this.currentPlayerIndex+1) % this.playerSequence.length;
+  }
+
+}
+
+export class RouteStack {
+  routeDeck: IRouteCard[] = [];
+
+  constructor() {
+    // TODO: read from a list of routes
+    const routeCard: IRouteCard = {
+      city1: "Sault St Marie",
+      city2: "Toronto",
+      points: 2,
+    };
+    this.routeDeck.push(routeCard);
+    const routeCard2: IRouteCard = {
+      city1: "Toronto",
+      city2: "Rochester",
+      points: 1000000,
+    };
+    this.routeDeck.push(routeCard2)
+    const routeCard3: IRouteCard = {
+      city1: "Rochester",
+      city2: "Corning",
+      points: 1000000,
+    };
+    this.routeDeck.push(routeCard3);
+  }
+
+  drawRoutes(n: number): IRouteCard[] {
+    let routes = this.routeDeck.slice(0, n);
+    this.routeDeck = this.routeDeck.slice(n)
+    return routes;
   }
 }
 
@@ -117,7 +190,7 @@ export interface ITrainHand {
 
 export interface IController {
   playerSequence: IPlayer[];
-  routeDeck: IRouteCard[];
+  routeStack: RouteStack;
   gameLog: IEvent[];
   // TODO: what should these string types actually be?
   trainDeck: string[];
