@@ -31,7 +31,7 @@ export class Player implements IPlayer{
   color: PlayerColor;
   routeColor: RouteColor;
   trains: number = 10;
-  routes: IRouteCard[] = [];
+  destinations: IDestinationCard[] = [];
   trainCards: ITrainHand = {
     red: 0,
     blue: 0,
@@ -59,8 +59,8 @@ export class Player implements IPlayer{
     console.log(this);
   }
 
-  get routeString(): string {
-    return this.routes.reduce((accumulator: string, route: IRouteCard) =>
+  get destinationString(): string {
+    return this.destinations.reduce((accumulator: string, route: IDestinationCard) =>
        accumulator + route.city1 + "-" + route.city2 + ", ",
        "",
     );
@@ -71,7 +71,7 @@ export class Player implements IPlayer{
 export class Controller implements IController {
   playerSequence: Player[];
   currentPlayerIndex: number;
-  routeStack: RouteStack;
+  destinationDeck: destinationDeck;
   trainDeck: string[] = [];
   trainFaceUp: string[] = [];
   gameLog: IEvent[] = [];
@@ -85,11 +85,22 @@ export class Controller implements IController {
 
     this.currentPlayerIndex = 0;
 
-    this.routeStack = new RouteStack();
+    this.destinationDeck = new destinationDeck();
   }
 
   get currentPlayer(): Player {
     return this.playerSequence[this.currentPlayerIndex];
+  }
+
+  claimRoute(route: Route): void{
+    this.currentPlayer.playTrains(route.length);
+    this.endTurn();
+  }
+
+  drawDestinations(): void {
+    let newRoutes = this.destinationDeck.drawDestinations(1);
+    this.currentPlayer.destinations.push(...newRoutes);
+    this.endTurn();
   }
 
   endTurn(): void {
@@ -98,34 +109,34 @@ export class Controller implements IController {
 
 }
 
-export class RouteStack {
-  routeDeck: IRouteCard[] = [];
+export class destinationDeck {
+  destinationDeck: IDestinationCard[] = [];
 
   constructor() {
     // TODO: read from a list of routes
-    const routeCard: IRouteCard = {
+    const routeCard: IDestinationCard = {
       city1: "Sault St Marie",
       city2: "Toronto",
       points: 2,
     };
-    this.routeDeck.push(routeCard);
-    const routeCard2: IRouteCard = {
+    this.destinationDeck.push(routeCard);
+    const routeCard2: IDestinationCard = {
       city1: "Toronto",
       city2: "Rochester",
       points: 1000000,
     };
-    this.routeDeck.push(routeCard2)
-    const routeCard3: IRouteCard = {
+    this.destinationDeck.push(routeCard2)
+    const routeCard3: IDestinationCard = {
       city1: "Rochester",
       city2: "Corning",
       points: 1000000,
     };
-    this.routeDeck.push(routeCard3);
+    this.destinationDeck.push(routeCard3);
   }
 
-  drawRoutes(n: number): IRouteCard[] {
-    let routes = this.routeDeck.slice(0, n);
-    this.routeDeck = this.routeDeck.slice(n)
+  drawDestinations(n: number): IDestinationCard[] {
+    let routes = this.destinationDeck.slice(0, n);
+    this.destinationDeck = this.destinationDeck.slice(n)
     return routes;
   }
 }
@@ -166,11 +177,11 @@ export interface IPlayer {
   name: string;
   trains: number;
   color: PlayerColor;
-  routes: IRouteCard[];
+  destinations: IDestinationCard[];
   trainCards: ITrainHand;
 }
 
-export interface IRouteCard {
+export interface IDestinationCard {
   city1: string;
   city2: string;
   points: number;
@@ -190,7 +201,7 @@ export interface ITrainHand {
 
 export interface IController {
   playerSequence: IPlayer[];
-  routeStack: RouteStack;
+  destinationDeck: destinationDeck;
   gameLog: IEvent[];
   // TODO: what should these string types actually be?
   trainDeck: string[];
