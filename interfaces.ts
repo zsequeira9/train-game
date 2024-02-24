@@ -212,3 +212,9 @@ export interface IController {
 export interface IEvent {
   message: string;
 }
+
+export interface playerMachineContext {
+  name: string,
+  trains: number,
+  destinations: string,
+}
