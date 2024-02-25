@@ -89,6 +89,7 @@ export default function Home() {
           </button>
         </div>
       <div className={styles.center}>
+          <Gameboard/>
         {/* <Gameboard/> */}
         <svg viewBox="0 0 575 363" width={1500} height={500} xmlns="http://www.w3.org/2000/svg">
           <defs>
