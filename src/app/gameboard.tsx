@@ -4,36 +4,15 @@ import { MouseEvent, useState, } from "react";
 import { 
   Route, 
   RouteColor, 
-  playerMachineContext,
  } from "../../interfaces";
 import { gameController } from "./gamelogic";
 
-import { useMachine, MachineSnapshot } from '@xstate/react';
-import { playerMachine } from './playerMachine';
+import { useMachine } from '@xstate/react';
+import { controllerMachine } from './controllerMachine';
 
 export default function Gameboard() {
 
-  interface playerMachine {
-    name: string,
-    state: MachineSnapshot<playerMachineContext>,
-    send: any
-  }
-
-
-  const playerMachineList = gameController.playerSequence.map(
-    player => {
-      let [state, send] = useMachine(playerMachine, {input: {
-        name: player.name,
-        trains: player.trains,
-    }})
-    return {
-      name: player.name,
-      state: state,
-      send: send
-    } as playerMachine
-  }
-  );
-  console.log(playerMachineList)
+  const [state, send] = useMachine(controllerMachine, {input: gameController});
 
   const r = new Route(
     "ssm-t", 
@@ -45,14 +24,12 @@ export default function Gameboard() {
 
   const [route, setRoute] = useState<Route>(r);
 
-  function findPlayerMachine(name: string){
-    return playerMachineList.find((player)=>player.name === name)
-  }
-
   function changeColor(clickEvent: MouseEvent) {
     let currentPlayer = gameController.currentPlayer;
-    let player = findPlayerMachine(currentPlayer.name);
-    gameController.claimRoute(route);
+    send({
+      type: 'claimRoute',
+      route: route
+    })
 
     const newRoute = new Route(
       route.id,
@@ -63,36 +40,24 @@ export default function Gameboard() {
       currentPlayer,
     );
     setRoute(newRoute);
-    player.send({
-      // The event type
-      type: 'claimRoute',
-      // Additional payload
-      numberTrains: route.length,
-    })
-    
   }
 
   function drawDestinations(clickEvent: MouseEvent) {
-    gameController.drawDestinations();
-    let currentPlayer = gameController.currentPlayer;
-    let player = findPlayerMachine(currentPlayer.name);
-    player.send({
+    send({
       // The event type
-      type: 'drawDest',
-      // Additional payload
-      desinations: currentPlayer.destinationString
+      type: 'drawDest'
     })
   }
 
-  const listPlayerInfo = playerMachineList.map(
+  const listPlayerInfo = gameController.playerSequence.map(
     (player) =>
       <li key={player.name}>
           <div className={styles.card}>
             <h1>
               {player.name}
             </h1>
-            <p>Number of trains: {player.state.trains}</p>
-            <p>Routes: {player.state.desinations}</p>
+            <p>Number of trains: {player.trains}</p>
+            <p>Routes: {player.destinationString}</p>
           </div>
       </li>
   );
