@@ -34,6 +34,16 @@ export const controllerMachine = setup({
             };
           }),
           reenter: true,
+        },
+        'drawTrains': {
+          target: 'myTurn',
+          actions: assign(({ context, event }) => {
+            context.controller.drawFaceUpTrains()
+            return {
+              controller: context.controller
+            };
+          }),
+          reenter: true,
         }
       }
     },

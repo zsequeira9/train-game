@@ -25,7 +25,7 @@ export default function Gameboard() {
   const [route, setRoute] = useState<Route>(r);
 
   function changeColor(clickEvent: MouseEvent) {
-    let currentPlayer = gameController.currentPlayer;
+    let currentPlayer = state.context.controller.currentPlayer;
     send({
       type: 'claimRoute',
       route: route
@@ -42,14 +42,7 @@ export default function Gameboard() {
     setRoute(newRoute);
   }
 
-  function drawDestinations(clickEvent: MouseEvent) {
-    send({
-      // The event type
-      type: 'drawDest'
-    })
-  }
-
-  const listPlayerInfo = gameController.playerSequence.map(
+  const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
       <li key={player.name}>
           <div className={styles.card}>
@@ -62,7 +55,7 @@ export default function Gameboard() {
       </li>
   );
 
-  const listTrainUp = gameController.trainFaceUp.map((trainCard) =>
+  const listTrainUp = state.context.controller.trainFaceUp.map((trainCard) =>
     <li key={trainCard.id}>
       <p>{trainCard.cardColor}</p>
     </li>
@@ -73,8 +66,11 @@ export default function Gameboard() {
         <ul>{listPlayerInfo}</ul>
         <ul>{listTrainUp}</ul>
         <div className={styles.card}>
-          <button onClick={drawDestinations}>
+          <button onClick={() => send({type: 'drawDest'})}>
             Draw Destination Cards?
+          </button>
+          <button onClick={() => send({type: 'drawTrains'})}>
+            Draw trains??????????
           </button>
         </div>
       <div className={styles.center}>

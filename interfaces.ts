@@ -73,7 +73,7 @@ export class Controller implements IController {
   currentPlayerIndex: number;
   destinationDeck: destinationDeck;
   trainDeck: trainCard[];
-  trainFaceUp: trainCard[] = [];
+  trainFaceUp: trainCard[] = [] as trainCard[];
   gameLog: IEvent[] = [];
   trainDiscard: trainCard[] = [];
 
@@ -88,47 +88,42 @@ export class Controller implements IController {
     this.destinationDeck = new destinationDeck();
 
     // 12 x (8 colors) + 14 Locomotives)
-    [this.trainDeck, this.trainFaceUp] = this.generateTrainDeck();
+    this.trainDeck = this.generateTrainDeck();
   }
 
-  // drawFaceUpTrains(): trainCard[] {
-  //   let faceUp = [];
-  //   for (let i = 0; i < 4; i++) {
-  //    faceUp.push(cardColors.shift())
-  //   }
-  // }
+  drawFaceUpTrains(): void{
+     for (let i = 0; i < 5; i++) {
+      let trainCard = this.trainDeck.shift()
+      if (trainCard !== undefined) {
+        this.trainFaceUp.push(trainCard)
+      }
+     }
+  }
 
   /**
    * 
    * @returns [0] = shuffled train deck [1] = face up train cards
    */
-  generateTrainDeck() : [trainCard[], trainCard[]]{
+  generateTrainDeck() : trainCard[]{
     let cardColors = ["red", "blue", "green", "yellow", 
     "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
     cardColors.push(Array(14).fill("loco"));
-    cardColors = cardColors.flat();
+    let cardColorsTyped = cardColors.flat() as cardColorType[];
 
     //shuffle the list
-     for (let i = cardColors.length-1; i > 0; i--) {
+     for (let i = cardColorsTyped.length-1; i > 0; i--) {
       let j = Math.floor(Math.random() * i)
-      let temp = cardColors[i];
-      cardColors[i] = cardColors[j];
-      cardColors[j] = temp;
+      let temp = cardColorsTyped[i];
+      cardColorsTyped[i] = cardColorsTyped[j];
+      cardColorsTyped[j] = temp;
      }
 
-     // add an id for each 
-     for (let i = 0; i <cardColors.length; i++) {
-      cardColors[i] = {id: i, cardColor: cardColors[i]}
-     }
-
-     // 
-     let faceUp = [];
-     for (let i = 0; i < 5; i++) {
-      faceUp.push(cardColors.shift())
-     }
-     console.log("Inside constructor", faceUp);
-
-    return [cardColors, faceUp];
+    const trainCards = [] as trainCard[]
+    // add an id for each 
+    for (let i = 0; i <cardColorsTyped.length; i++) {
+      trainCards[i] = {id: i, cardColor: cardColorsTyped[i]}
+    }
+    return trainCards;
   }
 
   get currentPlayer(): Player {
@@ -242,9 +237,11 @@ export interface ITrainHand {
   loco: number;
 }
 
+type cardColorType = keyof ITrainHand
+
 export interface trainCard {
   id: number;
-  cardColor: keyof ITrainHand;
+  cardColor: cardColorType;
 } 
 
 export interface IController {
