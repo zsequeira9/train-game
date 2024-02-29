@@ -32,7 +32,7 @@ export class Player implements IPlayer{
   routeColor: RouteColor;
   trains: number = 10;
   destinations: IDestinationCard[] = [];
-  trainCards: ITrainHand = {
+  trainHand: ITrainHand = {
     red: 0,
     blue: 0,
     green: 0,
@@ -56,7 +56,7 @@ export class Player implements IPlayer{
 
   playTrains(cost: number) {
     this.trains = this.trains - cost;
-    console.log(this);
+    console.log("Player ", this);
   }
 
   get destinationString(): string {
@@ -72,10 +72,10 @@ export class Controller implements IController {
   playerSequence: Player[];
   currentPlayerIndex: number;
   destinationDeck: destinationDeck;
-  trainDeck: string[] = [];
-  trainFaceUp: string[] = [];
+  trainDeck: trainCard[];
+  trainFaceUp: trainCard[] = [];
   gameLog: IEvent[] = [];
-  trainDiscard: string[] = [];
+  trainDiscard: trainCard[] = [];
 
   constructor(
     playerSequence: Player[],
@@ -86,6 +86,42 @@ export class Controller implements IController {
     this.currentPlayerIndex = 0;
 
     this.destinationDeck = new destinationDeck();
+
+    // 12 x (8 colors) + 14 Locomotives)
+    [this.trainDeck, this.trainFaceUp] = this.generateTrainDeck();
+  }
+
+  // drawFaceUpTrains(): trainCard[] {
+  //   let faceUp = [];
+  //   for (let i = 0; i < 4; i++) {
+  //    faceUp.push(cardColors.shift())
+  //   }
+  // }
+
+  /**
+   * 
+   * @returns [0] = shuffled train deck [1] = face up train cards
+   */
+  generateTrainDeck() : [trainCard[], trainCard[]]{
+    let cardColors = ["red", "blue", "green", "yellow", 
+    "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
+    cardColors.push(Array(14).fill("loco"));
+    cardColors = cardColors.flat();
+
+    //shuffle the list
+     for (let i = cardColors.length-1; i > 0; i--) {
+      let j = Math.floor(Math.random() * i)
+      let temp = cardColors[i];
+      cardColors[i] = cardColors[j];
+      cardColors[j] = temp;
+     }
+
+     let faceUp = [];
+     for (let i = 0; i < 4; i++) {
+      faceUp.push(cardColors.shift())
+     }
+
+    return [cardColors, faceUp];
   }
 
   get currentPlayer(): Player {
@@ -178,7 +214,7 @@ export interface IPlayer {
   trains: number;
   color: PlayerColor;
   destinations: IDestinationCard[];
-  trainCards: ITrainHand;
+  trainHand: ITrainHand;
 }
 
 export interface IDestinationCard {
@@ -199,14 +235,15 @@ export interface ITrainHand {
   loco: number;
 }
 
+export type trainCard = keyof ITrainHand;
+
 export interface IController {
   playerSequence: IPlayer[];
   destinationDeck: destinationDeck;
   gameLog: IEvent[];
-  // TODO: what should these string types actually be?
-  trainDeck: string[];
-  trainFaceUp: string[];
-  trainDiscard: string[];
+  trainDeck: trainCard[];
+  trainFaceUp: trainCard[];
+  trainDiscard: trainCard[];
 }
 
 export interface IEvent {

@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import styles from "./gameboard.module.css";
 import { MouseEvent, useState, } from "react";
 import { 
@@ -57,14 +57,21 @@ export default function Gameboard() {
               {player.name}
             </h1>
             <p>Number of trains: {player.trains}</p>
-            <p>Routes: {player.destinationString}</p>
+            <p>Destinations: {player.destinationString}</p>
           </div>
       </li>
   );
 
+  const listTrainUp = gameController.trainFaceUp.map((trainCard) =>
+    <li>
+      <p>{trainCard}</p>
+    </li>
+  )
+
   return (
     <main className={styles.main}>
         { <ul>{listPlayerInfo}</ul> }
+        { <ul>{listTrainUp}</ul> }
         <div className={styles.card}>
           <button onClick={drawDestinations}>
             Draw Destination Cards?
