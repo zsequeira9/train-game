@@ -116,10 +116,17 @@ export class Controller implements IController {
       cardColors[j] = temp;
      }
 
+     // add an id for each 
+     for (let i = 0; i <cardColors.length; i++) {
+      cardColors[i] = {id: i, cardColor: cardColors[i]}
+     }
+
+     // 
      let faceUp = [];
-     for (let i = 0; i < 4; i++) {
+     for (let i = 0; i < 5; i++) {
       faceUp.push(cardColors.shift())
      }
+     console.log("Inside constructor", faceUp);
 
     return [cardColors, faceUp];
   }
@@ -235,7 +242,10 @@ export interface ITrainHand {
   loco: number;
 }
 
-export type trainCard = keyof ITrainHand;
+export interface trainCard {
+  id: number;
+  cardColor: keyof ITrainHand;
+} 
 
 export interface IController {
   playerSequence: IPlayer[];

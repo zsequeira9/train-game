@@ -63,15 +63,15 @@ export default function Gameboard() {
   );
 
   const listTrainUp = gameController.trainFaceUp.map((trainCard) =>
-    <li>
-      <p>{trainCard}</p>
+    <li key={trainCard.id}>
+      <p>{trainCard.cardColor}</p>
     </li>
   )
 
   return (
     <main className={styles.main}>
-        { <ul>{listPlayerInfo}</ul> }
-        { <ul>{listTrainUp}</ul> }
+        <ul>{listPlayerInfo}</ul>
+        <ul>{listTrainUp}</ul>
         <div className={styles.card}>
           <button onClick={drawDestinations}>
             Draw Destination Cards?
