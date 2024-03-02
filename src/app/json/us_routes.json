@@ -1,0 +1,502 @@
+[
+    {
+        "id": "vancouver-calgary",
+        "city1": "vancouver",
+        "city2": "calgary"
+    },
+    {
+        "id": "seattle-helena",
+        "city1": "seattle",
+        "city2": "helena"
+    },
+    {
+        "id": "helena-duluth",
+        "city1": "helena",
+        "city2": "duluth"
+    },
+    {
+        "id": "san_francisco-salt_lake_city:0",
+        "city1": "san_francisco",
+        "city2": "salt_lake_city"
+    },
+    {
+        "id": "san_francisco-salt_lake_city:1",
+        "city1": "san_francisco",
+        "city2": "salt_lake_city"
+    },
+    {
+        "id": "calgary-helena",
+        "city1": "calgary",
+        "city2": "helena"
+    },
+    {
+        "id": "helena-denver",
+        "city1": "helena",
+        "city2": "denver"
+    },
+    {
+        "id": "oklahoma_city-kansas_city:0",
+        "city1": "oklahoma_city",
+        "city2": "kansas_city"
+    },
+    {
+        "id": "oklahoma_city-kansas_city:1",
+        "city1": "oklahoma_city",
+        "city2": "kansas_city"
+    },
+    {
+        "id": "kansas_city-saint_louis:0",
+        "city1": "kansas_city",
+        "city2": "saint_louis"
+    },
+    {
+        "id": "kansas_city-saint_louis:1",
+        "city1": "kansas_city",
+        "city2": "saint_louis"
+    },
+    {
+        "id": "omaha-kansas_city:0",
+        "city1": "omaha",
+        "city2": "kansas_city"
+    },
+    {
+        "id": "omaha-kansas_city:1",
+        "city1": "omaha",
+        "city2": "kansas_city"
+    },
+    {
+        "id": "omaha-duluth:0",
+        "city1": "omaha",
+        "city2": "duluth"
+    },
+    {
+        "id": "omaha-duluth:1",
+        "city1": "omaha",
+        "city2": "duluth"
+    },
+    {
+        "id": "helena-omaha",
+        "city1": "helena",
+        "city2": "omaha"
+    },
+    {
+        "id": "salt_lake_city-denver:0",
+        "city1": "salt_lake_city",
+        "city2": "denver"
+    },
+    {
+        "id": "salt_lake_city-denver:1",
+        "city1": "salt_lake_city",
+        "city2": "denver"
+    },
+    {
+        "id": "montreal-boston:0",
+        "city1": "montreal",
+        "city2": "boston"
+    },
+    {
+        "id": "montreal-boston:1",
+        "city1": "montreal",
+        "city2": "boston"
+    },
+    {
+        "id": "new_york-boston:0",
+        "city1": "new_york",
+        "city2": "boston"
+    },
+    {
+        "id": "new_york-boston:1",
+        "city1": "new_york",
+        "city2": "boston"
+    },
+    {
+        "id": "montreal-new_york",
+        "city1": "montreal",
+        "city2": "new_york"
+    },
+    {
+        "id": "raleigh-washington:0",
+        "city1": "raleigh",
+        "city2": "washington"
+    },
+    {
+        "id": "raleigh-washington:1",
+        "city1": "raleigh",
+        "city2": "washington"
+    },
+    {
+        "id": "atlanta-raleigh:0",
+        "city1": "atlanta",
+        "city2": "raleigh"
+    },
+    {
+        "id": "atlanta-raleigh:1",
+        "city1": "atlanta",
+        "city2": "raleigh"
+    },
+    {
+        "id": "sault_st_marie-toronto",
+        "city1": "sault_st_marie",
+        "city2": "toronto"
+    },
+    {
+        "id": "duluth-sault_st_marie",
+        "city1": "duluth",
+        "city2": "sault_st_marie"
+    },
+    {
+        "id": "winnipeg-duluth",
+        "city1": "winnipeg",
+        "city2": "duluth"
+    },
+    {
+        "id": "winnipeg-sault_st_marie",
+        "city1": "winnipeg",
+        "city2": "sault_st_marie"
+    },
+    {
+        "id": "santa_fe-denver",
+        "city1": "santa_fe",
+        "city2": "denver"
+    },
+    {
+        "id": "houston-new_orleans",
+        "city1": "houston",
+        "city2": "new_orleans"
+    },
+    {
+        "id": "saint_louis-nashville",
+        "city1": "saint_louis",
+        "city2": "nashville"
+    },
+    {
+        "id": "little_rock-saint_louis",
+        "city1": "little_rock",
+        "city2": "saint_louis"
+    },
+    {
+        "id": "oklahoma_city-little_rock",
+        "city1": "oklahoma_city",
+        "city2": "little_rock"
+    },
+    {
+        "id": "dallas-little_rock",
+        "city1": "dallas",
+        "city2": "little_rock"
+    },
+    {
+        "id": "oklahoma_city-dallas:0",
+        "city1": "oklahoma_city",
+        "city2": "dallas"
+    },
+    {
+        "id": "oklahoma_city-dallas:1",
+        "city1": "oklahoma_city",
+        "city2": "dallas"
+    },
+    {
+        "id": "phoenix-el_paso",
+        "city1": "phoenix",
+        "city2": "el_paso"
+    },
+    {
+        "id": "phoenix-santa_fe",
+        "city1": "phoenix",
+        "city2": "santa_fe"
+    },
+    {
+        "id": "el_paso-santa_fe",
+        "city1": "el_paso",
+        "city2": "santa_fe"
+    },
+    {
+        "id": "salt_lake_city-helena",
+        "city1": "salt_lake_city",
+        "city2": "helena"
+    },
+    {
+        "id": "new_york-washington:0",
+        "city1": "new_york",
+        "city2": "washington"
+    },
+    {
+        "id": "new_york-washington:1",
+        "city1": "new_york",
+        "city2": "washington"
+    },
+    {
+        "id": "el_paso-dallas",
+        "city1": "el_paso",
+        "city2": "dallas"
+    },
+    {
+        "id": "atlanta-charleston",
+        "city1": "atlanta",
+        "city2": "charleston"
+    },
+    {
+        "id": "pittsburgh-washington",
+        "city1": "pittsburgh",
+        "city2": "washington"
+    },
+    {
+        "id": "pittsburgh-raleigh",
+        "city1": "pittsburgh",
+        "city2": "raleigh"
+    },
+    {
+        "id": "toronto-pittsburgh",
+        "city1": "toronto",
+        "city2": "pittsburgh"
+    },
+    {
+        "id": "atlanta-miami",
+        "city1": "atlanta",
+        "city2": "miami"
+    },
+    {
+        "id": "little_rock-new_orleans",
+        "city1": "little_rock",
+        "city2": "new_orleans"
+    },
+    {
+        "id": "duluth-toronto",
+        "city1": "duluth",
+        "city2": "toronto"
+    },
+    {
+        "id": "saint_louis-chicago:0",
+        "city1": "saint_louis",
+        "city2": "chicago"
+    },
+    {
+        "id": "saint_louis-chicago:1",
+        "city1": "saint_louis",
+        "city2": "chicago"
+    },
+    {
+        "id": "pittsburgh-new_york:0",
+        "city1": "pittsburgh",
+        "city2": "new_york"
+    },
+    {
+        "id": "pittsburgh-new_york:1",
+        "city1": "pittsburgh",
+        "city2": "new_york"
+    },
+    {
+        "id": "saint_louis-pittsburgh",
+        "city1": "saint_louis",
+        "city2": "pittsburgh"
+    },
+    {
+        "id": "raleigh-charleston",
+        "city1": "raleigh",
+        "city2": "charleston"
+    },
+    {
+        "id": "charleston-miami",
+        "city1": "charleston",
+        "city2": "miami"
+    },
+    {
+        "id": "new_orleans-miami",
+        "city1": "new_orleans",
+        "city2": "miami"
+    },
+    {
+        "id": "dallas-houston:0",
+        "city1": "dallas",
+        "city2": "houston"
+    },
+    {
+        "id": "dallas-houston:1",
+        "city1": "dallas",
+        "city2": "houston"
+    },
+    {
+        "id": "el_paso-houston",
+        "city1": "el_paso",
+        "city2": "houston"
+    },
+    {
+        "id": "los_angeles-el_paso",
+        "city1": "los_angeles",
+        "city2": "el_paso"
+    },
+    {
+        "id": "el_paso-oklahoma_city",
+        "city1": "el_paso",
+        "city2": "oklahoma_city"
+    },
+    {
+        "id": "santa_fe-oklahoma_city",
+        "city1": "santa_fe",
+        "city2": "oklahoma_city"
+    },
+    {
+        "id": "denver-oklahoma_city",
+        "city1": "denver",
+        "city2": "oklahoma_city"
+    },
+    {
+        "id": "los_angeles-phoenix",
+        "city1": "los_angeles",
+        "city2": "phoenix"
+    },
+    {
+        "id": "los_angeles-los_vegas",
+        "city1": "los_angeles",
+        "city2": "los_vegas"
+    },
+    {
+        "id": "phoneix-denver",
+        "city1": "phoneix",
+        "city2": "denver"
+    },
+    {
+        "id": "portland-salt_lake_city",
+        "city1": "portland",
+        "city2": "salt_lake_city"
+    },
+    {
+        "id": "portland-seattle:0",
+        "city1": "portland",
+        "city2": "seattle"
+    },
+    {
+        "id": "portland-seattle:1",
+        "city1": "portland",
+        "city2": "seattle"
+    },
+    {
+        "id": "vancouver-seattle:0",
+        "city1": "vancouver",
+        "city2": "seattle"
+    },
+    {
+        "id": "vancouver-seattle:1",
+        "city1": "vancouver",
+        "city2": "seattle"
+    },
+    {
+        "id": "seattle-calgary",
+        "city1": "seattle",
+        "city2": "calgary"
+    },
+    {
+        "id": "chicago-toronto",
+        "city1": "chicago",
+        "city2": "toronto"
+    },
+    {
+        "id": "nashville-pittsburgh",
+        "city1": "nashville",
+        "city2": "pittsburgh"
+    },
+    {
+        "id": "nashville-atlanta",
+        "city1": "nashville",
+        "city2": "atlanta"
+    },
+    {
+        "id": "little_rock-nashville",
+        "city1": "little_rock",
+        "city2": "nashville"
+    },
+    {
+        "id": "nashville-raleigh",
+        "city1": "nashville",
+        "city2": "raleigh"
+    },
+    {
+        "id": "toronto-montreal",
+        "city1": "toronto",
+        "city2": "montreal"
+    },
+    {
+        "id": "sault_st_marie-montreal",
+        "city1": "sault_st_marie",
+        "city2": "montreal"
+    },
+    {
+        "id": "calgary-winnipeg",
+        "city1": "calgary",
+        "city2": "winnipeg"
+    },
+    {
+        "id": "duluth-chicago",
+        "city1": "duluth",
+        "city2": "chicago"
+    },
+    {
+        "id": "omaha-chicago",
+        "city1": "omaha",
+        "city2": "chicago"
+    },
+    {
+        "id": "chicago-pittsburgh:0",
+        "city1": "chicago",
+        "city2": "pittsburgh"
+    },
+    {
+        "id": "chicago-pittsburgh:1",
+        "city1": "chicago",
+        "city2": "pittsburgh"
+    },
+    {
+        "id": "helena-winnipeg",
+        "city1": "helena",
+        "city2": "winnipeg"
+    },
+    {
+        "id": "las_vegas-salt_lake_city",
+        "city1": "las_vegas",
+        "city2": "salt_lake_city"
+    },
+    {
+        "id": "denver-omaha",
+        "city1": "denver",
+        "city2": "omaha"
+    },
+    {
+        "id": "denver-kansas_city:0",
+        "city1": "denver",
+        "city2": "kansas_city"
+    },
+    {
+        "id": "denver-kansas_city:1",
+        "city1": "denver",
+        "city2": "kansas_city"
+    },
+    {
+        "id": "new_orleans-atlanta:0",
+        "city1": "new_orleans",
+        "city2": "atlanta"
+    },
+    {
+        "id": "new_orleans-atlanta:1",
+        "city1": "new_orleans",
+        "city2": "atlanta"
+    },
+    {
+        "id": "san_francisco-portland:0",
+        "city1": "san_francisco",
+        "city2": "portland"
+    },
+    {
+        "id": "san_francisco-portland:1",
+        "city1": "san_francisco",
+        "city2": "portland"
+    },
+    {
+        "id": "san_francisco-los_angeles:0",
+        "city1": "san_francisco",
+        "city2": "los_angeles"
+    },
+    {
+        "id": "san_francisco-los_angeles:1",
+        "city1": "san_francisco",
+        "city2": "los_angeles"
+    }
+]
