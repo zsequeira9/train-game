@@ -1,10 +1,10 @@
 'use client';
-import Gameboard from "./gameboard";
+import TrainGame from "./TrainGame";
 
 
 export default function Home() {
 
   return (
-    <Gameboard />
+    <TrainGame />
   );
 }
