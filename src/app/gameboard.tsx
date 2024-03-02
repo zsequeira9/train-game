@@ -1,13 +1,18 @@
-'use client';
+// 'use client';
 import styles from "./gameboard.module.css";
 import { MouseEvent, useState, } from "react";
 import { 
   Route, 
   RouteColor, 
  } from "../../interfaces";
- import { gameController } from "./gamelogic";
+import { gameController } from "./gamelogic";
+
+import { useMachine } from '@xstate/react';
+import { controllerMachine } from './controllerMachine';
 
 export default function Gameboard() {
+
+  const [state, send] = useMachine(controllerMachine, {input: gameController});
 
   const r = new Route(
     "ssm-t", 
@@ -20,8 +25,11 @@ export default function Gameboard() {
   const [route, setRoute] = useState<Route>(r);
 
   function changeColor(clickEvent: MouseEvent) {
-    let currentPlayer = gameController.currentPlayer;
-    gameController.claimRoute(route);
+    let currentPlayer = state.context.controller.currentPlayer;
+    send({
+      type: 'claimRoute',
+      route: route
+    })
 
     const newRoute = new Route(
       route.id,
@@ -32,31 +40,37 @@ export default function Gameboard() {
       currentPlayer,
     );
     setRoute(newRoute);
-    
   }
 
-  function drawDestinations(clickEvent: MouseEvent) {
-    gameController.drawDestinations();
-  }
-
-  const listPlayerInfo = gameController.playerSequence.map(
-    player => <li key={player.name}>
-        <div className={styles.card}>
-          <h1>
-            {player.name}
-          </h1>
-          <p>Number of trains: {player.trains}</p>
-          <p>Routes: {player.destinationString}</p>
-        </div>
-    </li>
+  const listPlayerInfo = state.context.controller.playerSequence.map(
+    (player) =>
+      <li key={player.name}>
+          <div className={styles.card}>
+            <h1>
+              {player.name}
+            </h1>
+            <p>Number of trains: {player.trains}</p>
+            <p>Destinations: {player.destinationString}</p>
+          </div>
+      </li>
   );
+
+  const listTrainUp = state.context.controller.trainFaceUp.map((trainCard) =>
+    <li key={trainCard.id}>
+      <p>{trainCard.cardColor}</p>
+    </li>
+  )
 
   return (
     <main className={styles.main}>
         <ul>{listPlayerInfo}</ul>
+        <ul>{listTrainUp}</ul>
         <div className={styles.card}>
-          <button onClick={drawDestinations}>
+          <button onClick={() => send({type: 'drawDest'})}>
             Draw Destination Cards?
+          </button>
+          <button onClick={() => send({type: 'drawTrains'})}>
+            Draw trains??????????
           </button>
         </div>
       <div className={styles.center}>
