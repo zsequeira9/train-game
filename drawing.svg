@@ -15,14 +15,15 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><style
-     id="style2">.blue { fill:#06a3e9;fill-opacity: 1; }
-.pink { fill: #e99dcd; fill-opacity:1; }
-.black { fill: #000000;    fill-opacity: 1; }
-.white { fill: #e7eaf2;    fill-opacity: 1; }
-.yellow { fill: #e1e84b;    fill-opacity: 1; }
-.grey { fill: #a3a2a0;    fill-opacity: 1; }
-.green { fill: #9bc754;    fill-opacity: 1; }
-.orange { fill: #d09034;    fill-opacity: 1; }
+     id="style2">.blue { fill:#06a3e9;fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.red { fill:#cd4138;;fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.pink { fill: #e99dcd; fill-opacity:1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.black { fill: #000000;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.white { fill: #e7eaf2;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.yellow { fill: #e1e84b;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.grey { fill: #a3a2a0;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.green { fill: #9bc754;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
+.orange { fill: #d09034;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
 #Routes rect { stroke-width: 0.2646;    fill: #000000; }
 #Cities &gt; circle { stroke-width: 0.2646;    fill: #000000; }
 </style><sodipodi:namedview
@@ -287,7 +288,8 @@
      id="Routes"
      inkscape:label="Routes"
      inkscape:highlight-color="#677aff"
-     style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+     style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
+     sodipodi:insensitive="true"><g
        id="vancouver_calgary"
        transform="translate(4.511,-0.575)"
        inkscape:label="vancouver-calgary"
@@ -361,7 +363,6 @@
          id="rect47" /></g><g
        id="g53"
        transform="translate(3.524,-0.2394)"
-       style=""
        inkscape:label="helena-duluth"
        class="orange"><rect
          style="fill:#d09034;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
@@ -409,11 +410,10 @@
        inkscape:groupmode="layer"
        id="layer7"
        inkscape:label="san_francisco-salt_lake_city"
-       transform="translate(0.0884,-0.0884)"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       transform="translate(0.0884,-0.0884)"><g
          id="g68"
          transform="translate(2.211,-0.7961)"
-         style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="orange"><rect
            style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -451,7 +451,7 @@
            id="rect68" /></g><g
          id="g73"
          transform="translate(3.273,2.122)"
-         style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="white"><rect
            style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -489,7 +489,6 @@
            id="rect73" /></g></g><g
        id="g82"
        transform="translate(2.387,2.938)"
-       style=""
        inkscape:label="calgary-helena"
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
@@ -554,7 +553,6 @@
          id="rect100" /></g><g
        id="g5"
        inkscape:label="oklahoma_city-kansas_city"
-       style=""
        class="grey"><g
          id="g102"
          transform="translate(0.8124,-3.441)"
@@ -591,11 +589,10 @@
            transform="matrix(0.2536,-0.9673,0.9673,0.2536,50.11,153.7)"
            id="rect102-9" /></g></g><g
        id="g4"
-       inkscape:label="kansas_city-saint_louis"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="kansas_city-saint_louis"><g
          id="g104"
          transform="translate(4.017,-0.0974)"
-         style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="blue"><rect
            style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -612,7 +609,7 @@
            id="rect104" /></g><g
          id="g104-0"
          transform="translate(3.972,3.2)"
-         style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="pink"><rect
            style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -630,7 +627,6 @@
        id="g1"
        inkscape:label="omaha-kansas_city"
        transform="translate(0.0487,-0.2678)"
-       style=""
        class="grey"><g
          id="g105-8"
          transform="translate(-0.8353,5.527)"
@@ -654,7 +650,6 @@
            id="rect105" /></g></g><g
        id="g2"
        inkscape:label="omaha-duluth"
-       style=""
        class="grey"><g
          id="g110"
          transform="translate(1.711,-3.402)"
@@ -693,7 +688,7 @@
        id="g115"
        transform="translate(3.868,1.466)"
        inkscape:label="helena-omaha"
-       style="display:inline;fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="red"><rect
          style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -730,12 +725,11 @@
          transform="matrix(0.9373,0.3485,-0.3485,0.9373,88.1,-24.21)"
          id="rect115" /></g><g
        id="g3"
-       inkscape:label="salt_lake_city-denver"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="salt_lake_city-denver"><g
          id="g126-0"
          transform="matrix(0.9703,0,0,0.9318,5.912,9.958)"
-         style="display:inline;fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2783;stroke-dasharray:none;stroke-opacity:1"
-         inkscape:label="g126-0"><rect
+         inkscape:label="g126-0"
+         class="black"><rect
            style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2783;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -759,7 +753,7 @@
            id="rect126-9" /></g><g
          id="g126"
          transform="matrix(0.9702,0,0,0.9319,6.461,6.707)"
-         style="display:inline;fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2783;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="red"><rect
            style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2783;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -783,7 +777,7 @@
            id="rect126" /></g></g><g
        id="g146"
        inkscape:label="montreal-boston"
-       style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       class="grey"><g
          id="g49"
          transform="translate(2.46,3.949)"
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
@@ -819,11 +813,10 @@
            transform="matrix(0.8006,0.5991,-0.5991,0.8006,228.8,-72.83)"
            id="rect49-4" /></g></g><g
        id="g147"
-       inkscape:label="new_york-boston"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="new_york-boston"><g
          id="g63"
          transform="translate(0.7769,-3.949)"
-         style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="red"><rect
            style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -840,7 +833,7 @@
            id="rect63" /></g><g
          id="g63-1"
          transform="translate(-2.009,-5.955)"
-         style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="yellow"><rect
            style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -858,7 +851,7 @@
        id="g76"
        transform="translate(-1.877,-3.302)"
        inkscape:label="montreal-new_york"
-       style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="blue"><rect
          style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -882,7 +875,7 @@
          id="rect76" /></g><g
        id="g150"
        inkscape:label="raleigh-washington"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       class="grey"><g
          id="g84"
          transform="translate(1.877,-4.143)"
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
@@ -919,7 +912,7 @@
            id="rect84-3" /></g></g><g
        id="g151"
        inkscape:label="atlanta-raleigh"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       class="grey"><g
          id="g86"
          transform="translate(2.395,-3.69)"
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
@@ -957,7 +950,6 @@
        id="g88"
        transform="translate(3.891,2.289)"
        inkscape:label="sault_st_marie-toronto"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -976,7 +968,6 @@
        id="g91"
        transform="translate(4.395,-0.6409)"
        inkscape:label="duluth-sault_st_marie"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1034,7 +1025,6 @@
        id="g117"
        transform="translate(3.937,2.518)"
        inkscape:label="winnipeg-sault_st_marie"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1081,7 +1071,6 @@
        id="g119"
        transform="translate(1.648,-4.212)"
        inkscape:label="santa_fe-denver"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1100,7 +1089,6 @@
        id="g121"
        transform="translate(3.82,-2.072)"
        inkscape:label="houston-new_orleans"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1137,7 +1125,6 @@
        id="g128"
        transform="translate(2.719,-3.431)"
        inkscape:label="little_rock-saint_louis"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1156,7 +1143,6 @@
        id="g130"
        transform="translate(3.949,-1.424)"
        inkscape:label="oklahoma_city-little_rock"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1175,7 +1161,6 @@
        id="g132"
        transform="translate(3.496,-2.395)"
        inkscape:label="dallas-little_rock"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1193,7 +1178,6 @@
          id="rect132" /></g><g
        id="g152"
        inkscape:label="oklahoma_city-dallas"
-       style=""
        class="grey"><g
          id="g134"
          transform="translate(1.942,4.143)"
@@ -1232,7 +1216,6 @@
        id="g137"
        transform="translate(3.937,2.747)"
        inkscape:label="phoenix-el_paso"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1258,7 +1241,6 @@
        id="g140"
        transform="translate(4.395,-0.1831)"
        inkscape:label="phoenix-santa_fe"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1284,7 +1266,6 @@
        id="g142"
        transform="translate(1.556,-3.662)"
        inkscape:label="el_paso-santa_fe"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1303,7 +1284,7 @@
        id="g145"
        transform="translate(3.571,-2.93)"
        inkscape:label="salt_lake_city-helena"
-       style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="pink"><rect
          style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1326,11 +1307,10 @@
          transform="matrix(0.4786,-0.878,0.878,0.4786,-15.81,96.21)"
          id="rect145" /></g><g
        id="g149"
-       inkscape:label="new_york-washington"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="new_york-washington"><g
          id="g148"
          transform="translate(1.198,-3.95)"
-         style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="orange"><rect
            style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -1347,7 +1327,7 @@
            id="rect148" /></g><g
          id="g148-5"
          transform="translate(4.52,-4.156)"
-         style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="black"><rect
            style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -1365,7 +1345,7 @@
        id="g165"
        transform="translate(3.662,-2.014)"
        inkscape:label="el_paso-dallas"
-       style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="red"><rect
          style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1397,7 +1377,7 @@
        id="g167"
        transform="translate(4.395,-1.419)"
        inkscape:label="atlanta-charleston"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey "><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1415,7 +1395,7 @@
        id="g169"
        transform="translate(4.303,0.3662)"
        inkscape:label="pittsburgh-washington"
-       style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1451,7 +1431,7 @@
        id="g173"
        transform="translate(1.101,-4.532)"
        inkscape:label="toronto-pittsburgh"
-       style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1469,7 +1449,7 @@
        id="g178"
        transform="translate(3.569,2.335)"
        inkscape:label="atlanta-miami"
-       style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="blue"><rect
          style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1508,7 +1488,7 @@
        id="g181"
        transform="translate(3.388,3.662)"
        inkscape:label="little_rock-new_orleans"
-       style="display:inline;fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="green"><rect
          style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1533,7 +1513,6 @@
        id="g187"
        transform="translate(3.845,0.7325)"
        inkscape:label="duluth-toronto"
-       style=""
        class="pink"><rect
          style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -1578,11 +1557,10 @@
          transform="matrix(0.9797,-0.2004,0.2004,0.9797,114,-9.271)"
          id="rect187" /></g><g
        id="g197"
-       inkscape:label="saint_louis-chicago"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="saint_louis-chicago"><g
          id="g189"
          transform="translate(3.302,-2.59)"
-         style="fill:#90b94e;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="green"><rect
            style="fill:#90b94e;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -1599,7 +1577,7 @@
            id="rect189" /></g><g
          id="g189-2"
          transform="translate(6.087,-0.7083)"
-         style="display:inline;fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="white"><rect
            style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -1616,11 +1594,10 @@
            id="rect189-6" /></g></g><g
        id="g198"
        inkscape:label="pittsburgh-new_york"
-       transform="translate(0.1942,0.0647)"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       transform="translate(0.1942,0.0647)"><g
          id="g191"
          transform="translate(4.532,-0.9711)"
-         style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="white"><rect
            style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -1638,7 +1615,7 @@
          id="g191-6"
          transform="translate(6.146,1.946)"
          inkscape:label="g191-6"
-         style="display:inline;fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="green"><rect
            style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -1656,7 +1633,7 @@
        id="g196"
        transform="translate(4.467,-0.9711)"
        inkscape:label="saint_louis-pittsburgh"
-       style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="green"><rect
          style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1694,7 +1671,7 @@
          id="rect196" /></g><g
        id="g224"
        inkscape:label="raleigh-charleston"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1711,7 +1688,7 @@
          id="rect59-3-59" /></g><g
        id="g223"
        inkscape:label="charleston-miami"
-       style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="pink"><rect
          style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1742,7 +1719,7 @@
          id="rect59-3-80" /></g><g
        id="g222"
        inkscape:label="new_orleans-miami"
-       style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="red"><rect
          style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1787,7 +1764,6 @@
          id="rect59-3-03" /></g><g
        id="g227"
        inkscape:label="dallas-houston"
-       style=""
        class="grey"><g
          id="g226"
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
@@ -1809,7 +1785,7 @@
            id="rect59-3-4-5" /></g></g><g
        id="g228"
        inkscape:label="el_paso-houston"
-       style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="green"><rect
          style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1854,7 +1830,7 @@
          id="rect59-3-41" /></g><g
        id="g229"
        inkscape:label="los_angeles-el_paso"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="black"><rect
          style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1899,7 +1875,7 @@
          id="rect59-3-636" /></g><g
        id="g220"
        inkscape:label="el_paso-oklahoma_city"
-       style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="yellow"><rect
          style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1937,7 +1913,7 @@
          id="rect59-3-47" /></g><g
        id="g221"
        inkscape:label="santa_fe-oklahoma_city"
-       style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="blue"><rect
          style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1992,7 +1968,6 @@
          id="rect59-3-98" /></g><g
        id="g231"
        inkscape:label="los_angeles-phoenix"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -2017,7 +1992,6 @@
          id="rect59-3-37" /></g><g
        id="g232"
        inkscape:label="los_angeles-los_vegas"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -2035,7 +2009,7 @@
          id="rect59-3-89" /></g><g
        id="g233"
        inkscape:label="phoneix-denver"
-       style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="white"><rect
          style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2073,7 +2047,6 @@
          id="rect59-3-253" /></g><g
        id="g234"
        inkscape:label="portland-salt_lake_city"
-       style=""
        class="blue"><rect
          style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -2119,7 +2092,6 @@
          id="rect59-3-91" /></g><g
        id="g19"
        inkscape:label="portland-seattle"
-       style=""
        class="grey"><g
          id="g235"
          inkscape:label="portland-seattle2"
@@ -2144,7 +2116,6 @@
            id="rect59-3-42-4" /></g></g><g
        id="g18"
        inkscape:label="vancouver-seattle"
-       style=""
        class="grey"><g
          id="g236"
          inkscape:label="vancouver-seattle2"
@@ -2169,7 +2140,6 @@
            id="rect59-3-888-6" /></g></g><g
        id="g237"
        inkscape:label="seattle-calgary"
-       style=""
        class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -2201,7 +2171,7 @@
          id="rect59-3-69" /></g><g
        id="g238"
        inkscape:label="chicago-toronto"
-       style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="white"><rect
          style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2232,7 +2202,7 @@
          id="rect59-3-425" /></g><g
        id="g239"
        inkscape:label="nashville-pittsburgh"
-       style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="yellow"><rect
          style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2273,7 +2243,7 @@
          id="rect59-3-819" /></g><g
        id="g241"
        inkscape:label="little_rock-nashville"
-       style="display:inline;fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="white"><rect
          style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2297,7 +2267,7 @@
          id="rect59-3-09" /></g><g
        id="g242"
        inkscape:label="nashville-raleigh"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="black"><rect
          style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2321,7 +2291,7 @@
          id="rect59-3-255" /></g><g
        id="g219"
        inkscape:label="toronto-montreal"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2345,7 +2315,7 @@
          id="rect59-3-60" /></g><g
        id="g218"
        inkscape:label="sault_st_marie-montreal"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="black"><rect
          style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2383,7 +2353,6 @@
          id="rect59-3-8" /></g><g
        id="g17"
        inkscape:label="calgary-winnipeg"
-       style=""
        class="white"><rect
          style="fill:#e7eaf2;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -2429,7 +2398,7 @@
          id="rect59-3-45" /></g><g
        id="g11"
        inkscape:label="duluth-chicago"
-       style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="red"><rect
          style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2453,7 +2422,7 @@
          id="rect59-3-980" /></g><g
        id="g13"
        inkscape:label="omaha-chicago"
-       style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="blue"><rect
          style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2483,10 +2452,9 @@
          transform="rotate(-35.12)"
          id="rect59-3-58" /></g><g
        id="g14"
-       inkscape:label="chicago-pittsburgh"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="chicago-pittsburgh"><g
          id="g12"
-         style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="orange"><rect
            style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2510,7 +2478,7 @@
            id="rect59-3-907" /></g><g
          id="g12-5"
          transform="translate(1.138,3.628)"
-         style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="black"><rect
            style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2534,7 +2502,6 @@
            id="rect59-3-907-5" /></g></g><g
        id="g15"
        inkscape:label="helena-winnipeg"
-       style=""
        class="blue"><rect
          style="fill:#06a3e9;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
@@ -2566,7 +2533,7 @@
          id="rect59-3-350-88" /></g><g
        id="g16"
        inkscape:label="las_vegas-salt_lake_city"
-       style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="orange"><rect
          style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2590,7 +2557,7 @@
          id="rect59-3-02" /></g><g
        id="g10"
        inkscape:label="denver-omaha"
-       style="display:inline;fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="pink"><rect
          style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2620,10 +2587,9 @@
          transform="rotate(-10.22)"
          id="rect59-3-07" /></g><g
        id="g9"
-       inkscape:label="denver-kansas_city"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="denver-kansas_city"><g
          id="g8"
-         style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="black"><rect
            style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2654,7 +2620,7 @@
            id="rect59-3-360" /></g><g
          id="g8-1"
          transform="translate(0.4653,3.433)"
-         style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="orange"><rect
            style="fill:#d09034;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2684,10 +2650,9 @@
            transform="rotate(-24.94)"
            id="rect59-3-360-7" /></g></g><g
        id="g7"
-       inkscape:label="new_orleans-atlanta"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="new_orleans-atlanta"><g
          id="g6"
-         style="display:inline;fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="yellow "><rect
            style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2718,7 +2683,7 @@
            id="rect59-3-043" /></g><g
          id="g6-6"
          transform="translate(2.497,2.551)"
-         style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="red"><rect
            style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2748,10 +2713,9 @@
            transform="rotate(-41.71)"
            id="rect59-3-043-2" /></g></g><g
        id="g21"
-       inkscape:label="san_francisco-portland"
-       style="stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="san_francisco-portland"><g
          id="g20"
-         style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="green"><rect
            style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2789,7 +2753,7 @@
            id="rect59-3-500" /></g><g
          id="g20-1"
          transform="translate(3.605,-0.1105)"
-         style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="pink"><rect
            style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2826,11 +2790,10 @@
            transform="rotate(71.61)"
            id="rect59-3-500-9" /></g></g><g
        id="g23"
-       inkscape:label="san_francisco-los_angeles"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><g
+       inkscape:label="san_francisco-los_angeles"><g
          id="g22"
          transform="translate(0,-0.0692)"
-         style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="yellow"><rect
            style="fill:#e1e84b;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
@@ -2854,7 +2817,7 @@
            id="rect59-3-086" /></g><g
          id="g22-9"
          transform="translate(3.082,-1.648)"
-         style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+         class="pink"><rect
            style="fill:#e99dcd;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
            width="8.991"
            height="3.175"
