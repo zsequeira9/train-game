@@ -1,49 +1,19 @@
-import styles from "./USGameboard.module.css";
-import {
-    Route,
-    RouteColor,
-} from "../../interfaces";
+// import {
+//     Route,
+//     RouteColor,
+// } from "../../interfaces";
+import { MouseEventHandler } from "react";
+import React from 'react';
 
-export default function USGameboard() {
+interface USGameboardProps {
+    claimRoute: MouseEventHandler;
+}
+
+export default function USGameboard({claimRoute=() => {}}: USGameboardProps) {
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="667" viewBox="0 0 264.583 176.47686"
             version="1.1" id="svg1">
-            <style id="style2">
-                .black {
-                    fill: #000000;
-                fill-opacity: 1;
-                }
-                .white {
-                    fill: #e7eaf2;
-                fill-opacity: 1;
-                }
-                .yellow {
-                    fill: #e1e84b;
-                fill-opacity: 1;
-                }
-                .grey {
-                    fill: #a3a2a0;
-                fill-opacity: 1;
-                }
-                .green {
-                    fill: #9bc754;
-                fill-opacity: 1;
-                }
-                .orange {
-                    fill: #d09034;
-                fill-opacity: 1;
-                }
-
-                #Routes rect {
-                    stroke - width: 0.2646;
-                fill: #000000;
-                }
-                #Cities &gt; circle {
-                    stroke - width: 0.2646;
-                fill: #000000;
-                }
-            </style>
             <defs id="defs1" />
             <g id="Cities" style={{ display: "inline" }}>
                 <circle style={{ fill: "#000000", strokeWidth: "0.2646" }} id="vancouver" cx="28.68" cy="27.81" r="1.965" />
@@ -84,7 +54,8 @@ export default function USGameboard() {
                 <circle style={{ fill: "#000000", strokeWidth: "0.2646" }} id="sault_st_marie" cx="182.6" cy="38.71" r="1.965" />
             </g>
             <g id="Routes" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
-                <g id="vancouver-calgary" transform="translate(4.511,-0.575)" data-to="calgary" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="vancouver-calgary" transform="translate(4.511,-0.575)" data-to="calgary" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}
+                    onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.756" height="3.128" x="32.89" y="28.6"
                         transform="rotate(-6.194,1.139,77.13)" id="rect34" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.756" height="3.128" x="32.89" y="28.6"
@@ -92,7 +63,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.756" height="3.128" x="32.89" y="28.6"
                         transform="rotate(-6.194,-8.117,-93.94)" id="rect36" />
                 </g>
-                <g id="seattle-helena" transform="translate(4.252,1.001)" style={{ display: "inline", fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="seattle-helena" transform="translate(4.252,1.001)" style={{ display: "inline", fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.867" height="3.117" x="91.76" y="55.62"
                         transform="rotate(12.82,116.5,-238.4)" id="rect42" />
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.867" height="3.117" x="91.76" y="55.62"
@@ -106,7 +77,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.867" height="3.117" x="91.76" y="55.62"
                         transform="rotate(12.82,93.08,-30.05)" id="rect47" />
                 </g>
-                <g id="helena-duluth" transform="translate(3.524,-0.2394)" style={{ display: "inline", fill: "#d09034", fillOpacity: "1", fillRule: "nonzero", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="helena-duluth" transform="translate(3.524,-0.2394)" style={{ display: "inline", fill: "#d09034", fillOpacity: "1", fillRule: "nonzero", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#d09034", fillOpacity: "1", fillRule: "nonzero", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="91.68" y="55.57"
                         transform="matrix(0.9993,-0.0361,0.0361,0.9993,-6.495,3.579)" id="rect54" />
                     <rect style={{ fill: "#d09034", fillOpacity: "1", fillRule: "nonzero", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="91.68" y="55.57"
@@ -120,7 +91,8 @@ export default function USGameboard() {
                     <rect style={{ fill: "#d09034", fillOpacity: "1", fillRule: "nonzero", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="91.68" y="55.57"
                         transform="matrix(0.9993,-0.0361,0.0361,0.9993,41.21,2.719)" id="rect59" />
                 </g>
-                <g id="san_francisco-salt_lake_city" transform="translate(0.0884,-0.0884)" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="san_francisco-salt_lake_city" transform="translate(0.0884,-0.0884)" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}
+                    onClick={claimRoute}>
                     <g id="san_francisco-salt_lake_city:0" transform="translate(2.211,-0.7961)" style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="rotate(-20.69,115.5,227.4)" id="rect64" />
@@ -146,7 +118,7 @@ export default function USGameboard() {
                             transform="rotate(-20.69,100.3,122.7)" id="rect73" />
                     </g>
                 </g>
-                <g id="calgary-helena" transform="translate(2.387,2.938)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="calgary-helena" transform="translate(2.387,2.938)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                         transform="matrix(0.6679,0.7442,-0.7442,0.6679,74.66,-80.44)" id="rect79" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
@@ -156,7 +128,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                         transform="matrix(0.6679,0.7442,-0.7442,0.6679,92.92,-58.56)" id="rect82" />
                 </g>
-                <g id="helena-denver" transform="translate(1.677,3.665)" style={{ display: "inline", fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="helena-denver" transform="translate(1.677,3.665)" style={{ display: "inline", fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                         transform="matrix(0.4099,0.9121,-0.9121,0.4099,131.5,-38.84)" id="rect97" />
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
@@ -166,7 +138,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                         transform="matrix(0.4099,0.9121,-0.9121,0.4099,142.2,-12.44)" id="rect100" />
                 </g>
-                <g id="oklahoma_city-kansas_city" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="oklahoma_city-kansas_city" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="oklahoma_city-kansas_city:0" transform="translate(0.8124,-3.441)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.2536,-0.9673,0.9673,0.2536,47.4,162.7)" id="rect101" />
@@ -180,7 +152,7 @@ export default function USGameboard() {
                             transform="matrix(0.2536,-0.9673,0.9673,0.2536,50.11,153.7)" id="rect102-9" />
                     </g>
                 </g>
-                <g id="kansas_city-saint_louis" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="kansas_city-saint_louis" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="kansas_city-saint_louis:0" transform="translate(4.017,-0.0974)" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.9984,-0.0561,0.0561,0.9984,72.58,16.67)" id="rect103" />
@@ -194,7 +166,7 @@ export default function USGameboard() {
                             transform="matrix(0.9984,-0.0561,0.0561,0.9984,81.98,16.48)" id="rect104-0" />
                     </g>
                 </g>
-                <g id="omaha-kansas_city" transform="translate(0.0487,-0.2678)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="omaha-kansas_city" transform="translate(0.0487,-0.2678)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="omaha-kansas_city:0" transform="translate(-0.8353,5.527)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.5065,0.8622,-0.8622,0.5065,175.4,-20.96)" id="rect105-0" />
@@ -204,7 +176,7 @@ export default function USGameboard() {
                             transform="matrix(0.5065,0.8622,-0.8622,0.5065,175.4,-20.96)" id="rect105" />
                     </g>
                 </g>
-                <g id="omaha-duluth" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="omaha-duluth" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="omaha-duluth:0" transform="translate(1.711,-3.402)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.3329,-0.9429,0.9429,0.3329,45.11,119.2)" id="rect109" />
@@ -218,7 +190,7 @@ export default function USGameboard() {
                             transform="matrix(0.3329,-0.9429,0.9429,0.3329,48.55,110.4)" id="rect110-6" />
                     </g>
                 </g>
-                <g id="helena-omaha" transform="translate(3.868,1.466)" style={{ display: "inline", fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="helena-omaha" transform="translate(3.868,1.466)" style={{ display: "inline", fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                         transform="matrix(0.9373,0.3485,-0.3485,0.9373,53.36,-38.58)" id="rect111" />
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
@@ -230,7 +202,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
                         transform="matrix(0.9373,0.3485,-0.3485,0.9373,88.1,-24.21)" id="rect115" />
                 </g>
-                <g id="salt_lake_city-denver" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="salt_lake_city-denver" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="salt_lake_city-denver:0" transform="matrix(0.9703,0,0,0.9318,5.912,9.958)"
                         style={{ display: "inline", fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2783", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2783", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.64" y="76.94"
@@ -250,7 +222,7 @@ export default function USGameboard() {
                             transform="matrix(0.988,0.1539,-0.1539,0.988,31.52,2.748)" id="rect126" />
                     </g>
                 </g>
-                <g id="montreal-boston" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="montreal-boston" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="montreal-boston:0" transform="translate(2.46,3.949)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.8006,0.5991,-0.5991,0.8006,221.5,-78.72)" id="rect48" />
@@ -264,7 +236,7 @@ export default function USGameboard() {
                             transform="matrix(0.8006,0.5991,-0.5991,0.8006,228.8,-72.83)" id="rect49-4" />
                     </g>
                 </g>
-                <g id="new_york-boston" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="new_york-boston" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="new_york-boston:0" transform="translate(0.7769,-3.949)" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.5211,-0.8535,0.8535,0.5211,144.4,80.84)" id="rect62" />
@@ -278,7 +250,7 @@ export default function USGameboard() {
                             transform="matrix(0.5211,-0.8535,0.8535,0.5211,149.6,73)" id="rect63-5" />
                     </g>
                 </g>
-                <g id="montreal-new_york" transform="translate(-1.877,-3.302)" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="montreal-new_york" transform="translate(-1.877,-3.302)" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(-0.2057,-0.9786,0.9786,-0.2057,181.8,137.2)" id="rect74" />
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -286,7 +258,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(-0.2057,-0.9786,0.9786,-0.2057,178.6,118.7)" id="rect76" />
                 </g>
-                <g id="raleigh-washington" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="raleigh-washington" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="raleigh-washington:0" transform="translate(1.877,-4.143)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.6057,-0.7956,0.7956,0.6057,128.1,111.6)" id="rect83" />
@@ -300,7 +272,7 @@ export default function USGameboard() {
                             transform="matrix(0.6057,-0.7956,0.7956,0.6057,134.1,104.3)" id="rect84-3" />
                     </g>
                 </g>
-                <g id="atlanta-raleigh" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="atlanta-raleigh" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="atlanta-raleigh:0" transform="translate(2.395,-3.69)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.7411,-0.6713,0.6713,0.7411,109.7,108.2)" id="rect85" />
@@ -314,13 +286,13 @@ export default function USGameboard() {
                             transform="matrix(0.7411,-0.6713,0.6713,0.7411,116.9,102.1)" id="rect86-1" />
                     </g>
                 </g>
-                <g id="sault_st_marie-toronto" transform="translate(3.891,2.289)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="sault_st_marie-toronto" transform="translate(3.891,2.289)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9865,0.1633,-0.1633,0.9865,127.9,-43.92)" id="rect87" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9865,0.1633,-0.1633,0.9865,137.1,-42.05)" id="rect88" />
                 </g>
-                <g id="duluth-sault_st_marie" transform="translate(4.395,-0.6409)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="duluth-sault_st_marie" transform="translate(4.395,-0.6409)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9041,-0.4272,0.4272,0.9041,58.86,16.89)" id="rect89" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -328,7 +300,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9041,-0.4272,0.4272,0.9041,76.14,9.478)" id="rect91" />
                 </g>
-                <g id="winnipeg-duluth" transform="translate(1.877,3.937)" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="winnipeg-duluth" transform="translate(1.877,3.937)" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.7413,0.6711,-0.6711,0.7413,117.9,-74.11)" id="rect92" />
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -338,7 +310,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.7413,0.6711,-0.6711,0.7413,138.1,-54.44)" id="rect95" />
                 </g>
-                <g id="winnipeg-sault_st_marie" transform="translate(3.937,2.518)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="winnipeg-sault_st_marie" transform="translate(3.937,2.518)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9849,0.1727,-0.1727,0.9849,67.51,-58.58)" id="rect96" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -352,43 +324,43 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9849,0.1727,-0.1727,0.9849,113.5,-48.8)" id="rect117" />
                 </g>
-                <g id="santa_fe-denver" transform="translate(1.648,-4.212)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="santa_fe-denver" transform="translate(1.648,-4.212)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(-0.008,-0.9999,0.9999,-0.008,29.76,190.8)" id="rect118" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(-0.008,-0.9999,0.9999,-0.008,30.02,181.4)" id="rect119" />
                 </g>
-                <g id="houston-new_orleans" transform="translate(3.82,-2.072)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="houston-new_orleans" transform="translate(3.82,-2.072)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9808,-0.1946,0.1946,0.9808,76.58,93.34)" id="rect120" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9808,-0.1946,0.1946,0.9808,85.86,91.84)" id="rect121" />
                 </g>
-                <g id="saint_louis-nashville" transform="translate(3.626,2.654)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="saint_louis-nashville" transform="translate(3.626,2.654)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9654,0.2605,-0.2605,0.9654,122,8.527)" id="rect122" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9654,0.2605,-0.2605,0.9654,130.9,11.3)" id="rect123" />
                 </g>
-                <g id="little_rock-saint_louis" transform="translate(2.719,-3.431)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="little_rock-saint_louis" transform="translate(2.719,-3.431)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.2191,-0.9756,0.9756,0.2191,78.74,166.9)" id="rect127" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.2191,-0.9756,0.9756,0.2191,81.13,157.8)" id="rect128" />
                 </g>
-                <g id="oklahoma_city-little_rock" transform="translate(3.949,-1.424)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="oklahoma_city-little_rock" transform="translate(3.949,-1.424)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9982,-0.0587,0.0587,0.9982,69.3,49.92)" id="rect129" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9982,-0.0587,0.0587,0.9982,78.7,49.71)" id="rect130" />
                 </g>
-                <g id="dallas-little_rock" transform="translate(3.496,-2.395)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="dallas-little_rock" transform="translate(3.496,-2.395)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.5477,-0.8366,0.8366,0.5477,51.78,153.3)" id="rect131" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.5477,-0.8366,0.8366,0.5477,57.21,145.7)" id="rect132" />
                 </g>
-                <g id="oklahoma_city-dallas" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="oklahoma_city-dallas" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="oklahoma_city-dallas:0" transform="translate(1.942,4.143)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.1571,0.9875,-0.9875,0.1571,200.5,35.47)" id="rect133" />
@@ -402,7 +374,7 @@ export default function USGameboard() {
                             transform="matrix(0.1571,0.9875,-0.9875,0.1571,201.7,44.8)" id="rect134-4" />
                     </g>
                 </g>
-                <g id="phoenix-el_paso" transform="translate(3.937,2.747)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="phoenix-el_paso" transform="translate(3.937,2.747)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9693,0.2456,-0.2456,0.9693,20.25,47.38)" id="rect135" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -410,7 +382,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9693,0.2456,-0.2456,0.9693,38.3,52.65)" id="rect137" />
                 </g>
-                <g id="phoenix-santa_fe" transform="translate(4.395,-0.1831)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="phoenix-santa_fe" transform="translate(4.395,-0.1831)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9017,-0.4322,0.4322,0.9017,-22.18,97.96)" id="rect138" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -418,13 +390,13 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9017,-0.4322,0.4322,0.9017,-4.942,90.46)" id="rect140" />
                 </g>
-                <g id="el_paso-santa_fe" transform="translate(1.556,-3.662)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="el_paso-santa_fe" transform="translate(1.556,-3.662)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.0213,-0.9997,0.9997,0.0213,26.29,211.6)" id="rect141" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.0213,-0.9997,0.9997,0.0213,26.83,202.2)" id="rect142" />
                 </g>
-                <g id="salt_lake_city-helena" transform="translate(3.571,-2.93)" style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="salt_lake_city-helena" transform="translate(3.571,-2.93)" style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.4786,-0.878,0.878,0.4786,-25.4,112.4)" id="rect143" />
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -432,7 +404,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.4786,-0.878,0.878,0.4786,-15.81,96.21)" id="rect145" />
                 </g>
-                <g id="new_york-washington" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="new_york-washington" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="new_york-washington:0" transform="translate(1.198,-3.95)" style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(-0.0646,-0.9979,0.9979,-0.0646,169.8,153.3)" id="rect147" />
@@ -446,7 +418,7 @@ export default function USGameboard() {
                             transform="matrix(-0.0646,-0.9979,0.9979,-0.0646,169.5,144)" id="rect148-0" />
                     </g>
                 </g>
-                <g id="el_paso-dallas" transform="translate(3.662,-2.014)" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="el_paso-dallas" transform="translate(3.662,-2.014)" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9852,-0.1713,0.1713,0.9852,25.13,88.25)" id="rect162" />
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -456,31 +428,31 @@ export default function USGameboard() {
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9852,-0.1713,0.1713,0.9852,53.07,84.43)" id="rect165" />
                 </g>
-                <g id="atlanta-charleston" transform="translate(4.395,-1.419)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="atlanta-charleston" transform="translate(4.395,-1.419)" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9999,-0.0026,0.0026,0.9999,138.6,45.36)" id="rect166" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9999,-0.0026,0.0026,0.9999,148,45.68)" id="rect167" />
                 </g>
-                <g id="pittsburgh-washington" transform="translate(4.303,0.3662)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="pittsburgh-washington" transform="translate(4.303,0.3662)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9081,0.4187,-0.4187,0.9081,183,-23.01)" id="rect168" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9081,0.4187,-0.4187,0.9081,191.4,-18.77)" id="rect169" />
                 </g>
-                <g id="pittsburgh-raleigh" transform="translate(2.106,4.029)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="pittsburgh-raleigh" transform="translate(2.106,4.029)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.2684,0.9632,-0.9632,0.2684,265.3,-14.55)" id="rect170" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.2684,0.9632,-0.9632,0.2684,267.5,-5.415)" id="rect171" />
                 </g>
-                <g id="toronto-pittsburgh" transform="translate(1.101,-4.532)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="toronto-pittsburgh" transform="translate(1.101,-4.532)" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(-0.1081,-0.9941,0.9941,-0.1081,149.7,143.8)" id="rect172" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(-0.1081,-0.9941,0.9941,-0.1081,149,134.4)" id="rect173" />
                 </g>
-                <g id="atlanta-miami" transform="translate(3.569,2.335)" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="atlanta-miami" transform="translate(3.569,2.335)" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.6545,0.756,-0.756,0.6545,213.8,16.35)" id="rect174" />
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -492,7 +464,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.6545,0.756,-0.756,0.6545,237.3,45.64)" id="rect178" />
                 </g>
-                <g id="little_rock-new_orleans" transform="translate(3.388,3.662)" style={{ display: "inline", fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="little_rock-new_orleans" transform="translate(3.388,3.662)" style={{ display: "inline", fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.4991,0.8665,-0.8665,0.4991,191.3,21.05)" id="rect179" />
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -500,7 +472,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.4991,0.8665,-0.8665,0.4991,200.1,37.67)" id="rect181" />
                 </g>
-                <g id="duluth-toronto" transform="translate(3.845,0.7325)" style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="duluth-toronto" transform="translate(3.845,0.7325)" style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9797,-0.2004,0.2004,0.9797,67.65,-1.52)" id="rect182" />
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -514,7 +486,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.9797,-0.2004,0.2004,0.9797,114,-9.271)" id="rect187" />
                 </g>
-                <g id="saint_louis-chicago" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="saint_louis-chicago" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="saint_louis-chicago:0" transform="translate(3.302,-2.59)" style={{ fill: "#90b94e", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#90b94e", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.5006,-0.8656,0.8656,0.5006,69.61,114.9)" id="rect188" />
@@ -528,7 +500,7 @@ export default function USGameboard() {
                             transform="matrix(0.5006,-0.8656,0.8656,0.5006,74.61,106.9)" id="rect189-6" />
                     </g>
                 </g>
-                <g id="pittsburgh-new_york" transform="translate(0.1942,0.0647)" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="pittsburgh-new_york" transform="translate(0.1942,0.0647)" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="pittsburgh-new_york:0" transform="translate(4.532,-0.9711)" style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.8446,-0.5354,0.5354,0.8446,117.4,41.32)" id="rect190" />
@@ -542,7 +514,7 @@ export default function USGameboard() {
                             transform="matrix(0.8446,-0.5354,0.5354,0.8446,125.6,36.58)" id="rect191-5" />
                     </g>
                 </g>
-                <g id="saint_louis-pittsburgh" transform="translate(4.467,-0.9711)" style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="saint_louis-pittsburgh" transform="translate(4.467,-0.9711)" style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.8487,-0.5288,0.5288,0.8487,73.12,70.34)" id="rect192" />
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
@@ -554,13 +526,13 @@ export default function USGameboard() {
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.46" y="69.54"
                         transform="matrix(0.8487,-0.5288,0.5288,0.8487,105.7,51.63)" id="rect196" />
                 </g>
-                <g id="raleigh-charleston" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="raleigh-charleston" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="241.6" y="-50.24"
                         transform="rotate(35.07)" id="rect59-3-2" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-0.2804" y="255.7"
                         transform="rotate(-64.3)" id="rect59-3-59" />
                 </g>
-                <g id="charleston-miami" style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="charleston-miami" style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-131.5" y="226.6"
                         transform="rotate(-91.59)" id="rect59-3-61" />
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-156.2" y="217.4"
@@ -570,7 +542,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="243" y="-133.6" transform="rotate(59.88)"
                         id="rect59-3-80" />
                 </g>
-                <g id="new_orleans-miami" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="new_orleans-miami" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="263.5" y="-77.23"
                         transform="rotate(49.07)" id="rect59-3-06" />
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="261.6" y="-43.01"
@@ -584,7 +556,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="90.58" y="217.9"
                         transform="rotate(-29.64)" id="rect59-3-03" />
                 </g>
-                <g id="dallas-houston" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="dallas-houston" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="dallas-houston:0" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="203.4" y="-20.52"
                             transform="rotate(48.86)" id="rect59-3-4" />
@@ -594,7 +566,7 @@ export default function USGameboard() {
                             transform="rotate(48.86)" id="rect59-3-4-5" />
                     </g>
                 </g>
-                <g id="el_paso-houston" style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="el_paso-houston" style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="85.57" y="193.2"
                         transform="rotate(-20.05)" id="rect59-3-95" />
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="117.5" y="169" transform="rotate(-7.013)"
@@ -608,7 +580,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="162.5" y="72.15"
                         transform="rotate(30.64)" id="rect59-3-41" />
                 </g>
-                <g id="los_angeles-el_paso" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="los_angeles-el_paso" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="49.92" y="161.2"
                         transform="matrix(0.9737,-0.228,0.228,0.9737,0,0)" id="rect59-3-01" />
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="70.63" y="148.9"
@@ -622,7 +594,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="113.6" y="81.48" transform="rotate(36.9)"
                         id="rect59-3-636" />
                 </g>
-                <g id="el_paso-oklahoma_city" style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="el_paso-oklahoma_city" style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="58.8" y="164" transform="rotate(-16.16)"
                         id="rect59-3-43" />
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="34.53" y="174.4"
@@ -634,7 +606,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-23.85" y="179.8"
                         transform="rotate(-54.87)" id="rect59-3-47" />
                 </g>
-                <g id="santa_fe-oklahoma_city" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="santa_fe-oklahoma_city" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="112.1" y="127.9"
                         transform="rotate(-5.23)" id="rect59-3-88" />
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="104.3" y="126.9"
@@ -642,7 +614,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="93.71" y="128.2"
                         transform="rotate(-5.076)" id="rect59-3-25" />
                 </g>
-                <g id="denver-oklahoma_city" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="denver-oklahoma_city" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="146.2" y="-5.136"
                         transform="rotate(45.43)" id="rect59-3-00" />
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="148.9" y="44.59"
@@ -652,7 +624,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="135.5" y="105.1"
                         transform="rotate(3.055)" id="rect59-3-98" />
                 </g>
-                <g id="los_angeles-phoenix" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="los_angeles-phoenix" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="84.96" y="113.4"
                         transform="rotate(11.84)" id="rect59-3-51" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="48.67" y="129"
@@ -660,13 +632,13 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="24.09" y="133.6"
                         transform="rotate(-7.205)" id="rect59-3-37" />
                 </g>
-                <g id="los_angeles-los_vegas" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="los_angeles-los_vegas" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-95.94" y="92.54"
                         transform="rotate(-62.53)" id="rect59-3-534" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="15" y="125" transform="rotate(-13.35)"
                         id="rect59-3-89" />
                 </g>
-                <g id="phoneix-denver" style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="phoneix-denver" style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-96.76" y="113.2"
                         transform="rotate(-68.37)" id="rect59-3-008" />
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-66.7" y="126.2"
@@ -678,7 +650,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="46.17" y="127.5"
                         transform="rotate(-22.24)" id="rect59-3-253" />
                 </g>
-                <g id="portland-salt_lake_city" style={{ display: "inline", fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="portland-salt_lake_city" style={{ display: "inline", fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="100.3" y="-20.19"
                         transform="rotate(61.22)" id="rect59-3-646" />
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="92.42" y="0.394"
@@ -692,7 +664,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="36.85" y="47.22"
                         transform="rotate(12.35)" id="rect59-3-91" />
                 </g>
-                <g id="portland-seattle" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="portland-seattle" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="portland-seattle:0" style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-39.97" y="37.71"
                             transform="rotate(-68.23)" id="rect59-3-42" />
@@ -702,7 +674,7 @@ export default function USGameboard() {
                             transform="rotate(-68.23)" id="rect59-3-42-4" />
                     </g>
                 </g>
-                <g id="vancouver-seattle" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="vancouver-seattle" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="vancouver-seattle:0" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-39.46" y="24.38"
                             transform="rotate(-90.88)" id="rect59-3-888" />
@@ -712,7 +684,7 @@ export default function USGameboard() {
                             transform="rotate(-90.88)" id="rect59-3-888-6" />
                     </g>
                 </g>
-                <g id="seattle-calgary" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="seattle-calgary" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="29.62" y="41" transform="rotate(-2.069)"
                         id="rect59-3-422" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="38.12" y="42.23"
@@ -722,7 +694,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-2.547" y="65.46"
                         transform="rotate(-61.61)" id="rect59-3-69" />
                 </g>
-                <g id="chicago-toronto" style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="chicago-toronto" style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="77.15" y="174" transform="rotate(-45.69)"
                         id="rect59-3-08" />
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="119.8" y="153.2"
@@ -732,7 +704,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="128.7" y="164.1"
                         transform="rotate(-37.67)" id="rect59-3-425" />
                 </g>
-                <g id="nashville-pittsburgh" style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="nashville-pittsburgh" style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="51.55" y="216.7"
                         transform="rotate(-55.68)" id="rect59-3-030" />
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="110.3" y="187.6"
@@ -742,11 +714,11 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="0.114" y="214.5"
                         transform="rotate(-62.04)" id="rect59-3-78" />
                 </g>
-                <g id="nashville-atlanta" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="nashville-atlanta" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="219.8" y="-35.12"
                         transform="rotate(36.65)" id="rect59-3-819" />
                 </g>
-                <g id="little_rock-nashville" style={{ display: "inline", fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="little_rock-nashville" style={{ display: "inline", fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="67.99" y="204" transform="rotate(-40.88)"
                         id="rect59-3-905" />
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="117" y="174.3" transform="rotate(-23.41)"
@@ -754,7 +726,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="163.8" y="120.1"
                         transform="rotate(-2.069)" id="rect59-3-09" />
                 </g>
-                <g id="nashville-raleigh" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="nashville-raleigh" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="112.1" y="187.7"
                         transform="rotate(-31.98)" id="rect59-3-444" />
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="183.2" y="129.3"
@@ -762,7 +734,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="214.3" y="89.44"
                         transform="rotate(0.8127)" id="rect59-3-255" />
                 </g>
-                <g id="toronto-montreal" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="toronto-montreal" style={{ display: "inline", fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.99" y="200.4"
                         transform="rotate(-59.97)" id="rect59-3-9" />
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="143.2" y="161.2"
@@ -770,7 +742,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#a3a2a0", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="194.2" y="107.9"
                         transform="rotate(-22.5)" id="rect59-3-60" />
                 </g>
-                <g id="sault_st_marie-montreal" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="sault_st_marie-montreal" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="114.2" y="148.5"
                         transform="rotate(-41.53)" id="rect59-3-0" />
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="153.9" y="116.9"
@@ -782,7 +754,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="217.6" y="27.23"
                         transform="rotate(-2.069)" id="rect59-3-8" />
                 </g>
-                <g id="calgary-winnipeg" style={{ display: "inline", fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="calgary-winnipeg" style={{ display: "inline", fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="50.34" y="45.71"
                         transform="rotate(-24.12)" id="rect59-3-85" />
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="68.78" y="31.09"
@@ -796,7 +768,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e7eaf2", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="108.6" y="-30.93"
                         transform="rotate(25.38)" id="rect59-3-45" />
                 </g>
-                <g id="duluth-chicago" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="duluth-chicago" style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="159.5" y="-32.63"
                         transform="rotate(31.94)" id="rect59-3-817" />
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="171.6" y="-3.788"
@@ -804,7 +776,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#cd4138", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="179.5" y="21.96"
                         transform="rotate(13.89)" id="rect59-3-980" />
                 </g>
-                <g id="omaha-chicago" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="omaha-chicago" style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="178.2" y="43.16"
                         transform="rotate(8.553)" id="rect59-3-57" />
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="166.9" y="49.24"
@@ -814,7 +786,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="72.39" y="146.9"
                         transform="rotate(-35.12)" id="rect59-3-58" />
                 </g>
-                <g id="chicago-pittsburgh" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="chicago-pittsburgh" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="chicago-pittsburgh:0" style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="159.9" y="110.9"
                             transform="rotate(-14.8)" id="rect59-3-40" />
@@ -832,7 +804,7 @@ export default function USGameboard() {
                             transform="rotate(1.315)" id="rect59-3-907-5" />
                     </g>
                 </g>
-                <g id="helena-winnipeg" style={{ display: "inline", fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="helena-winnipeg" style={{ display: "inline", fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="28.65" y="100.7"
                         transform="rotate(-43.85)" id="rect59-3-350" />
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="37.97" y="100.6"
@@ -842,7 +814,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#06a3e9", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="56.8" y="100.2"
                         transform="rotate(-43.85)" id="rect59-3-350-88" />
                 </g>
-                <g id="las_vegas-salt_lake_city" style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="las_vegas-salt_lake_city" style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-39.97" y="122.9"
                         transform="rotate(-44.22)" id="rect59-3-926" />
                     <rect style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-72.06" y="104.2"
@@ -850,7 +822,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#d09034", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-96.27" y="74.61"
                         transform="rotate(-85.81)" id="rect59-3-02" />
                 </g>
-                <g id="denver-omaha" style={{ display: "inline", fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="denver-omaha" style={{ display: "inline", fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="27.95" y="137.3"
                         transform="rotate(-36.71)" id="rect59-3-288" />
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="62.94" y="127.7"
@@ -860,7 +832,7 @@ export default function USGameboard() {
                     <rect style={{ fill: "#e99dcd", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="113.8" y="102.5"
                         transform="rotate(-10.22)" id="rect59-3-07" />
                 </g>
-                <g id="denver-kansas_city" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="denver-kansas_city" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="denver-kansas_city:0" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#000000", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="112.9" y="89.91"
                             transform="rotate(3.077)" id="rect59-3-911" />
@@ -882,7 +854,7 @@ export default function USGameboard() {
                             transform="rotate(-24.94)" id="rect59-3-360-7" />
                     </g>
                 </g>
-                <g id="new_orleans-atlanta" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="new_orleans-atlanta" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="new_orleans-atlanta:0" style={{ display: "inline", fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-72.03" y="218.4"
                             transform="rotate(-70.21)" id="rect59-3-510" />
@@ -904,7 +876,7 @@ export default function USGameboard() {
                             transform="rotate(-41.71)" id="rect59-3-043-2" />
                     </g>
                 </g>
-                <g id="san_francisco-portland" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="san_francisco-portland" style={{ stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="san_francisco-portland:0" style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#9bc754", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="47.27" y="-39.45"
                             transform="rotate(109.7)" id="rect59-3-17" />
@@ -930,7 +902,7 @@ export default function USGameboard() {
                             transform="rotate(71.61)" id="rect59-3-500-9" />
                     </g>
                 </g>
-                <g id="san_francisco-los_angeles" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
+                <g id="san_francisco-los_angeles" style={{ display: "inline", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} onClick={claimRoute}>
                     <g id="san_francisco-los_angeles:0" transform="translate(0,-0.0692)" style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }}>
                         <rect style={{ fill: "#e1e84b", fillOpacity: "1", stroke: "#000000", strokeWidth: "0.2646", strokeDasharray: "none", strokeOpacity: "1" }} width="8.991" height="3.175" x="-116.2" y="-30.54"
                             transform="rotate(-114.8)" id="rect59-3-647" />
@@ -951,4 +923,5 @@ export default function USGameboard() {
             </g>
             <g id="Labels" />
         </svg>
+    )
 };
