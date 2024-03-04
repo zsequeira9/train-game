@@ -24,7 +24,7 @@
 .grey { fill: #a3a2a0;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
 .green { fill: #9bc754;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
 .orange { fill: #d09034;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
-#Routes rect { stroke-width: 0.2646;    fill: #000000; }
+#Routes rect { stroke-width: 0.2646;}
 #Cities &gt; circle { stroke-width: 0.2646;    fill: #000000; }
 </style><sodipodi:namedview
      id="namedview1"
