@@ -18,7 +18,7 @@ export const controllerMachine = setup({
         'claimRoute': {
           target: 'myTurn',
           actions: assign(({ context, event }) => {
-            context.controller.claimRoute(event.route)
+            context.controller.claimRoute(event.routeId)
             return {
               controller: context.controller
             };

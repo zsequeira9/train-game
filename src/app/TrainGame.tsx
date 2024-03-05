@@ -1,10 +1,9 @@
 'use client';
-import { useState, } from "react";
+import { MouseEvent } from "react";
 import { useMachine } from '@xstate/react';
 
 import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
-import { Route, RouteColor } from "../../interfaces";
 import styles from "./TrainGame.module.css";
 import USGameboard from "./USGameboard";
 
@@ -12,34 +11,18 @@ export default function TrainGame() {
 
   const [state, send] = useMachine(controllerMachine, {input: gameController});
 
-  const r = new Route(
-    "ssm-t", 
-    "Sault St Marie",
-    "Toronto",
-    0,
-    2,
-    RouteColor.GREY,
-    )
-
-  const [route, setRoute] = useState<Route>(r);
-
-  function claimRoute() {
-    let currentPlayer = state.context.controller.currentPlayer;
-    send({
-      type: 'claimRoute',
-      route: route
-    })
-
-    const newRoute = new Route(
-      route.id,
-      route.city1,
-      route.city2,
-      route.lane_index,
-      route.length,
-      currentPlayer.routeColor,
-      currentPlayer,
-    );
-    setRoute(newRoute);
+  function claimRoute(clickEvent: MouseEvent<SVGElement>) {
+    const target = clickEvent.target as SVGElement;
+    if (target !== null) {
+      const parentElement = target.parentElement;
+      if (parentElement !== null) {
+        const id = parentElement.id;
+        send({
+          type: 'claimRoute',
+          routeId: id
+        })
+      }
+    }
   }
 
   const listPlayerInfo = state.context.controller.playerSequence.map(
@@ -70,7 +53,7 @@ export default function TrainGame() {
             Draw Destination Cards?
           </button>
           <button onClick={() => send({type: 'drawTrains'})}>
-            Draw trains??????????
+            Draw trains?
           </button>
         </div>
       <div className={styles.center}>

@@ -59,7 +59,6 @@ export class Player implements IPlayer{
 
   playTrains(cost: number) {
     this.trains = this.trains - cost;
-    console.log("Player ", this);
   }
 
   get destinationString(): string {
@@ -137,9 +136,21 @@ export class Controller implements IController {
     return this.playerSequence[this.currentPlayerIndex];
   }
 
-  claimRoute(route: Route): void{
-    this.currentPlayer.playTrains(route.length);
-    this.endTurn();
+  claimRoute(routeId: string): void{
+    console.log("Claiming route:", routeId);
+    const route = this.getRoute(routeId);
+    if (route !== undefined && route.owner == null) {
+      route.owner = this.currentPlayer;
+      this.currentPlayer.playTrains(route.length);
+      this.endTurn();
+    }
+    else {
+      console.log("Route already taken!")
+    }
+  }
+
+  getRoute(routeId: string): Route | undefined {
+    return this.routeList.find((route) => route.id == routeId);
   }
 
   drawDestinations(): void {

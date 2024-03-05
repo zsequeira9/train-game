@@ -107,7 +107,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="rotate(-20.69,100.3,122.7)" id="rect68" />
                     </g>
-                    <g id="san_francisco-salt_lake_city:1:orange:5" transform="translate(3.273,2.122)"
+                    <g id="san_francisco-salt_lake_city:1:white:5" transform="translate(3.273,2.122)"
                         className="white">
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="rotate(-20.69,115.5,227.4)" id="rect69" />
@@ -164,7 +164,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.9984,-0.0561,0.0561,0.9984,81.98,16.48)" id="rect104" />
                     </g>
-                    <g id="kansas_city-saint_louis:1:blue:2" transform="translate(3.972,3.2)"
+                    <g id="kansas_city-saint_louis:1:pink:2" transform="translate(3.972,3.2)"
                         className="pink">
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.9984,-0.0561,0.0561,0.9984,72.58,16.67)" id="rect103-2" />
@@ -218,8 +218,8 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.988,0.1539,-0.1539,0.988,31.52,2.748)" id="rect126-9" />
                     </g>
-                    <g id="salt_lake_city-denver:1:black:3"
-                        transform="matrix(0.9702,0,0,0.9319,6.461,6.707)" className="red">
+                    <g id="salt_lake_city-denver:1:red:3" transform="matrix(0.9702,0,0,0.9319,6.461,6.707)"
+                        className="red">
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
                             transform="matrix(0.988,0.1539,-0.1539,0.988,13.06,-0.8137)" id="rect124" />
                         <rect width="8.991" height="3.175" x="68.64" y="76.94"
@@ -249,7 +249,8 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.5211,-0.8535,0.8535,0.5211,149.6,73)" id="rect63" />
                     </g>
-                    <g id="new_york-boston:1:red:2" transform="translate(-2.009,-5.955)" className="yellow">
+                    <g id="new_york-boston:1:yellow:2" transform="translate(-2.009,-5.955)"
+                        className="yellow">
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.5211,-0.8535,0.8535,0.5211,144.4,80.84)" id="rect62-3" />
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
@@ -431,7 +432,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(-0.0646,-0.9979,0.9979,-0.0646,169.5,144)" id="rect148" />
                     </g>
-                    <g id="new_york-washington:1:orange:2" transform="translate(4.52,-4.156)"
+                    <g id="new_york-washington:1:black:2" transform="translate(4.52,-4.156)"
                         className="black">
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(-0.0646,-0.9979,0.9979,-0.0646,169.8,153.3)" id="rect147-1" />
@@ -522,7 +523,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.5006,-0.8656,0.8656,0.5006,74.61,106.9)" id="rect189" />
                     </g>
-                    <g id="saint_louis-chicago:1:green:2" transform="translate(6.087,-0.7083)"
+                    <g id="saint_louis-chicago:1:white:2" transform="translate(6.087,-0.7083)"
                         className="white">
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.5006,-0.8656,0.8656,0.5006,69.61,114.9)" id="rect188-8" />
@@ -538,7 +539,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.8446,-0.5354,0.5354,0.8446,125.6,36.58)" id="rect191" />
                     </g>
-                    <g id="pittsburgh-new_york:1:white:2" transform="translate(6.146,1.946)"
+                    <g id="pittsburgh-new_york:1:green:2" transform="translate(6.146,1.946)"
                         className="green">
                         <rect width="8.991" height="3.175" x="67.46" y="69.54"
                             transform="matrix(0.8446,-0.5354,0.5354,0.8446,117.4,41.32)" id="rect190-4" />
@@ -828,7 +829,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="203.4" y="57.92" transform="rotate(1.315)"
                             id="rect59-3-907" />
                     </g>
-                    <g id="chicago-pittsburgh:1:orange:3" transform="translate(1.138,3.628)"
+                    <g id="chicago-pittsburgh:1:black:3" transform="translate(1.138,3.628)"
                         className="black">
                         <rect width="8.991" height="3.175" x="159.9" y="110.9" transform="rotate(-14.8)"
                             id="rect59-3-40-3" />
@@ -877,7 +878,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="82.77" y="142.2" transform="rotate(-24.94)"
                             id="rect59-3-360" />
                     </g>
-                    <g id="denver-kansas_city:1:black:4" transform="translate(0.4653,3.433)"
+                    <g id="denver-kansas_city:1:orange:4" transform="translate(0.4653,3.433)"
                         className="orange">
                         <rect width="8.991" height="3.175" x="112.9" y="89.91" transform="rotate(3.077)"
                             id="rect59-3-911-3" />
@@ -900,8 +901,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="68.78" y="218.2" transform="rotate(-41.71)"
                             id="rect59-3-043" />
                     </g>
-                    <g id="new_orleans-atlanta:1:yellow :4" transform="translate(2.497,2.551)"
-                        className="red">
+                    <g id="new_orleans-atlanta:1:red:4" transform="translate(2.497,2.551)" className="red">
                         <rect width="8.991" height="3.175" x="-72.03" y="218.4" transform="rotate(-70.21)"
                             id="rect59-3-510-4" />
                         <rect width="8.991" height="3.175" x="-11.3" y="227.1" transform="rotate(-57.14)"
@@ -925,7 +925,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="93.82" y="14.41" transform="rotate(71.61)"
                             id="rect59-3-500" />
                     </g>
-                    <g id="san_francisco-portland:1:green:5" transform="translate(3.605,-0.1105)"
+                    <g id="san_francisco-portland:1:pink:5" transform="translate(3.605,-0.1105)"
                         className="pink">
                         <rect width="8.991" height="3.175" x="47.27" y="-39.45" transform="rotate(109.7)"
                             id="rect59-3-17-0" />
@@ -949,7 +949,7 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         <rect width="8.991" height="3.175" x="110.2" y="65.25" transform="rotate(46.21)"
                             id="rect59-3-086" />
                     </g>
-                    <g id="san_francisco-los_angeles:1:yellow:3" transform="translate(3.082,-1.648)"
+                    <g id="san_francisco-los_angeles:1:pink:3" transform="translate(3.082,-1.648)"
                         className="pink">
                         <rect width="8.991" height="3.175" x="-116.2" y="-30.54" transform="rotate(-114.8)"
                             id="rect59-3-647-0" />
