@@ -16,8 +16,9 @@ export default function TrainGame() {
     "ssm-t", 
     "Sault St Marie",
     "Toronto",
+    0,
     2,
-    RouteColor.GRAY,
+    RouteColor.GREY,
     )
 
   const [route, setRoute] = useState<Route>(r);
@@ -33,6 +34,7 @@ export default function TrainGame() {
       route.id,
       route.city1,
       route.city2,
+      route.lane_index,
       route.length,
       currentPlayer.routeColor,
       currentPlayer,

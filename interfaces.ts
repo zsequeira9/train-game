@@ -2,6 +2,7 @@ export class Route implements IRoute{
   id: string;
   city1: string;
   city2: string;
+  lane_index: number;
   length: number;
   color: RouteColor;
   owner?: Player;
@@ -10,6 +11,7 @@ export class Route implements IRoute{
     id: string,
     city1: string,
     city2: string,
+    lane_index: number,
     length: number,
     color: RouteColor,
     owner?: Player,
@@ -17,6 +19,7 @@ export class Route implements IRoute{
     this.id = id;
     this.city1 = city1;
     this.city2 = city2;
+    this.lane_index = lane_index
     this.length = length;
     this.color = color;
     if (owner) {
@@ -30,7 +33,7 @@ export class Player implements IPlayer{
   name: string;
   color: PlayerColor;
   routeColor: RouteColor;
-  trains: number = 10;
+  trains: number = 45;
   destinations: IDestinationCard[] = [];
   trainHand: ITrainHand = {
     red: 0,
@@ -72,6 +75,7 @@ export class Controller implements IController {
   playerSequence: Player[];
   currentPlayerIndex: number;
   destinationDeck: destinationDeck;
+  routeList: Route[];
   trainDeck: trainCard[];
   trainFaceUp: trainCard[] = [] as trainCard[];
   gameLog: IEvent[] = [];
@@ -79,6 +83,7 @@ export class Controller implements IController {
 
   constructor(
     playerSequence: Player[],
+    routeList: Route[],
   ) {
     // TODO: pass in array or push on construction?
     this.playerSequence = playerSequence;
@@ -86,6 +91,8 @@ export class Controller implements IController {
     this.currentPlayerIndex = 0;
 
     this.destinationDeck = new destinationDeck();
+
+    this.routeList = routeList;
 
     // 12 x (8 colors) + 14 Locomotives)
     this.trainDeck = this.generateTrainDeck();
@@ -188,7 +195,7 @@ export enum RouteColor {
   WHITE = "white",
   PINK = "pink",
   ORANGE = "orange",
-  GRAY = "gray",
+  GREY = "grey",
 } 
 
 
@@ -205,6 +212,7 @@ export interface IRoute {
   id: string;
   city1: string;
   city2: string;
+  lane_index: number;
   length: number;
   color: RouteColor;
   owner?: Player;
