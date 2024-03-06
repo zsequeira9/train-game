@@ -24,7 +24,7 @@
 .grey { fill: #a3a2a0;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
 .green { fill: #9bc754;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
 .orange { fill: #d09034;    fill-opacity: 1; stroke-opacity:1;stroke-dasharray:none;stroke-width:0.2646;stroke:#000000;display:inline; }
-#Routes rect { stroke-width: 0.2646;}
+#Routes rect { stroke-width: 0.2646; }
 #Cities &gt; circle { stroke-width: 0.2646;    fill: #000000; }
 </style><sodipodi:namedview
      id="namedview1"
@@ -37,7 +37,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.393"
-     inkscape:cx="489.2"
+     inkscape:cx="508.6"
      inkscape:cy="406.3"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
@@ -521,8 +521,8 @@
          id="rect82" /></g><g
        id="g100"
        transform="translate(1.677,3.665)"
-       style="display:inline;fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:label="helena-denver"><rect
+       inkscape:label="helena-denver"
+       class="green"><rect
          style="fill:#9bc754;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -993,7 +993,7 @@
        id="g95"
        transform="translate(1.877,3.937)"
        inkscape:label="winnipeg-duluth"
-       style="display:inline;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="black"><rect
          style="fill:#000000;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1107,7 +1107,7 @@
        id="g123"
        transform="translate(3.626,2.654)"
        inkscape:label="saint_louis-nashville"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1413,7 +1413,7 @@
        id="g171"
        transform="translate(2.106,4.029)"
        inkscape:label="pittsburgh-raleigh"
-       style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -1937,7 +1937,7 @@
          id="rect59-3-25" /></g><g
        id="g230"
        inkscape:label="denver-oklahoma_city"
-       style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="red"><rect
          style="fill:#cd4138;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
@@ -2233,7 +2233,7 @@
          id="rect59-3-78" /></g><g
        id="g240"
        inkscape:label="nashville-atlanta"
-       style="display:inline;fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"><rect
+       class="grey"><rect
          style="fill:#a3a2a0;fill-opacity:1;stroke:#000000;stroke-width:0.2646;stroke-dasharray:none;stroke-opacity:1"
          width="8.991"
          height="3.175"
