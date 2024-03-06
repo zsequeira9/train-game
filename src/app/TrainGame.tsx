@@ -11,16 +11,36 @@ export default function TrainGame() {
 
   const [state, send] = useMachine(controllerMachine, {input: gameController});
 
+  /**
+   * Assign clicked route to the current player
+   * @param clickEvent click event fired from route
+   */
   function claimRoute(clickEvent: MouseEvent<SVGElement>) {
     const target = clickEvent.target as SVGElement;
     if (target !== null) {
       const parentElement = target.parentElement;
       if (parentElement !== null) {
         const id = parentElement.id;
-        send({
-          type: 'claimRoute',
-          routeId: id
-        })
+        if (state.can({type: 'claimRoute', routeId: id})) {
+          activateTrains(parentElement);
+          send({
+            type: 'claimRoute',
+            routeId: id
+          })
+        }
+      }
+    }
+  }
+
+  /**
+   * Make trains on the selected route become active
+   */
+  function activateTrains(target: HTMLElement): void {
+    let children = target.children;
+    for (let i = 0;  i < children.length; i++) {
+      let child = children[i] as Element
+      if (child.classList.contains("train")) {
+        child.classList.add(state.context.controller.currentPlayer.color);
       }
     }
   }

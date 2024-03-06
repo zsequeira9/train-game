@@ -16,34 +16,39 @@ export const controllerMachine = setup({
     myTurn: {
       on: {
         'claimRoute': {
-          target: 'myTurn',
+          guard: ({ context, event }) => {
+            if (context.controller.canPlayRoute(event.routeId)) {
+              console.log("Able to play route:", event.routeId);
+              return true;
+            }
+            else {
+              // TODO: display modal upon this condition
+              console.log(`Unable to play route ${event.routeId} !`)
+              return false;
+            }
+          },
           actions: assign(({ context, event }) => {
-            context.controller.claimRoute(event.routeId)
+            context.controller.playRoute(event.routeId)
             return {
               controller: context.controller
             };
           }),
-          reenter: true,
         },
         'drawDest': {
-          target: 'myTurn',
           actions: assign(({ context, event }) => {
             context.controller.drawDestinations()
             return {
               controller: context.controller
             };
           }),
-          reenter: true,
         },
         'drawTrains': {
-          target: 'myTurn',
           actions: assign(({ context, event }) => {
             context.controller.drawFaceUpTrains()
             return {
               controller: context.controller
             };
           }),
-          reenter: true,
         }
       }
     },

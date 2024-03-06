@@ -93,11 +93,6 @@ a {
   }
 }
 
-.train {
-  fill-opacity: 0;
-  stroke-opacity: 0;
-}
-
 .blue {
   fill: #06a3e9;
   fill-opacity: 1;
@@ -195,4 +190,45 @@ a {
 #Cities>circle {
   stroke-width: 0.2646;
   fill: #000000;
+}
+
+.train {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
+.player-red {
+  fill: red;
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.player-green {
+  fill: green;
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.player-blue {
+  fill: blue;
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.player-yellow {
+  fill: yellow;
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.player-black {
+  fill: black;
+  fill-opacity: 1;
+  stroke-opacity: 1;
+}
+
+.player-purple {
+  fill: purple;
+  fill-opacity: 1;
+  stroke-opacity: 1;
 }
