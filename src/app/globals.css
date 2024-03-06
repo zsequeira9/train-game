@@ -93,6 +93,11 @@ a {
   }
 }
 
+.train {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
 .blue {
   fill: #06a3e9;
   fill-opacity: 1;
@@ -105,7 +110,6 @@ a {
 
 .red {
   fill: #cd4138;
-  ;
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;

@@ -32,29 +32,26 @@ export class Route implements IRoute{
 export class Player implements IPlayer{
   name: string;
   color: PlayerColor;
-  routeColor: RouteColor;
   trains: number = 45;
   destinations: IDestinationCard[] = [];
   trainHand: ITrainHand = {
     red: 0,
     blue: 0,
-    green: 0,
-    yellow: 0,
-    orange: 0,
-    pink: 0,
+    green: 1,
+    yellow: 5,
+    orange: 1,
+    pink: 1,
     white: 0,
     black: 0,
-    loco: 0,
+    loco: 100,
   };
 
   constructor(
     name: string,
     color: PlayerColor,
-    routeColor: RouteColor,
   ) {
     this.name = name;
     this.color = color;
-    this.routeColor = routeColor;
   }
 
   playTrains(cost: number) {
@@ -66,6 +63,14 @@ export class Player implements IPlayer{
        accumulator + route.city1 + "-" + route.city2 + ", ",
        "",
     );
+  }
+
+  get trainHandString(): string {
+    let trainHand = "";
+    for (const [key, value] of Object.entries(this.trainHand)) {
+      trainHand = trainHand.concat(" | ", `${key}:${value}`); 
+    }
+    return trainHand;
   }
 
 }
@@ -139,7 +144,7 @@ export class Controller implements IController {
   claimRoute(routeId: string): void{
     console.log("Claiming route:", routeId);
     const route = this.getRoute(routeId);
-    if (route !== undefined && route.owner == null) {
+    if (route !== undefined && this.canPlayRoute(route)) {
       route.owner = this.currentPlayer;
       this.currentPlayer.playTrains(route.length);
       this.endTurn();
@@ -147,6 +152,10 @@ export class Controller implements IController {
     else {
       console.log("Route already taken!")
     }
+  }
+
+  canPlayRoute(route: Route) {
+    return (route.owner == undefined)
   }
 
   getRoute(routeId: string): Route | undefined {

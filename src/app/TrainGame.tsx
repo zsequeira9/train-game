@@ -29,11 +29,12 @@ export default function TrainGame() {
     (player) =>
       <li key={player.name}>
           <div className={styles.card}>
-            <h1>
+            <h1 style={{ color: player.color }}>
               {player.name}
             </h1>
             <p>Number of trains: {player.trains}</p>
             <p>Destinations: {player.destinationString}</p>
+            <p>Train hand: {player.trainHandString}</p>
           </div>
       </li>
   );
