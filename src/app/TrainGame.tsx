@@ -22,7 +22,7 @@ export default function TrainGame() {
       if (parentElement !== null) {
         const id = parentElement.id;
         if (state.can({type: 'claimRoute', routeId: id})) {
-          activateTrains(parentElement);
+          // activateTrains(parentElement);
           send({
             type: 'claimRoute',
             routeId: id
@@ -78,7 +78,7 @@ export default function TrainGame() {
           </button>
         </div>
       <div className={styles.center}>
-       <USGameboard claimRoute={claimRoute}/>
+       <USGameboard claimRoute={claimRoute} routeList={state.context.controller.routeList}/>
       </div>
     </main>
   );

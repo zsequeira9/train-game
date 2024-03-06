@@ -1,11 +1,22 @@
+import { Route } from '../../interfaces'
 import { MouseEventHandler } from "react";
 import React from 'react';
 
 interface USGameboardProps {
     claimRoute: MouseEventHandler;
+    routeList: Route[]
 }
 
-export default function USGameboard({ claimRoute = () => { } }: USGameboardProps) {
+export default function USGameboard({ claimRoute, routeList}: USGameboardProps) {
+
+    function getTrainClass(routeId: string): string {
+        let trainClass = "";
+        let route = routeList.find((route) => route.id == routeId);
+        if (route !== undefined) {
+            trainClass = route.owner !== undefined ? route.owner.color : "";
+        }
+        return trainClass;
+    }
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="667" viewBox="0 0 264.583 176.47686"
@@ -63,13 +74,13 @@ export default function USGameboard({ claimRoute = () => { } }: USGameboardProps
                         className="track" />
                     <rect width="6.567" height="2.346" x="32.89" y="28.6"
                         transform="rotate(-6.194,1.139,77.13)" id="vancouver-calgary:0:grey:3:train:0"
-                        className="train" />
+                        className={"train " + getTrainClass("vancouver-calgary:0:grey:3")} />
                     <rect width="6.567" height="2.346" x="32.89" y="28.6"
                         transform="rotate(-6.194,-3.489,-8.409)" id="vancouver-calgary:0:grey:3:train:1"
-                        className="train" />
+                        className={"train " + getTrainClass("vancouver-calgary:0:grey:3")} />
                     <rect width="6.567" height="2.346" x="32.89" y="28.6"
                         transform="rotate(-6.194,-8.117,-93.94)" id="vancouver-calgary:0:grey:3:train:2"
-                        className="train" />
+                        className={"train " + getTrainClass("vancouver-calgary:0:grey:3")} />
                 </g>
                 <g id="seattle-helena:0:yellow:6" transform="translate(4.252,1.001)" className="yellow"
                     onClick={claimRoute}>
