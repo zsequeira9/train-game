@@ -1,0 +1,19 @@
+import { MouseEventHandler } from "react";
+import React from 'react';
+
+interface USGameboardProps {
+    claimRoute: MouseEventHandler;
+    getTrainClass: (routeId: string) => string
+}
+
+export default function USGameboard({ claimRoute, getTrainClass}: USGameboardProps) {
+
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="667" viewBox="0 0 264.583 176.47686"
+            version="1.1" id="svg1">
+            <defs id="defs1" />
+           
+            <g id="Labels" />
+        </svg>
+    )
+};
