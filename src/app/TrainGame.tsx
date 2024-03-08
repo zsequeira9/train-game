@@ -32,6 +32,15 @@ export default function TrainGame() {
     }
   }
 
+  function getTrainClass(routeId: string): string {
+    let trainClass = "";
+    let route = state.context.controller.getRoute(routeId);
+    if (route !== undefined) {
+        trainClass = route.owner !== undefined ? route.owner.color : "";
+    }
+    return trainClass;
+}
+
   /**
    * Make trains on the selected route become active
    */
@@ -78,7 +87,7 @@ export default function TrainGame() {
           </button>
         </div>
       <div className={styles.center}>
-       <USGameboard claimRoute={claimRoute} routeList={state.context.controller.routeList}/>
+       <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
       </div>
     </main>
   );

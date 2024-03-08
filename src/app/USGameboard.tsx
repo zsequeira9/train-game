@@ -1,22 +1,12 @@
-import { Route } from '../../interfaces'
 import { MouseEventHandler } from "react";
 import React from 'react';
 
 interface USGameboardProps {
     claimRoute: MouseEventHandler;
-    routeList: Route[]
+    getTrainClass: (routeId: string) => string
 }
 
-export default function USGameboard({ claimRoute, routeList}: USGameboardProps) {
-
-    function getTrainClass(routeId: string): string {
-        let trainClass = "";
-        let route = routeList.find((route) => route.id == routeId);
-        if (route !== undefined) {
-            trainClass = route.owner !== undefined ? route.owner.color : "";
-        }
-        return trainClass;
-    }
+export default function USGameboard({ claimRoute, getTrainClass}: USGameboardProps) {
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="667" viewBox="0 0 264.583 176.47686"

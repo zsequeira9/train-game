@@ -1,5 +1,4 @@
 import { 
-    RouteColor, 
     Player, 
     PlayerColor, 
     Controller } from "../../interfaces";
