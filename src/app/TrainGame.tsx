@@ -5,7 +5,7 @@ import { useMachine } from '@xstate/react';
 import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
 import styles from "./TrainGame.module.css";
-import USGameboard_2 from "./USGameboard_2";
+import USGameboard from "./USGameboard";
 
 export default function TrainGame() {
 
@@ -22,7 +22,6 @@ export default function TrainGame() {
       if (parentElement !== null) {
         const id = parentElement.id;
         if (state.can({type: 'claimRoute', routeId: id})) {
-          // activateTrains(parentElement);
           send({
             type: 'claimRoute',
             routeId: id
@@ -40,19 +39,6 @@ export default function TrainGame() {
     }
     return trainClass;
 }
-
-  /**
-   * Make trains on the selected route become active
-   */
-  function activateTrains(target: HTMLElement): void {
-    let children = target.children;
-    for (let i = 0;  i < children.length; i++) {
-      let child = children[i] as Element
-      if (child.classList.contains("train")) {
-        child.classList.add(state.context.controller.currentPlayer.color);
-      }
-    }
-  }
 
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
