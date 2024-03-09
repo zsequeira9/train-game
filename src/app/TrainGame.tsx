@@ -5,7 +5,7 @@ import { useMachine } from '@xstate/react';
 import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
 import styles from "./TrainGame.module.css";
-import USGameboard from "./USGameboard";
+import USGameboard_2 from "./USGameboard_2";
 
 export default function TrainGame() {
 
