@@ -35,7 +35,7 @@ export default function TrainGame() {
     let trainClass = "";
     let route = state.context.controller.getRoute(routeId);
     if (route !== undefined) {
-        trainClass = route.owner !== undefined ? route.owner.color : "";
+        trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }
     return trainClass;
 }
