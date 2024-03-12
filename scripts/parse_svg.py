@@ -6,7 +6,6 @@ import json
 from io import BytesIO
 from copy import deepcopy
 
-#tree = ET.parse(r'C:\Users\Chris\Documents\projects\train-game\drawing.svg')
 infile = 'drawing.svg'
 svg_outfile = os.path.join('.', '.', 'public', 'ticket-nobg.svg')
 gameboard_outfile = os.path.join('.', '.', 'src', 'app', 'USGameboard.tsx')
@@ -21,6 +20,8 @@ ET.register_namespace('inkscape', 'http://www.inkscape.org/namespaces/inkscape')
 ET.register_namespace('sodipodi', 'http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd')
 
 jinja_env = Environment(loader=FileSystemLoader("templates/"))
+
+
 
 def fix_doc(node):
     # Remove namespaced attributes from node
@@ -48,10 +49,14 @@ def fix_doc(node):
     for child in node.findall('*'):
         fix_doc(child)
 
+
+
 def make_child_route_ids(node):
     for route in node.find("*/[@id='Routes']").findall('*'):
         for ix, child in enumerate(route.findall('{http://www.w3.org/2000/svg}g')):
             child.set('id', f"{route.attrib['id']}:{ix}")
+
+
 
 def add_additional_data_to_routes(node):
     """
@@ -77,6 +82,8 @@ def add_additional_data_to_routes(node):
                 child.set('id', new_id)
 
 
+
+
 def _add_train_chips(route):
     """Add train markers for a route and its sub-routes"""
     tracks = route.findall('./{http://www.w3.org/2000/svg}rect')
@@ -92,12 +99,17 @@ def _add_train_chips(route):
     for child_route in route.findall('./{http://www.w3.org/2000/svg}g'):
         _add_train_chips(child_route)
 
+
+
 def add_train_chips(root):
     """Add train markers for every route in the document"""
     for route in root.find("*/[@id='Routes']").findall('*'):
         _add_train_chips(route)
 
+
+
 def generate_route_file(root):
+    """Generates a ts file which contains a mapping of route ids to corresponding routes"""
     route_list = []
     for route in root.find("*/[@id='Routes']").findall('*'):
         id = route.attrib['id']
@@ -132,6 +144,7 @@ def generate_route_file(root):
         message.write(content)
 
 def generate_gameboard_file(root):
+    """Generates a react component which returns the gameboard svg"""
     cities = []
     routes = []
     for city in root.find("*/[@id='Cities']").findall('*'):
