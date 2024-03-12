@@ -20,9 +20,9 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
             <g id="Routes">
                 {% for route in routes %}
                     {% if route.isGroup %}
-                        <g id="{{route.groupId}}" transform="{{route.trans}}" onClick={claimRoute} >
+                        <g id="{{route.groupId}}" transform="{{route.trans}}" >
                             {% for lane in route.lanes %}
-                            <g id="{{lane.laneId}}" transform="{{lane.trans}}" className="{{lane.className}}">
+                            <g id="{{lane.laneId}}" transform="{{lane.trans}}" className="{{lane.className}}" onClick={claimRoute}>
                                 {% for rect in lane.rects %}
                                 <rect width="{{rect.width}}" height="{{rect.height}}" x="{{rect.x}}" y="{{rect.y}}" transform="{{rect.trans}}"
                                     id="{{rect.id}}" className={ {{rect.className}} } />
