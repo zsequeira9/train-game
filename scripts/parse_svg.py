@@ -230,20 +230,22 @@ def generate_gameboard_file(root):
     with open(gameboard_outfile, mode="w", encoding="utf-8") as message:
         message.write(content)
 
-tree = ET.parse(infile)
 
-root = tree.getroot()
+if __name__ == '__main__':
+    tree = ET.parse(infile)
 
-fix_doc(root)
-make_child_route_ids(root)
-add_additional_data_to_routes(root)
-add_train_chips(root)
+    root = tree.getroot()
 
-# write fixed file
-open(svg_outfile,'w').write(ET.tostring(root).decode())
+    fix_doc(root)
+    make_child_route_ids(root)
+    add_additional_data_to_routes(root)
+    add_train_chips(root)
 
-# write react file
-generate_gameboard_file(root)
+    # write fixed file
+    open(svg_outfile,'w').write(ET.tostring(root).decode())
 
-# write index of routes
-generate_route_file(root)
+    # write react file
+    generate_gameboard_file(root)
+
+    # write index of routes
+    generate_route_file(root)
