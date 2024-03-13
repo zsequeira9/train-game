@@ -199,36 +199,42 @@ a {
 
 .player-red {
   fill: red;
+  color: red;
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-green {
   fill: green;
+  color: green;
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-blue {
   fill: blue;
+  color: blue;
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-yellow {
   fill: yellow;
+  color: yellow;
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-black {
   fill: black;
+  color: black;
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-purple {
   fill: purple;
+  color: purple;
   fill-opacity: 1;
   stroke-opacity: 1;
 }

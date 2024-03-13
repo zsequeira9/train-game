@@ -33,7 +33,7 @@ export class Player implements IPlayer {
   color: PlayerColor;
   trains: number = 45;
   destinations: IDestinationCard[] = [];
-  trainHand: ITrainHand = {
+  trainHand: Record<cardColor, number> = {
     red: 0,
     blue: 0,
     green: 1,
@@ -118,7 +118,7 @@ export class Controller implements IController {
     let cardColors = ["red", "blue", "green", "yellow",
       "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
     cardColors.push(Array(14).fill("loco"));
-    let cardColorsTyped = cardColors.flat() as cardColorType[];
+    let cardColorsTyped = cardColors.flat() as cardColor[];
 
     //shuffle the list
     for (let i = cardColorsTyped.length - 1; i > 0; i--) {
@@ -277,17 +277,13 @@ export interface IRoute {
   owner?: Player;
 }
 
-export interface IRouteIndex {
-  [id: string]: IRoute;
-};
-
 
 export interface IPlayer {
   name: string;
   trains: number;
   color: PlayerColor;
   destinations: IDestinationCard[];
-  trainHand: ITrainHand;
+  trainHand: Record<cardColor, number>;
 }
 
 export interface IDestinationCard {
@@ -296,23 +292,11 @@ export interface IDestinationCard {
   points: number;
 }
 
-export interface ITrainHand {
-  red: number;
-  blue: number;
-  green: number;
-  yellow: number;
-  orange: number;
-  pink: number;
-  white: number;
-  black: number;
-  loco: number;
-}
-
-type cardColorType = keyof ITrainHand
+type cardColor =  "red" | "blue" | "green" | "yellow" | "orange" | "pink" | "white" | "black" | "loco"
 
 export interface trainCard {
   id: number;
-  cardColor: cardColorType;
+  cardColor: cardColor;
 }
 
 export interface IController {

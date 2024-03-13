@@ -44,7 +44,7 @@ export default function TrainGame() {
     (player) =>
       <li key={player.name}>
           <div className={styles.card}>
-            <h1 style={{ color: player.color }}>
+            <h1 className={player.color}>
               {player.name}
             </h1>
             <p>Number of trains: {player.trains}</p>
@@ -61,19 +61,24 @@ export default function TrainGame() {
   )
 
   return (
-    <main className={styles.main}>
+    <main className={styles.wrapper}>
+      <div className={styles.main}>
         <ul>{listPlayerInfo}</ul>
-        <ul>{listTrainUp}</ul>
-        <div className={styles.card}>
-          <button onClick={() => send({type: 'drawDest'})}>
-            Draw Destination Cards?
-          </button>
-          <button onClick={() => send({type: 'drawTrains'})}>
-            Draw trains?
-          </button>
+          <div className={styles.card}>
+            <button onClick={() => send({type: 'drawDest'})}>
+              Draw Destination Cards?
+            </button>
+
+          </div>
+        <div className={styles.center}>
+        <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
         </div>
-      <div className={styles.center}>
-       <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
+      </div>
+      <div className={styles.sidebar}>
+          <button onClick={() => send({type: 'drawTrains'})}>
+              Draw trains?
+          </button>
+          <ul>{listTrainUp}</ul>
       </div>
     </main>
   );
