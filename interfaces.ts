@@ -26,10 +26,6 @@ export class Route implements IRoute {
       this.owner = owner;
     }
   }
-
-  get cost(): number {
-    return this.length;
-  }
 }
 
 export class Player implements IPlayer {
@@ -82,7 +78,7 @@ export class Controller implements IController {
   playerSequence: Player[];
   currentPlayerIndex: number;
   destinationDeck: destinationDeck;
-  routeList: Route[];
+  routeIndex: Record<string, Route>;
   trainDeck: trainCard[];
   trainFaceUp: trainCard[] = [] as trainCard[];
   gameLog: IEvent[] = [];
@@ -90,7 +86,7 @@ export class Controller implements IController {
 
   constructor(
     playerSequence: Player[],
-    routeList: Route[],
+    routeIndex: Record<string, IRoute>,
   ) {
     this.playerSequence = playerSequence;
 
@@ -98,7 +94,7 @@ export class Controller implements IController {
 
     this.destinationDeck = new destinationDeck();
 
-    this.routeList = routeList;
+    this.routeIndex = routeIndex;
 
     this.trainDeck = this.generateTrainDeck();
   }
@@ -182,7 +178,7 @@ export class Controller implements IController {
    * @returns Route from the route list
    */
   getRoute(routeId: string): Route | never {
-    let route = this.routeList.find((route) => route.id == routeId);
+    let route = this.routeIndex[routeId];
     if (route == undefined) {
       throw new Error("Route not found!")
     }
@@ -196,7 +192,13 @@ export class Controller implements IController {
    */
   getRouteSibling(routeId: string): Route | undefined {
     let siblingId = `${routeId.split(':')[0]}:${routeId.split(':')[1] === "0" ? 1 : 0}`
-    return this.routeList.find((route) => route.id.includes(siblingId));
+    for (let id in this.routeIndex) {
+      if (id.includes(siblingId)) {
+        console.log("Sibling: ", id);
+        return this.routeIndex[id];
+      }
+    }
+    return undefined;
   }
 
   drawDestinations(): void {
@@ -274,6 +276,10 @@ export interface IRoute {
   color: RouteColor;
   owner?: Player;
 }
+
+export interface IRouteIndex {
+  [id: string]: IRoute;
+};
 
 
 export interface IPlayer {

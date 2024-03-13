@@ -22,7 +22,6 @@ export default function TrainGame() {
       if (parentElement !== null) {
         const id = parentElement.id;
         if (state.can({type: 'claimRoute', routeId: id})) {
-          activateTrains(parentElement);
           send({
             type: 'claimRoute',
             routeId: id
@@ -32,18 +31,14 @@ export default function TrainGame() {
     }
   }
 
-  /**
-   * Make trains on the selected route become active
-   */
-  function activateTrains(target: HTMLElement): void {
-    let children = target.children;
-    for (let i = 0;  i < children.length; i++) {
-      let child = children[i] as Element
-      if (child.classList.contains("train")) {
-        child.classList.add(state.context.controller.currentPlayer.color);
-      }
+  function getTrainClass(routeId: string): string {
+    let trainClass = "";
+    let route = state.context.controller.getRoute(routeId);
+    if (route !== undefined) {
+        trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }
-  }
+    return trainClass;
+}
 
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
@@ -78,7 +73,7 @@ export default function TrainGame() {
           </button>
         </div>
       <div className={styles.center}>
-       <USGameboard claimRoute={claimRoute}/>
+       <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
       </div>
     </main>
   );

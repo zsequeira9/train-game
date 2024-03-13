@@ -1,0 +1,46 @@
+import { MouseEventHandler } from "react";
+import React from 'react';
+
+interface USGameboardProps {
+    claimRoute: MouseEventHandler;
+    getTrainClass: (routeId: string) => string
+}
+
+export default function USGameboard({ claimRoute, getTrainClass}: USGameboardProps) {
+
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="667" viewBox="0 0 264.583 176.47686"
+            version="1.1" id="svg1">
+            <defs id="defs1" />
+            <g id="Cities">
+                {% for city in cities %}
+                    {{ city }}
+                {% endfor %}
+            </g>
+            <g id="Routes">
+                {% for route in routes %}
+                    {% if route.isGroup %}
+                        <g id="{{route.groupId}}" transform="{{route.trans}}" >
+                            {% for lane in route.lanes %}
+                            <g id="{{lane.laneId}}" transform="{{lane.trans}}" className="{{lane.className}}" onClick={claimRoute}>
+                                {% for rect in lane.rects %}
+                                <rect width="{{rect.width}}" height="{{rect.height}}" x="{{rect.x}}" y="{{rect.y}}" transform="{{rect.trans}}"
+                                    id="{{rect.id}}" className={ {{rect.className}} } />
+                                {% endfor %}
+                            </g>
+                            {% endfor %}
+                        </g>
+                    {% else %}
+                        <g id="{{route.routeId}}" className="{{route.className}}" transform="{{route.trans}}" onClick={claimRoute}>
+                            {% for rect in route.rects %}
+                            <rect width="{{rect.width}}" height="{{rect.height}}" x="{{rect.x}}" y="{{rect.y}}" transform="{{rect.trans}}"
+                                id="{{rect.id}}" className={ {{rect.className}} } />
+                            {% endfor %}
+                        </g>
+                    {% endif %}
+                {% endfor %}
+            </g>
+            <g id="Labels" />
+        </svg>
+    )
+};
