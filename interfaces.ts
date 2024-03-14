@@ -200,32 +200,68 @@ export class Controller implements IController {
     return undefined;
   }
 
+  /**
+   * Draw destinations off destination deck
+   */
   drawDestinations(): void {
     let newRoutes = this.destinationDeck.drawDestinations(1);
     this.currentPlayer.destinations.push(...newRoutes);
   }
 
+  /**
+   * Switch to next player in sequence. 
+   */
   endTurn(): void {
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerSequence.length;
   }
 
-  getTrainCard(trainCardId: number): trainCard | never{
+  /**
+   * Return a card from the list of face up trains. Does not mutate trainFaceUp
+   * @param trainCardId Id of a train card
+   * @returns trainCard
+   */
+  getFaceUpTrainCard(trainCardId: number): trainCard | never {
     let selectedCard = this.trainFaceUp.find((trainCard) => trainCard.id === trainCardId);
     if (selectedCard == undefined) {
       throw new Error("trainCard not found!")
     }
     return selectedCard
-  } 
-
-  drawTrainCard(trainCardId: number): void {
-    let card = this.getTrainCard(trainCardId);
-    // increment number of cards in hand
-    this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
-    // remove from stack and add to discard pile
-    this.trainFaceUp = this.trainFaceUp.filter((trainCard) => trainCard.id !== trainCardId);
-    this.trainDiscard.push(card);
   }
 
+  /**
+   * Draw a card from the faceup pile into the players hand.
+   * @param trainCardId Id of a train card
+   */
+  drawFaceUpTrainCard(trainCardId: number): void {
+    let card = this.getFaceUpTrainCard(trainCardId);
+    // increment number of cards in hand
+    this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
+    // remove from stack and add a new card to the faceup pile
+    this.trainFaceUp = this.trainFaceUp.filter((trainCard) => trainCard.id !== trainCardId);
+    this.trainFaceUp.push(this.getDeckTrainCard())
+  }
+
+  /**
+   * Returns the first card off the train deck. Mutates trainDeck!
+   * @returns trainCard
+   */
+  getDeckTrainCard(): trainCard | never {
+    let newCard = this.trainDeck.shift();
+    if (newCard === undefined) {
+      // TODO: if newCard is undefined, need to reshuffle the deck!
+      throw new Error("no new train cards!")
+    }
+    return newCard
+  }
+
+  /**
+   * Draw a card from the deck into the players hand.
+   */
+  drawDeckTrainCard(): void {
+    let card = this.getDeckTrainCard();
+    // increment number of cards in hand
+    this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
+  }
 }
 
 export class destinationDeck {
@@ -307,7 +343,7 @@ export interface IDestinationCard {
   points: number;
 }
 
-type cardColor =  "red" | "blue" | "green" | "yellow" | "orange" | "pink" | "white" | "black" | "loco"
+type cardColor = "red" | "blue" | "green" | "yellow" | "orange" | "pink" | "white" | "black" | "loco"
 
 export interface trainCard {
   id: number;

@@ -3,16 +3,27 @@ import { Controller } from '../../interfaces';
 
 export const controllerMachine = setup({
   types: {
-    context: {} as {controller: Controller},
+    context: {} as { controller: Controller },
     input: {} as Controller,
   },
 }).createMachine({
   id: 'player',
   context: ({ input }) => (
-    {controller: input}
+    { controller: input }
   ),
   initial: 'myTurn',
   states: {
+    // init: {
+    //   always: {
+    //     target: 'myTurn',
+    //     actions: assign(({ context }) => {
+    //       context.controller.drawFaceUpTrains();
+    //       return {
+    //         controller: context.controller
+    //       };
+    //     }),
+    //   }
+    // },
     myTurn: {
       on: {
         'claimRoute': {
@@ -35,35 +46,44 @@ export const controllerMachine = setup({
             };
           }),
         },
-        'drawTrainCard': [
+        'drawTrainCardFace': [
+          // if the user drew a locomotive, end turn
           {
             target: 'endTurn',
-            // if the user drew a locomotive
             guard: ({ context, event }) => {
-              let card = context.controller.getTrainCard(event.trainCardId)
+              let card = context.controller.getFaceUpTrainCard(event.trainCardId)
               if (card.cardColor === "loco") {
                 return true
               }
               return false
             },
             actions: assign(({ context, event }) => {
-              context.controller.drawTrainCard(event.trainCardId);
+              context.controller.drawFaceUpTrainCard(event.trainCardId);
               return {
                 controller: context.controller
               };
             }),
           },
-          // Taken if the above guarded transitions is not taken
+          // if the user did not draw locomotive, draw second card
           {
-            target: 'myTurn2',
+            target: 'drawSecondCard',
             actions: assign(({ context, event }) => {
-              context.controller.drawTrainCard(event.trainCardId);
+              context.controller.drawFaceUpTrainCard(event.trainCardId);
               return {
                 controller: context.controller
               };
             }),
           },
         ],
+        'drawTrainCardDeck': {
+          target: 'drawSecondCard',
+          actions: assign(({ context }) => {
+            context.controller.drawDeckTrainCard();
+            return {
+              controller: context.controller
+            };
+          }),
+        },
         'drawDest': {
           target: 'endTurn',
           actions: assign(({ context }) => {
@@ -73,8 +93,9 @@ export const controllerMachine = setup({
             };
           }),
         },
-        'drawTrains': {
-          target: 'endTurn',
+        // TODO: this is an initialization step!!! it shouldnt be here!!!!
+        'initFaceUpTrains': {
+          target: 'myTurn',
           actions: assign(({ context }) => {
             context.controller.drawFaceUpTrains();
             return {
@@ -84,7 +105,36 @@ export const controllerMachine = setup({
         }
       }
     },
-    myTurn2: {
+    drawSecondCard: {
+      on: {
+        'drawTrainCardFace': {
+          target: 'endTurn',
+          // user is not allowed to draw locomotive on second draw
+          guard: ({ context, event }) => {
+            let card = context.controller.getFaceUpTrainCard(event.trainCardId)
+            if (card.cardColor === "loco") {
+              // TODO: show a modal here
+              return false
+            }
+            return true
+          },
+          actions: assign(({ context, event }) => {
+            context.controller.drawFaceUpTrainCard(event.trainCardId);
+            return {
+              controller: context.controller
+            };
+          }),
+        },
+        'drawTrainCardDeck': {
+          target: 'endTurn',
+          actions: assign(({ context }) => {
+            context.controller.drawDeckTrainCard();
+            return {
+              controller: context.controller
+            };
+          }),
+        },
+      }
     },
     endTurn: {
       always: {

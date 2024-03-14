@@ -58,7 +58,7 @@ export default function TrainGame() {
     <li key={trainCard.id}>
       <div className={styles.card}>
         <button onClick={() => 
-          send({type: 'drawTrainCard', trainCardId: trainCard.id})} >
+          send({type: 'drawTrainCardFace', trainCardId: trainCard.id})} >
           {trainCard.cardColor}
           </button>
       </div>
@@ -79,8 +79,11 @@ export default function TrainGame() {
         </div>
       </div>
       <div className={styles.sidebar}>
-          <button onClick={() => send({type: 'drawTrains'})}>
-              Draw trains?
+          <button onClick={() => send({type: 'drawTrainCardDeck'})}>
+              draw from train deck
+          </button>
+          <button onClick={() => send({type: 'initFaceUpTrains'})}>
+              **TEMP** init face up trains
           </button>
           <ul>{listTrainUp}</ul>
       </div>
