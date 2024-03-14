@@ -44,7 +44,7 @@ export default function TrainGame() {
     (player) =>
       <li key={player.name}>
           <div className={styles.card}>
-            <h1 className={player.color}>
+            <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
               {player.name}
             </h1>
             <p>Number of trains: {player.trains}</p>
@@ -56,7 +56,12 @@ export default function TrainGame() {
 
   const listTrainUp = state.context.controller.trainFaceUp.map((trainCard) =>
     <li key={trainCard.id}>
-      <p>{trainCard.cardColor}</p>
+      <div className={styles.card}>
+        <button onClick={() => 
+          send({type: 'drawTrainCard', trainCardId: trainCard.id})} >
+          {trainCard.cardColor}
+          </button>
+      </div>
     </li>
   )
 
@@ -68,10 +73,9 @@ export default function TrainGame() {
             <button onClick={() => send({type: 'drawDest'})}>
               Draw Destination Cards?
             </button>
-
           </div>
         <div className={styles.center}>
-        <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
+          <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
         </div>
       </div>
       <div className={styles.sidebar}>

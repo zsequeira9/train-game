@@ -36,13 +36,13 @@ export class Player implements IPlayer {
   trainHand: Record<cardColor, number> = {
     red: 0,
     blue: 0,
-    green: 1,
-    yellow: 5,
-    orange: 1,
-    pink: 1,
+    green: 0,
+    yellow: 0,
+    orange: 0,
+    pink: 0,
     white: 0,
     black: 0,
-    loco: 100,
+    loco: 0,
   };
 
   constructor(
@@ -148,7 +148,6 @@ export class Controller implements IController {
     const route = this.getRoute(routeId);
     route.owner = this.currentPlayer;
     this.currentPlayer.playTrains(route.length);
-    this.endTurn();
   }
 
   /**
@@ -204,11 +203,27 @@ export class Controller implements IController {
   drawDestinations(): void {
     let newRoutes = this.destinationDeck.drawDestinations(1);
     this.currentPlayer.destinations.push(...newRoutes);
-    this.endTurn();
   }
 
   endTurn(): void {
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerSequence.length;
+  }
+
+  getTrainCard(trainCardId: number): trainCard | never{
+    let selectedCard = this.trainFaceUp.find((trainCard) => trainCard.id === trainCardId);
+    if (selectedCard == undefined) {
+      throw new Error("trainCard not found!")
+    }
+    return selectedCard
+  } 
+
+  drawTrainCard(trainCardId: number): void {
+    let card = this.getTrainCard(trainCardId);
+    // increment number of cards in hand
+    this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
+    // remove from stack and add to discard pile
+    this.trainFaceUp = this.trainFaceUp.filter((trainCard) => trainCard.id !== trainCardId);
+    this.trainDiscard.push(card);
   }
 
 }
