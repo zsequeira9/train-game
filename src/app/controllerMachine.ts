@@ -93,16 +93,6 @@ export const controllerMachine = setup({
             };
           }),
         },
-        // TODO: this is an initialization step!!! it shouldnt be here!!!!
-        'initFaceUpTrains': {
-          target: 'myTurn',
-          actions: assign(({ context }) => {
-            context.controller.drawFaceUpTrains();
-            return {
-              controller: context.controller
-            };
-          }),
-        }
       }
     },
     drawSecondCard: {
@@ -113,7 +103,7 @@ export const controllerMachine = setup({
           guard: ({ context, event }) => {
             let card = context.controller.getFaceUpTrainCard(event.trainCardId)
             if (card.cardColor === "loco") {
-              // TODO: show a modal here
+              // TODO: display modal upon this condition
               return false
             }
             return true

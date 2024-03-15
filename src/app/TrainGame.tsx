@@ -30,7 +30,11 @@ export default function TrainGame() {
       }
     }
   }
-
+  /**
+   * Return className of a train <rect>
+   * @param routeId Route group id
+   * @returns className
+   */
   function getTrainClass(routeId: string): string {
     let trainClass = "";
     let route = state.context.controller.getRoute(routeId);
@@ -81,9 +85,6 @@ export default function TrainGame() {
       <div className={styles.sidebar}>
           <button onClick={() => send({type: 'drawTrainCardDeck'})}>
               draw from train deck
-          </button>
-          <button onClick={() => send({type: 'initFaceUpTrains'})}>
-              **TEMP** init face up trains
           </button>
           <ul>{listTrainUp}</ul>
       </div>

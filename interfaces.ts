@@ -80,7 +80,7 @@ export class Controller implements IController {
   destinationDeck: destinationDeck;
   routeIndex: Record<string, Route>;
   trainDeck: trainCard[];
-  trainFaceUp: trainCard[] = [] as trainCard[];
+  trainFaceUp: trainCard[];
   gameLog: IEvent[] = [];
   trainDiscard: trainCard[] = [];
 
@@ -96,27 +96,31 @@ export class Controller implements IController {
 
     this.routeIndex = routeIndex;
 
-    this.trainDeck = this.generateTrainDeck();
+
+    let [trainDeck, faceUp] = this.generateTrainDeck();
+
+    this.trainDeck = trainDeck;
+
+    this.trainFaceUp = faceUp;
   }
 
   /**
-   * Draws 5 more cards onto the face up pile
+   * Generate face up deck using first five cards in train deck
    */
-  drawFaceUpTrains(): void {
-    for (let i = 0; i < 5; i++) {
-      let trainCard = this.trainDeck.shift()
-      if (trainCard !== undefined) {
-        this.trainFaceUp.push(trainCard)
-      }
-    }
+  drawFaceUpTrains(): void{
+    let faceUp = this.trainDeck.slice(0, 5);
+    this.trainDeck = this.trainDeck.slice(5);
+    this.trainFaceUp = faceUp;
   }
 
   /**
-   * @returns shuffled train deck
+   * @returns shuffled train deck, face up train cards
    */
-  generateTrainDeck(): trainCard[] {
+  generateTrainDeck(): [trainCard[], trainCard[]] {
+    // TODO: make this function less stupid!
     let cardColors = ["red", "blue", "green", "yellow",
       "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
+
     cardColors.push(Array(14).fill("loco"));
     let cardColorsTyped = cardColors.flat() as cardColor[];
 
@@ -128,12 +132,15 @@ export class Controller implements IController {
       cardColorsTyped[j] = temp;
     }
 
-    const trainCards = [] as trainCard[]
+    let trainCards = [] as trainCard[]
     // add an id for each 
     for (let i = 0; i < cardColorsTyped.length; i++) {
       trainCards[i] = { id: i, cardColor: cardColorsTyped[i] }
     }
-    return trainCards;
+
+    let faceUpTrains = trainCards.slice(0, 5);
+    trainCards = trainCards.slice(5);
+    return [trainCards, faceUpTrains];
   }
 
   get currentPlayer(): Player {
