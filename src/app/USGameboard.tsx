@@ -2590,5 +2590,5 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
             </g>
             <g id="Labels" />
         </svg>
-    )
-};
+    );
+}

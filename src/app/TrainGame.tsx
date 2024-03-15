@@ -25,7 +25,7 @@ export default function TrainGame() {
           send({
             type: 'claimRoute',
             routeId: id
-          })
+          });
         }
       }
     }
@@ -37,7 +37,7 @@ export default function TrainGame() {
    */
   function getTrainClass(routeId: string): string {
     let trainClass = "";
-    let route = state.context.controller.getRoute(routeId);
+    const route = state.context.controller.getRoute(routeId);
     if (route !== undefined) {
         trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }
@@ -67,7 +67,7 @@ export default function TrainGame() {
           </button>
       </div>
     </li>
-  )
+  );
 
   return (
     <main className={"wrapper"}>

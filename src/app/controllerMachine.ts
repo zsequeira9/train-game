@@ -40,11 +40,11 @@ export const controllerMachine = setup({
           {
             target: 'endTurn',
             guard: ({ context, event }) => {
-              let card = context.controller.getFaceUpTrainCard(event.trainCardId)
+              const card = context.controller.getFaceUpTrainCard(event.trainCardId);
               if (card.cardColor === "loco") {
-                return true
+                return true;
               }
-              return false
+              return false;
             },
             actions: assign(({ context, event }) => {
               context.controller.drawFaceUpTrainCard(event.trainCardId);
@@ -90,12 +90,12 @@ export const controllerMachine = setup({
           target: 'endTurn',
           // user is not allowed to draw locomotive on second draw
           guard: ({ context, event }) => {
-            let card = context.controller.getFaceUpTrainCard(event.trainCardId)
+            const card = context.controller.getFaceUpTrainCard(event.trainCardId);
             if (card.cardColor === "loco") {
               // TODO: display modal upon this condition
-              return false
+              return false;
             }
-            return true
+            return true;
           },
           actions: assign(({ context, event }) => {
             context.controller.drawFaceUpTrainCard(event.trainCardId);
