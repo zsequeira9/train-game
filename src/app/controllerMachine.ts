@@ -13,17 +13,6 @@ export const controllerMachine = setup({
   ),
   initial: 'myTurn',
   states: {
-    // init: {
-    //   always: {
-    //     target: 'myTurn',
-    //     actions: assign(({ context }) => {
-    //       context.controller.drawFaceUpTrains();
-    //       return {
-    //         controller: context.controller
-    //       };
-    //     }),
-    //   }
-    // },
     myTurn: {
       on: {
         'claimRoute': {

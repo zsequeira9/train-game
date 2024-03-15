@@ -96,7 +96,6 @@ export class Controller implements IController {
 
     this.routeIndex = routeIndex;
 
-
     let [trainDeck, faceUp] = this.generateTrainDeck();
 
     this.trainDeck = trainDeck;
