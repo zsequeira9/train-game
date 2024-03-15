@@ -166,6 +166,7 @@ export class Controller implements IController {
     const isOwned = route.owner === undefined;
 
     // check double lane constraint 
+    // TODO: the same owner cannot claim both routes
     let isDoubleFree = true;
     const sibling = this.getRouteSibling(routeId);
     if (sibling !== undefined) {
