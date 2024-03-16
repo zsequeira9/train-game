@@ -901,4 +901,4 @@ export const USRoutes = {
         "length": 3
     },
   
-} as Record<string, IRoute>
+} as Record<string, IRoute>;

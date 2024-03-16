@@ -4,7 +4,7 @@ import { useMachine } from '@xstate/react';
 
 import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
-import styles from "./TrainGame.module.css";
+import "./TrainGame.css";
 import USGameboard from "./USGameboard";
 
 export default function TrainGame() {
@@ -25,15 +25,19 @@ export default function TrainGame() {
           send({
             type: 'claimRoute',
             routeId: id
-          })
+          });
         }
       }
     }
   }
-
+  /**
+   * Return className of a train <rect>
+   * @param routeId Route group id
+   * @returns className
+   */
   function getTrainClass(routeId: string): string {
     let trainClass = "";
-    let route = state.context.controller.getRoute(routeId);
+    const route = state.context.controller.getRoute(routeId);
     if (route !== undefined) {
         trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }
@@ -43,7 +47,7 @@ export default function TrainGame() {
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
       <li key={player.name}>
-          <div className={styles.card}>
+          <div className={"card"}>
             <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
               {player.name}
             </h1>
@@ -56,34 +60,31 @@ export default function TrainGame() {
 
   const listTrainUp = state.context.controller.trainFaceUp.map((trainCard) =>
     <li key={trainCard.id}>
-      <div className={styles.card}>
+      <div className={"card"}>
         <button onClick={() => 
           send({type: 'drawTrainCardFace', trainCardId: trainCard.id})} >
           {trainCard.cardColor}
           </button>
       </div>
     </li>
-  )
+  );
 
   return (
-    <main className={styles.wrapper}>
-      <div className={styles.main}>
+    <main className={"wrapper"}>
+      <div className={"main"}>
         <ul>{listPlayerInfo}</ul>
-          <div className={styles.card}>
+          <div className={"card"}>
             <button onClick={() => send({type: 'drawDest'})}>
               Draw Destination Cards?
             </button>
           </div>
-        <div className={styles.center}>
+        <div className={"center"}>
           <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
         </div>
       </div>
-      <div className={styles.sidebar}>
+      <div className={"sidebar"}>
           <button onClick={() => send({type: 'drawTrainCardDeck'})}>
               draw from train deck
-          </button>
-          <button onClick={() => send({type: 'initFaceUpTrains'})}>
-              **TEMP** init face up trains
           </button>
           <ul>{listTrainUp}</ul>
       </div>

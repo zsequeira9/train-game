@@ -1,5 +1,4 @@
 import { MouseEventHandler } from "react";
-import React from 'react';
 
 interface USGameboardProps {
     claimRoute: MouseEventHandler;
@@ -2590,5 +2589,5 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
             </g>
             <g id="Labels" />
         </svg>
-    )
-};
+    );
+}

@@ -2,25 +2,28 @@
   "name": "train_game",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
     "@xstate/react": "^4.1.0",
-    "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "vite": "^5.1.6",
     "xstate": "^5.8.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
     "eslint": "^8",
-    "eslint-config-next": "14.1.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5"
   }
 }

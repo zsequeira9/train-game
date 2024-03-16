@@ -19,7 +19,7 @@ export class Route implements IRoute {
     this.id = id;
     this.city1 = city1;
     this.city2 = city2;
-    this.lane_index = lane_index
+    this.lane_index = lane_index;
     this.length = length;
     this.color = color;
     if (owner) {
@@ -80,7 +80,7 @@ export class Controller implements IController {
   destinationDeck: destinationDeck;
   routeIndex: Record<string, Route>;
   trainDeck: trainCard[];
-  trainFaceUp: trainCard[] = [] as trainCard[];
+  trainFaceUp: trainCard[];
   gameLog: IEvent[] = [];
   trainDiscard: trainCard[] = [];
 
@@ -96,44 +96,50 @@ export class Controller implements IController {
 
     this.routeIndex = routeIndex;
 
-    this.trainDeck = this.generateTrainDeck();
+    const [trainDeck, faceUp] = this.generateTrainDeck();
+
+    this.trainDeck = trainDeck;
+
+    this.trainFaceUp = faceUp;
   }
 
   /**
-   * Draws 5 more cards onto the face up pile
+   * Generate face up deck using first five cards in train deck
    */
-  drawFaceUpTrains(): void {
-    for (let i = 0; i < 5; i++) {
-      let trainCard = this.trainDeck.shift()
-      if (trainCard !== undefined) {
-        this.trainFaceUp.push(trainCard)
-      }
-    }
+  drawFaceUpTrains(): void{
+    const faceUp = this.trainDeck.slice(0, 5);
+    this.trainDeck = this.trainDeck.slice(5);
+    this.trainFaceUp = faceUp;
   }
 
   /**
-   * @returns shuffled train deck
+   * @returns shuffled train deck, face up train cards
    */
-  generateTrainDeck(): trainCard[] {
-    let cardColors = ["red", "blue", "green", "yellow",
+  generateTrainDeck(): [trainCard[], trainCard[]] {
+    // TODO: make this function less stupid!
+    const cardColors = ["red", "blue", "green", "yellow",
       "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
+
     cardColors.push(Array(14).fill("loco"));
-    let cardColorsTyped = cardColors.flat() as cardColor[];
+    const cardColorsTyped = cardColors.flat() as cardColor[];
 
     //shuffle the list
     for (let i = cardColorsTyped.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * i)
-      let temp = cardColorsTyped[i];
+      const j = Math.floor(Math.random() * i);
+      const temp = cardColorsTyped[i];
       cardColorsTyped[i] = cardColorsTyped[j];
       cardColorsTyped[j] = temp;
     }
 
-    const trainCards = [] as trainCard[]
+    let trainCards = [] as trainCard[];
     // add an id for each 
     for (let i = 0; i < cardColorsTyped.length; i++) {
-      trainCards[i] = { id: i, cardColor: cardColorsTyped[i] }
+      trainCards[i] = { id: i, cardColor: cardColorsTyped[i] };
     }
-    return trainCards;
+
+    const faceUpTrains = trainCards.slice(0, 5);
+    trainCards = trainCards.slice(5);
+    return [trainCards, faceUpTrains];
   }
 
   get currentPlayer(): Player {
@@ -160,14 +166,15 @@ export class Controller implements IController {
     const isOwned = route.owner === undefined;
 
     // check double lane constraint 
+    // TODO: the same owner cannot claim both routes
     let isDoubleFree = true;
-    let sibling = this.getRouteSibling(routeId);
+    const sibling = this.getRouteSibling(routeId);
     if (sibling !== undefined) {
-      isDoubleFree = (sibling.owner === undefined || this.playerSequence.length > 3)
+      isDoubleFree = (sibling.owner === undefined || this.playerSequence.length > 3);
     }
 
     // check if played cards meet route cost
-    let playedCardsValid = true;
+    const playedCardsValid = true;
     return isOwned && isDoubleFree && playedCardsValid;
   }
 
@@ -177,11 +184,11 @@ export class Controller implements IController {
    * @returns Route from the route list
    */
   getRoute(routeId: string): Route | never {
-    let route = this.routeIndex[routeId];
+    const route = this.routeIndex[routeId];
     if (route == undefined) {
-      throw new Error("Route not found!")
+      throw new Error("Route not found!");
     }
-    return route
+    return route;
   }
 
   /**
@@ -190,8 +197,8 @@ export class Controller implements IController {
    * @returns Second lane of route if it exists, otherwise undefined
    */
   getRouteSibling(routeId: string): Route | undefined {
-    let siblingId = `${routeId.split(':')[0]}:${routeId.split(':')[1] === "0" ? 1 : 0}`
-    for (let id in this.routeIndex) {
+    const siblingId = `${routeId.split(':')[0]}:${routeId.split(':')[1] === "0" ? 1 : 0}`;
+    for (const id in this.routeIndex) {
       if (id.includes(siblingId)) {
         console.log("Sibling: ", id);
         return this.routeIndex[id];
@@ -204,7 +211,7 @@ export class Controller implements IController {
    * Draw destinations off destination deck
    */
   drawDestinations(): void {
-    let newRoutes = this.destinationDeck.drawDestinations(1);
+    const newRoutes = this.destinationDeck.drawDestinations(1);
     this.currentPlayer.destinations.push(...newRoutes);
   }
 
@@ -221,11 +228,11 @@ export class Controller implements IController {
    * @returns trainCard
    */
   getFaceUpTrainCard(trainCardId: number): trainCard | never {
-    let selectedCard = this.trainFaceUp.find((trainCard) => trainCard.id === trainCardId);
+    const selectedCard = this.trainFaceUp.find((trainCard) => trainCard.id === trainCardId);
     if (selectedCard == undefined) {
-      throw new Error("trainCard not found!")
+      throw new Error("trainCard not found!");
     }
-    return selectedCard
+    return selectedCard;
   }
 
   /**
@@ -233,12 +240,12 @@ export class Controller implements IController {
    * @param trainCardId Id of a train card
    */
   drawFaceUpTrainCard(trainCardId: number): void {
-    let card = this.getFaceUpTrainCard(trainCardId);
+    const card = this.getFaceUpTrainCard(trainCardId);
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
     // remove from stack and add a new card to the faceup pile
     this.trainFaceUp = this.trainFaceUp.filter((trainCard) => trainCard.id !== trainCardId);
-    this.trainFaceUp.push(this.getDeckTrainCard())
+    this.trainFaceUp.push(this.getDeckTrainCard());
   }
 
   /**
@@ -246,19 +253,19 @@ export class Controller implements IController {
    * @returns trainCard
    */
   getDeckTrainCard(): trainCard | never {
-    let newCard = this.trainDeck.shift();
+    const newCard = this.trainDeck.shift();
     if (newCard === undefined) {
       // TODO: if newCard is undefined, need to reshuffle the deck!
-      throw new Error("no new train cards!")
+      throw new Error("no new train cards!");
     }
-    return newCard
+    return newCard;
   }
 
   /**
    * Draw a card from the deck into the players hand.
    */
   drawDeckTrainCard(): void {
-    let card = this.getDeckTrainCard();
+    const card = this.getDeckTrainCard();
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
   }
@@ -280,7 +287,7 @@ export class destinationDeck {
       city2: "Rochester",
       points: 1000000,
     };
-    this.destinationDeck.push(routeCard2)
+    this.destinationDeck.push(routeCard2);
     const routeCard3: IDestinationCard = {
       city1: "Rochester",
       city2: "Corning",
@@ -290,8 +297,8 @@ export class destinationDeck {
   }
 
   drawDestinations(n: number): IDestinationCard[] {
-    let routes = this.destinationDeck.slice(0, n);
-    this.destinationDeck = this.destinationDeck.slice(n)
+    const routes = this.destinationDeck.slice(0, n);
+    this.destinationDeck = this.destinationDeck.slice(n);
     return routes;
   }
 }
