@@ -81,6 +81,7 @@ export class Controller implements IController {
   routeIndex: Record<string, Route>;
   trainDeck: trainCard[];
   trainFaceUp: trainCard[];
+  doubleLaneMin: number = 3;
   gameLog: IEvent[] = [];
   trainDiscard: trainCard[] = [];
 
@@ -163,19 +164,20 @@ export class Controller implements IController {
    */
   canPlayRoute(routeId: string) {
     const route = this.getRoute(routeId);
-    const isOwned = route.owner === undefined;
+    const isFree = route.owner === undefined;
 
-    // check double lane constraint 
-    // TODO: the same owner cannot claim both routes
-    let isDoubleFree = true;
+    // check double lane constraint
     const sibling = this.getRouteSibling(routeId);
+    // default to true if no sibling route
+    let isDoubleFree = true;
     if (sibling !== undefined) {
-      isDoubleFree = (sibling.owner === undefined || this.playerSequence.length > 3);
+      const isDoubleLaneAllowed = this.playerSequence.length > this.doubleLaneMin && sibling.owner !== this.currentPlayer;
+      isDoubleFree = (sibling.owner === undefined || isDoubleLaneAllowed);
     }
 
     // check if played cards meet route cost
     const playedCardsValid = true;
-    return isOwned && isDoubleFree && playedCardsValid;
+    return isFree && isDoubleFree && playedCardsValid;
   }
 
   /**
@@ -350,7 +352,7 @@ export interface IDestinationCard {
   points: number;
 }
 
-type cardColor = "red" | "blue" | "green" | "yellow" | "orange" | "pink" | "white" | "black" | "loco"
+export type cardColor = "red" | "blue" | "green" | "yellow" | "orange" | "pink" | "white" | "black" | "loco"
 
 export interface trainCard {
   id: number;

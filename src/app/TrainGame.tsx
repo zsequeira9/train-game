@@ -6,10 +6,11 @@ import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
 import "./TrainGame.css";
 import USGameboard from "./USGameboard";
+import TrainHand from "./TrainHand";
 
 export default function TrainGame() {
 
-  const [state, send] = useMachine(controllerMachine, {input: gameController});
+  const [state, send] = useMachine(controllerMachine, { input: gameController });
 
   /**
    * Assign clicked route to the current player
@@ -21,7 +22,7 @@ export default function TrainGame() {
       const parentElement = target.parentElement;
       if (parentElement !== null) {
         const id = parentElement.id;
-        if (state.can({type: 'claimRoute', routeId: id})) {
+        if (state.can({ type: 'claimRoute', routeId: id })) {
           send({
             type: 'claimRoute',
             routeId: id
@@ -39,54 +40,55 @@ export default function TrainGame() {
     let trainClass = "";
     const route = state.context.controller.getRoute(routeId);
     if (route !== undefined) {
-        trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
+      trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }
     return trainClass;
-}
+  }
 
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
       <li key={player.name}>
-          <div className={"card"}>
-            <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
-              {player.name}
-            </h1>
-            <p>Number of trains: {player.trains}</p>
-            <p>Destinations: {player.destinationString}</p>
-            <p>Train hand: {player.trainHandString}</p>
-          </div>
+        <div className="card">
+          <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
+            {player.name}
+          </h1>
+          <p>Number of trains: {player.trains}</p>
+          <p>Destinations: {player.destinationString}</p>
+        </div>
       </li>
   );
 
   const listTrainUp = state.context.controller.trainFaceUp.map((trainCard) =>
     <li key={trainCard.id}>
-      <div className={"card"}>
-        <button onClick={() => 
-          send({type: 'drawTrainCardFace', trainCardId: trainCard.id})} >
+        <button className="button" onClick={() =>
+          send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })} >
           {trainCard.cardColor}
           </button>
-      </div>
     </li>
   );
 
   return (
-    <main className={"wrapper"}>
-      <div className={"main"}>
-        <ul>{listPlayerInfo}</ul>
-          <div className={"card"}>
-            <button onClick={() => send({type: 'drawDest'})}>
-              Draw Destination Cards?
-            </button>
+    <main className="wrapper">
+
+      <div className="main">
+        <div className="center">
+          <ul className="card-list">{listPlayerInfo}</ul>
+          <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} />
+          <div className="footer">
+            <h2 className={state.context.controller.currentPlayer.color}>{state.context.controller.currentPlayer.name}</h2>
+            <TrainHand trainHand={state.context.controller.currentPlayer.trainHand} />
           </div>
-        <div className={"center"}>
-          <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass}/>
         </div>
       </div>
-      <div className={"sidebar"}>
-          <button onClick={() => send({type: 'drawTrainCardDeck'})}>
-              draw from train deck
-          </button>
-          <ul>{listTrainUp}</ul>
+
+      <div className="sidebar">
+        <button className="button" onClick={() => send({ type: 'drawDest' })}>
+          Draw Destination Cards?
+        </button>
+        <button className="button" onClick={() => send({ type: 'drawTrainCardDeck' })}>
+          draw from train deck
+        </button>
+        <ul className="train-list">{listTrainUp}</ul>
       </div>
     </main>
   );

@@ -8,7 +8,7 @@ interface USGameboardProps {
 export default function USGameboard({ claimRoute, getTrainClass}: USGameboardProps) {
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="667" viewBox="0 0 264.583 176.47686"
+        <svg xmlns="http://www.w3.org/2000/svg" style={{ width: "100%" }} viewBox="0 0 264.583 176.47686"
             version="1.1" id="svg1">
             <defs id="defs1" />
             <g id="Cities">
