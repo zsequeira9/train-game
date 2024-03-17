@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300"
+   height="200"
+   viewBox="0 0 300 200"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="card-source.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showborder="true"
+     showguides="false"
+     inkscape:zoom="2.607"
+     inkscape:cx="91.29"
+     inkscape:cy="42.38"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer4" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="Special"
+     inkscape:highlight-color="#00ffff"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g39"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect37"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:25.0011;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect42"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="blue" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:25.0011;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:25.0011;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect38"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="red" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ffff00;stroke-width:25.001;stroke-dasharray:25.001, 150.006;stroke-dashoffset:50.002;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect41"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="yellow" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#008080;stroke-width:25.0011;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:75.0033;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect43"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="green" />
+      <rect
+         id="rect44"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="black"
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:25.0011;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke fill markers" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:25.0011;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:125.006;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect45"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="white" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-dasharray:25.001, 150.006;stroke-dashoffset:150.006;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect46"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="orange" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect39"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner"
+         sodipodi:insensitive="true" />
+    </g>
+    <path
+       sodipodi:type="star"
+       style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:18.2235;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path47"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="142.7"
+       sodipodi:cy="30.3"
+       sodipodi:r1="63.68"
+       sodipodi:r2="25.47"
+       sodipodi:arg1="-1.571"
+       sodipodi:arg2="-0.9425"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 142.7,-33.38 15,43.074 45.6,0.916 -36.4,27.56 13.2,43.64 L 142.7,55.77 105.3,81.83 118.5,38.17 82.13,10.63 127.7,9.695 Z"
+       transform="matrix(0.2617,0,0,0.2874,200.5,103.3)"
+       inkscape:transform-center-y="-1.462"
+       inkscape:transform-center-x="-0.08249"
+       inkscape:highlight-color="#ffff00"
+       inkscape:label="yellowstar" />
+    <g
+       inkscape:groupmode="layer"
+       id="g49"
+       inkscape:label="greencross"
+       style="display:inline"
+       transform="translate(89.36,-16.49)"
+       sodipodi:insensitive="true"
+       inkscape:highlight-color="#00e643">
+      <rect
+         style="display:inline;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:5.00094;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect47"
+         width="10"
+         height="45"
+         x="142.5"
+         y="52.5" />
+      <rect
+         style="display:inline;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:5.00097;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect48"
+         width="10"
+         height="45"
+         x="70"
+         y="-170"
+         transform="rotate(90)" />
+      <rect
+         style="display:inline;fill:#008000;fill-opacity:1;stroke:none;stroke-width:5.00108;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect49"
+         width="10"
+         height="45"
+         x="142.5"
+         y="52.5" />
+    </g>
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       width="45"
+       height="45"
+       x="131.9"
+       y="35.81"
+       id="rect50"
+       inkscape:highlight-color="#ffffff"
+       inkscape:label="whitebox" />
+    <circle
+       style="display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="circle49"
+       cx="64.2"
+       cy="108.3"
+       r="22.5"
+       inkscape:label="blackcircle"
+       inkscape:highlight-color="#000000" />
+    <rect
+       style="display:inline;fill:#cc8900;fill-opacity:1;stroke:#000000;stroke-width:5.01506;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect51"
+       width="30.54"
+       height="30.54"
+       x="190.3"
+       y="-67.79"
+       transform="matrix(0.7075,0.7068,-0.7075,0.7068,0,0)"
+       inkscape:highlight-color="#ff9900"
+       inkscape:label="orangediamond" />
+    <path
+       sodipodi:type="star"
+       style="display:inline;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:15.1245;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path51"
+       inkscape:flatsided="true"
+       sodipodi:sides="5"
+       sodipodi:cx="90.91"
+       sodipodi:cy="40.66"
+       sodipodi:r1="70.02"
+       sodipodi:r2="56.64"
+       d="m 90.9,-29.36 66.6,48.37 -25.4,78.29 -82.34,0 -25.45,-78.28 z"
+       transform="matrix(0.3322,0,0,0.329,92.89,98.8)"
+       sodipodi:arg1="-1.571"
+       sodipodi:arg2="-0.9425"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       inkscape:label="bluepenta"
+       inkscape:highlight-color="#0000ff" />
+    <path
+       style="display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:5.00094;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path46"
+       sodipodi:type="arc"
+       sodipodi:cx="71.52"
+       sodipodi:cy="69.33"
+       sodipodi:rx="32.5"
+       sodipodi:ry="30"
+       sodipodi:start="3.142"
+       sodipodi:end="0"
+       sodipodi:arc-type="slice"
+       d="M 39.02,69.32 A 32.5,30 0 0 1 71.53,39.33 32.5,30 0 0 1 104,69.33 H 71.52 Z"
+       sodipodi:insensitive="true"
+       inkscape:label="redarch"
+       inkscape:highlight-color="#ff0000" />
+    <text
+       xml:space="preserve"
+       style="font-size:18.6667px;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="69.59"
+       y="159.2"
+       id="text51"><tspan
+         sodipodi:role="line"
+         id="tspan51"
+         x="69.59"
+         y="159.2"
+         style="font-size:18.6667px;fill:#000000;fill-opacity:1;stroke:none">WILD - All Colors</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Red"
+     inkscape:highlight-color="#ff3333"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g36"
+       inkscape:label="border"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect34"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect35"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="middle" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect36"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner"
+         sodipodi:insensitive="true" />
+    </g>
+    <path
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:5.001;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path14"
+       sodipodi:type="arc"
+       sodipodi:cx="150"
+       sodipodi:cy="125"
+       sodipodi:rx="50"
+       sodipodi:ry="50"
+       sodipodi:start="3.142"
+       sodipodi:end="0"
+       sodipodi:arc-type="slice"
+       d="m 100,125 a 50,50 0 0 1 50,-50 50,50 0 0 1 50,50 h -50 z"
+       sodipodi:insensitive="true" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="121.9"
+       y="159.2"
+       id="text52"><tspan
+         sodipodi:role="line"
+         id="tspan52"
+         x="121.9"
+         y="159.2"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">RED</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Yellow"
+     inkscape:highlight-color="#ffff00"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g33"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect31"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ffff00;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect32"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="middle" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect33"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner" />
+    </g>
+    <path
+       sodipodi:type="star"
+       style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:7.97792;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path11"
+       inkscape:flatsided="false"
+       sodipodi:sides="5"
+       sodipodi:cx="142.7"
+       sodipodi:cy="30.3"
+       sodipodi:r1="63.68"
+       sodipodi:r2="25.47"
+       sodipodi:arg1="-1.571"
+       sodipodi:arg2="-0.9425"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 142.7,-33.38 15,43.074 45.6,0.916 -36.4,27.56 13.2,43.64 L 142.7,55.77 105.3,81.83 118.5,38.17 82.13,10.63 127.7,9.695 Z"
+       transform="matrix(0.6186,0,0,0.6355,61.73,85.34)"
+       inkscape:transform-center-y="-3.886"
+       inkscape:transform-center-x="-0.118" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="94.26"
+       y="162.1"
+       id="text53"><tspan
+         sodipodi:role="line"
+         id="tspan53"
+         x="94.26"
+         y="162.1"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">YELLOW</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Green"
+     inkscape:highlight-color="#55ff55"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g30"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect28"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#008000;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect29"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="middle" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect30"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer9"
+       inkscape:label="cross"
+       style="display:inline;stroke-width:1.11507"
+       transform="matrix(0.8962,0,0,0.8962,11.09,10.38)"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:5.57608;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect12"
+         width="25"
+         height="95"
+         x="142.5"
+         y="52.5" />
+      <rect
+         style="display:inline;fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:5.57608;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect13"
+         width="25"
+         height="95"
+         x="87.5"
+         y="-202.5"
+         transform="rotate(90)" />
+      <rect
+         style="display:inline;fill:#008000;fill-opacity:1;stroke:none;stroke-width:5.57648;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect14"
+         width="25"
+         height="95"
+         x="142.5"
+         y="52.5" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="104.8"
+       y="165.3"
+       id="text54"><tspan
+         sodipodi:role="line"
+         id="tspan54"
+         x="104.8"
+         y="165.3"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">GREEN</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Blue"
+     inkscape:highlight-color="#5555ff"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g27"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect25"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect26"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="middle" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect27"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner" />
+    </g>
+    <path
+       sodipodi:type="star"
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:7.96131;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path5"
+       inkscape:flatsided="true"
+       sodipodi:sides="5"
+       sodipodi:cx="90.91"
+       sodipodi:cy="40.66"
+       sodipodi:r1="70.02"
+       sodipodi:r2="56.64"
+       d="m 90.9,-29.36 66.6,48.37 -25.4,78.29 -82.34,0 -25.45,-78.28 z"
+       transform="matrix(0.6143,0,0,0.6415,94.16,71.95)"
+       sodipodi:arg1="-1.571"
+       sodipodi:arg2="-0.9425"
+       inkscape:rounded="0"
+       inkscape:randomized="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="114.9"
+       y="159.2"
+       id="text55"><tspan
+         sodipodi:role="line"
+         id="tspan55"
+         x="114.9"
+         y="159.2"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">BLUE</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="Orange"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g24"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect22"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#cc8900;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect23"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="middle" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect24"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner" />
+    </g>
+    <rect
+       style="display:inline;fill:#cc8900;fill-opacity:1;stroke:#000000;stroke-width:4.99936;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect4"
+       width="48.03"
+       height="48.03"
+       x="152.8"
+       y="-59.37"
+       transform="rotate(45)" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="93.18"
+       y="159.2"
+       id="text59"><tspan
+         sodipodi:role="line"
+         id="tspan59"
+         x="93.18"
+         y="159.2"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">ORANGE</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Black"
+     inkscape:highlight-color="#000000"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="g21"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect19"
+         inkscape:label="outer" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#4d4d4d;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect20"
+         width="270"
+         height="170"
+         x="15"
+         y="15"
+         inkscape:label="middle" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect21"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49"
+         inkscape:label="inner" />
+    </g>
+    <circle
+       style="display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path3"
+       cx="150"
+       cy="100"
+       r="35" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="104.8"
+       y="159.2"
+       id="text57"><tspan
+         sodipodi:role="line"
+         id="tspan57"
+         x="104.8"
+         y="159.2"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">BLACK</tspan></text>
+  </g>
+  <g
+     inkscape:label="White"
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:highlight-color="#ffffff"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)"
+     sodipodi:insensitive="true">
+    <g
+       id="layer11"
+       inkscape:label="border"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect18" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect15"
+         width="270"
+         height="170"
+         x="15"
+         y="15" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect16"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49" />
+    </g>
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       width="70"
+       height="70"
+       x="115"
+       y="65"
+       id="rect17" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="103.9"
+       y="159.2"
+       id="text58"><tspan
+         sodipodi:role="line"
+         id="tspan58"
+         x="103.9"
+         y="159.2"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">WHITE</tspan></text>
+  </g>
+</svg>
