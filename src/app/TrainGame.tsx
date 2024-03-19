@@ -4,7 +4,6 @@ import { useMachine } from '@xstate/react';
 
 import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
-import "./TrainGame.css";
 import USGameboard from "./USGameboard";
 import TrainHand from "./TrainHand";
 
@@ -69,15 +68,12 @@ export default function TrainGame() {
 
   return (
     <main className="wrapper">
-
       <div className="main">
-        <div className="center">
-          <ul className="card-list">{listPlayerInfo}</ul>
-          <USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} />
-          <div className="footer">
-            <h2 className={state.context.controller.currentPlayer.color}>{state.context.controller.currentPlayer.name}</h2>
-            <TrainHand trainHand={state.context.controller.currentPlayer.trainHand} />
-          </div>
+        <ul className="header list">{listPlayerInfo}</ul>
+        <div className="gameboard"><USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
+        <div className="footer">
+          <h2 className={state.context.controller.currentPlayer.color}>{state.context.controller.currentPlayer.name}</h2>
+          <TrainHand trainHand={state.context.controller.currentPlayer.trainHand} />
         </div>
       </div>
 
@@ -88,7 +84,7 @@ export default function TrainGame() {
         <button className="button" onClick={() => send({ type: 'drawTrainCardDeck' })}>
           draw from train deck
         </button>
-        <ul className="train-list">{listTrainUp}</ul>
+        <ul className="list">{listTrainUp}</ul>
       </div>
     </main>
   );

@@ -1,5 +1,4 @@
 import Draggable from 'react-draggable';
-
 import { cardColor } from '../../interfaces'
 
 interface TrainHandProps {
@@ -26,6 +25,6 @@ export default function TrainHand({ trainHand }: TrainHandProps) {
     }
 
     return (
-        <ul className="card-list">{listTrainCards}</ul>
+        <ul className="list">{listTrainCards}</ul>
     );
 }
