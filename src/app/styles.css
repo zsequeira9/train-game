@@ -177,7 +177,7 @@ body {
 
 .footer {
   display: flex;
-  text-align: center;
+  flex-wrap: wrap;
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: 50px;
@@ -205,6 +205,15 @@ body {
 
 .list {
   list-style-type: none;
+}
+
+.train-hand {
+  display: flex;
+}
+
+.train-card-hand {
+  height: 100px;
+  transform: rotate(90deg)
 }
 
 .card {

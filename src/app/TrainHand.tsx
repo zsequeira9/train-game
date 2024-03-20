@@ -13,10 +13,10 @@ export default function TrainHand({ trainHand }: TrainHandProps) {
         for (let i = 0; i < trainHand[keyColor]; i++) {
             listTrainCards.push(
                 <li key={key + i}>
-                    <Draggable>
-                        <div className="card">
-                            <p>{key}</p>
-                        </div>
+                    <Draggable> 
+                        <div>
+                          <img className="train-card-hand" src={`/cards/${keyColor}.svg?url`} alt={keyColor} />
+                        </div> 
                     </Draggable>
                 </li>
             )
@@ -25,6 +25,6 @@ export default function TrainHand({ trainHand }: TrainHandProps) {
     }
 
     return (
-        <ul className="list">{listTrainCards}</ul>
+        <ul className="train-hand list">{listTrainCards}</ul>
     );
 }
