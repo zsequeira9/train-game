@@ -29,8 +29,7 @@ export default function TrainHand({ trainHand }: TrainHandProps) {
             return <li key={color}>
             <Draggable defaultPosition={{x: 0, y: 0}} onStop={handleStop}>
                 <div>
-                    {/* TODO: dragging around this images causes weird mouseup problems! */}
-                    <img className="train-card-hand" src={`/cards/${color}.svg?url`} alt={color} />
+                    <img draggable={false} className="train-card-hand" src={`/cards/${color}.svg?url`} alt={color} />
                     <span style={{ position: "absolute", top: "0", left: "50%", border: "1px solid black", borderRadius: "25%", padding: ".5em", background: "white" }}>
                         {trainHand[color]}
                     </span>
