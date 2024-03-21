@@ -1,6 +1,7 @@
 'use client';
 import { MouseEvent } from "react";
 import { useMachine } from '@xstate/react';
+import {DndContext} from '@dnd-kit/core';
 
 import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
@@ -67,6 +68,7 @@ export default function TrainGame() {
   );
 
   return (
+    <DndContext>
     <main className="wrapper">
       <div className="main">
         <ul className="header list">{listPlayerInfo}</ul>
@@ -87,5 +89,6 @@ export default function TrainGame() {
         <ul className="list">{listTrainUp}</ul>
       </div>
     </main>
+    </DndContext>
   );
 }

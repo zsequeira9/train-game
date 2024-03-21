@@ -1,41 +1,50 @@
-import Draggable, {DraggableEvent} from 'react-draggable';
+import { useDraggable } from '@dnd-kit/core';
 import { cardColor } from '../../interfaces'
 
 interface TrainHandProps {
     trainHand: Record<cardColor, number>;
 }
 
-function handleStop(e: DraggableEvent) {
-    // card should reset position here.. 
-    const event = e as MouseEvent;
-    console.log(event);
-    // maybe its easier to put separate mouseover event on rect..?
-    const elements = document.elementsFromPoint(event.clientX, event.clientY);
-    elements.forEach((elt) => {
-        if (elt.nodeName == 'rect') {
-            const parentElement = elt.parentElement;
-            if (parentElement !== null) {
-                console.log(parentElement.id);
-            }
-        }
-    });
-}
+// function handleStop(e: DraggableEvent) {
+//     // card should reset position here.. 
+//     const event = e as MouseEvent;
+//     console.log(event);
+//     // maybe its easier to put separate mouseover event on rect..?
+//     const elements = document.elementsFromPoint(event.clientX, event.clientY);
+//     elements.forEach((elt) => {
+//         if (elt.nodeName == 'rect') {
+//             const parentElement = elt.parentElement;
+//             if (parentElement !== null) {
+//                 console.log(parentElement.id);
+//             }
+//         }
+//     });
+// }
 
 export default function TrainHand({ trainHand }: TrainHandProps) {
 
+    function Draggable(color: cardColor) {
+        const { attributes, listeners, setNodeRef, transform } = useDraggable({id: 'draggable',});
+        const style = transform ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`} : undefined;
+
+        return (
+            <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+                <img draggable={false} className="train-card-hand" src={`/cards/${color}.svg?url`} alt={color} />
+                <span style={{position:"relative", top: "0", left: "50%", border: "1px solid black", borderRadius: "25%", padding: ".5em", background: "white" }}>
+                    {trainHand[color]}
+                </span>
+            </div>
+        );
+    }
+
+
+
     const listTrainCards = Object.keys(trainHand).map((key) => {
         let color = key as cardColor;
-        if ( trainHand[color] >0 ) {
+        if (trainHand[color] > 0) {
             return <li key={color}>
-            <Draggable defaultPosition={{x: 0, y: 0}} onStop={handleStop}>
-                <div>
-                    <img draggable={false} className="train-card-hand" src={`/cards/${color}.svg?url`} alt={color} />
-                    <span style={{ position: "absolute", top: "0", left: "50%", border: "1px solid black", borderRadius: "25%", padding: ".5em", background: "white" }}>
-                        {trainHand[color]}
-                    </span>
-                </div>
-            </Draggable>
-        </li>
+               {Draggable(color)}
+            </li>
         }
     });
 

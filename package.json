@@ -9,11 +9,11 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@xstate/react": "^4.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-draggable": "^4.4.6",
     "vite": "^5.1.6",
     "xstate": "^5.8.0"
   },
