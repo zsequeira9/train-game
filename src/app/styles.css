@@ -104,11 +104,11 @@ body {
   stroke-width: 0.2646;
 }
 
-/* #Routes rect:hover {
+#Routes g.hovered rect {
   stroke-width: 0.2646;
   stroke: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;
-} */
+}
 
 #Cities>circle {
   stroke-width: 0.2646;
