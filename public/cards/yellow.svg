@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="300"
+   height="200"
+   viewBox="0 0 300 200"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg">
+  <g
+     id="layer5"
+     style="display:inline"
+     transform="translate(-0.0045,4.699e-4)">
+    <g
+       id="g33"
+       style="display:inline">
+      <rect
+         style="display:inline;fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:5px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+         width="295"
+         height="195"
+         x="2.5"
+         y="2.5"
+         id="rect31" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#ffff00;stroke-width:25.0011;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect32"
+         width="270"
+         height="170"
+         x="15"
+         y="15" />
+      <rect
+         style="display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect33"
+         width="245.1"
+         height="145"
+         x="27.51"
+         y="27.49" />
+    </g>
+    <path
+       style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:7.97792;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path11"
+       d="m 142.7,-33.38 15,43.074 45.6,0.916 -36.4,27.56 13.2,43.64 L 142.7,55.77 105.3,81.83 118.5,38.17 82.13,10.63 127.7,9.695 Z"
+       transform="matrix(0.6186,0,0,0.6355,61.73,85.34)" />
+    <text
+       xml:space="preserve"
+       style="font-size:24px;display:inline;fill:#4d4d4d;fill-opacity:1;stroke:#cc8900;stroke-width:25.001;stroke-linejoin:bevel;stroke-dasharray:25.0011, 150.007;stroke-dashoffset:100.004;stroke-opacity:1;paint-order:stroke markers fill"
+       x="94.26"
+       y="162.1"
+       id="text53"><tspan
+         id="tspan53"
+         x="94.26"
+         y="162.1"
+         style="font-weight:bold;font-size:24px;fill:#000000;fill-opacity:1;stroke:none">YELLOW</tspan></text>
+  </g>
+</svg>
