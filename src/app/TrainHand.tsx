@@ -1,3 +1,4 @@
+import { useState, ChangeEvent } from "react";
 import { cardColor } from '../../interfaces'
 
 interface TrainHandProps {
@@ -5,16 +6,37 @@ interface TrainHandProps {
 }
 
 export default function TrainHand({ trainHand }: TrainHandProps) {
+    
+    // const isCardDisabled = {
+    //     "red": false,
+    //     "blue": false,
+    //     "green": false,
+    //     "yellow": false,
+    //     "orange": false,
+    //     "pink": false,
+    //     "white": false,
+    //     "black": false,
+    //     "loco": false
+    // } as Record<cardColor, boolean>
+
+
+    // const [state, setState] = useState(isCardDisabled)
+
+
+    function selectCard(changeEvent: ChangeEvent<HTMLInputElement>) {
+        console.log(changeEvent)
+        const value = changeEvent.target.value;
+    }
 
     const listTrainCards = Object.keys(trainHand).map((key) => {
         let color = key as cardColor;
         if (trainHand[color] > 0) {
             return <li key={color}>
                 <label className="switch">
-                    <input type="checkbox"/>
+                    <input onChange={selectCard} type="checkbox" value={color} />
                     <div className='train-card-wrapper'>
-                    <img className="train-card-img" draggable={false}  src={`/cards/${color}.svg?url`} alt={color} />
-                    <span className="train-card-badge">{trainHand[color]}</span>
+                        <img className="train-card-img" draggable={false} src={`/cards/${color}.svg?url`} alt={color} />
+                        <span className="train-card-badge">{trainHand[color]}</span>
                     </div>
                 </label>
             </li>

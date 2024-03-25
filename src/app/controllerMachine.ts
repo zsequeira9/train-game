@@ -2,9 +2,9 @@ import { assign, setup } from 'xstate';
 import { Controller } from '../../interfaces';
 
 export const controllerMachine = setup({
-  types: {
-    context: {} as { controller: Controller },
-    input: {} as Controller,
+  types: {} as {
+    context: { controller: Controller },
+    input: Controller,
   },
 }).createMachine({
   id: 'player',

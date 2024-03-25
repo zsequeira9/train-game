@@ -197,7 +197,7 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="san_francisco-salt_lake_city" transform="translate(0.0884,-0.0884)" >
+                        <g id="san_francisco-salt_lake_city" transform="translate(0.6158,0.3336)" >
                             
                             <g id="san_francisco-salt_lake_city:0:orange:5" transform="translate(2.211,-0.7961)" className="orange" onClick={claimRoute}>
                                 
@@ -1083,7 +1083,7 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="new_york-washington" transform="" >
+                        <g id="new_york-washington" transform="translate(0.7575,-0.2392)" >
                             
                             <g id="new_york-washington:0:orange:2" transform="translate(1.198,-3.95)" className="orange" onClick={claimRoute}>
                                 
@@ -1989,7 +1989,7 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="nashville-atlanta:0:grey:1" className="grey" transform="" onClick={claimRoute}>
+                        <g id="nashville-atlanta:0:grey:1" className="grey" transform="translate(-0.1578,0.2103)" onClick={claimRoute}>
                             
                             <rect width="8.991" height="3.175" x="219.8" y="-35.12" transform="rotate(36.65)"
                                 id="nashville-atlanta:0:grey:1:track:0" className={ "track" } />
@@ -2285,7 +2285,7 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="las_vegas-salt_lake_city:0:orange:3" className="orange" transform="" onClick={claimRoute}>
+                        <g id="las_vegas-salt_lake_city:0:orange:3" className="orange" transform="translate(0.422,0.211)" onClick={claimRoute}>
                             
                             <rect width="8.991" height="3.175" x="-39.97" y="122.9" transform="rotate(-44.22)"
                                 id="las_vegas-salt_lake_city:0:orange:3:track:0" className={ "track" } />
@@ -2463,7 +2463,7 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="san_francisco-portland" transform="" >
+                        <g id="san_francisco-portland" transform="translate(-0.5276,0.1055)" >
                             
                             <g id="san_francisco-portland:0:green:5" transform="" className="green" onClick={claimRoute}>
                                 
@@ -2537,7 +2537,7 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="san_francisco-los_angeles" transform="" >
+                        <g id="san_francisco-los_angeles" transform="translate(-0.633,0.8439)" >
                             
                             <g id="san_francisco-los_angeles:0:yellow:3" transform="translate(0,-0.0692)" className="yellow" onClick={claimRoute}>
                                 
