@@ -15,21 +15,10 @@ export const controllerMachine = setup({
   states: {
     myTurn: {
       on: {
-        'claimRoute': {
-          target: 'endTurn',
-          guard: ({ context, event }) => {
-            if (context.controller.canPlayRoute(event.routeId)) {
-              console.log("Able to play route:", event.routeId);
-              return true;
-            }
-            else {
-              // TODO: display modal upon this condition
-              console.log(`Unable to play route ${event.routeId} !`);
-              return false;
-            }
-          },
+        'selectTrainCardHand':{
+          target: 'cardSelected',
           actions: assign(({ context, event }) => {
-            context.controller.playRoute(event.routeId);
+            context.controller.setSelectedCard(event.color);
             return {
               controller: context.controller
             };
@@ -108,6 +97,39 @@ export const controllerMachine = setup({
           target: 'endTurn',
           actions: assign(({ context }) => {
             context.controller.drawDeckTrainCard();
+            return {
+              controller: context.controller
+            };
+          }),
+        },
+      }
+    },
+    cardSelected: {
+      on: {
+        'claimRoute': {
+          target: 'endTurn',
+          guard: ({ context, event }) => {
+            if (context.controller.canPlayRoute(event.routeId)) {
+              console.log("Able to play route:", event.routeId);
+              return true;
+            }
+            else {
+              // TODO: display modal upon this condition
+              console.log(`Unable to play route ${event.routeId} !`);
+              return false;
+            }
+          },
+          actions: assign(({ context, event }) => {
+            context.controller.playRoute(event.routeId);
+            return {
+              controller: context.controller
+            };
+          }),
+        },
+        'deselectTrainCardHand': {
+          target: 'myTurn',
+          actions: assign(({ context }) => {
+            context.controller.setSelectedCard();
             return {
               controller: context.controller
             };

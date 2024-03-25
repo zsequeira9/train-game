@@ -6,6 +6,7 @@ import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
 import USGameboard from "./USGameboard";
 import TrainHand from "./TrainHand";
+import { cardColor } from "../../interfaces";
 
 export default function TrainGame() {
 
@@ -44,6 +45,22 @@ export default function TrainGame() {
     return trainClass;
   }
 
+  /**
+   * Select a card from player's hand
+   * @param color 
+   */
+  function selectCard(color: cardColor): void {
+    send({ type: 'selectTrainCardHand', color: color})
+  }
+
+  /**
+   * Deselect a card from player's hand
+   * @param color 
+   */
+  function deselectCard(): void {
+    send({ type: 'deselectTrainCardHand'})
+  }
+
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
       <li key={player.name}>
@@ -73,7 +90,7 @@ export default function TrainGame() {
         <div className="gameboard"><USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
         <div className="footer">
           <div className="card"><h2 className={state.context.controller.currentPlayer.color}>{state.context.controller.currentPlayer.name}</h2></div>
-          <TrainHand trainHand={state.context.controller.currentPlayer.trainHand} />
+          <TrainHand selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
         </div>
       </div>
 

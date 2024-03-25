@@ -44,6 +44,7 @@ export class Player implements IPlayer {
     black: 0,
     loco: 0,
   };
+  currentSelectedCard?: cardColor;
 
   constructor(
     name: string,
@@ -55,6 +56,11 @@ export class Player implements IPlayer {
 
   playTrains(cost: number) {
     this.trains = this.trains - cost;
+    if (this.currentSelectedCard !== undefined) {
+      const remainingCost = cost - this.trainHand[this.currentSelectedCard];
+      this.trainHand[this.currentSelectedCard] = this.trainHand[this.currentSelectedCard] - cost;
+      this.trainHand['loco'] = this.trainHand['loco'] - remainingCost;
+    }
   }
 
   get destinationString(): string {
@@ -176,7 +182,18 @@ export class Controller implements IController {
     }
 
     // check if played cards meet route cost
-    const playedCardsValid = true;
+    let playedCardsValid;
+    const selectedColor = this.currentPlayer.currentSelectedCard;
+    // no selected card
+    if (selectedColor === undefined) {
+      playedCardsValid = false;
+    }
+    else {
+      const isCorrectColor = (route.color === RouteColor.GREY || selectedColor === route.color || selectedColor === 'loco')
+      const hasEnoughCards = (this.currentPlayer.trainHand[selectedColor] + this.currentPlayer.trainHand["loco"] >= route.length);
+      playedCardsValid = isCorrectColor && hasEnoughCards;  
+    }
+    
     return isFree && isDoubleFree && playedCardsValid;
   }
 
@@ -270,6 +287,15 @@ export class Controller implements IController {
     const card = this.getDeckTrainCard();
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
+  }
+
+  setSelectedCard(color?: cardColor): void {
+    if (color) {
+      this.currentPlayer.currentSelectedCard = color;
+    }
+    else {
+      this.currentPlayer.currentSelectedCard = undefined;
+    }
   }
 }
 

@@ -1,31 +1,34 @@
-import { useState, ChangeEvent } from "react";
+import { MouseEvent } from "react";
 import { cardColor } from '../../interfaces'
 
 interface TrainHandProps {
     trainHand: Record<cardColor, number>;
+    selectCard: (color: cardColor) => void;
+    deselectCard: () => void;
 }
 
-export default function TrainHand({ trainHand }: TrainHandProps) {
-    
-    // const isCardDisabled = {
-    //     "red": false,
-    //     "blue": false,
-    //     "green": false,
-    //     "yellow": false,
-    //     "orange": false,
-    //     "pink": false,
-    //     "white": false,
-    //     "black": false,
-    //     "loco": false
-    // } as Record<cardColor, boolean>
+export default function TrainHand({ trainHand, selectCard, deselectCard }: TrainHandProps) {
+
+    let previouslySelected = null as cardColor | null;
 
 
-    // const [state, setState] = useState(isCardDisabled)
+    function handleOnClick(clickEvent: MouseEvent<HTMLInputElement>) {
+        console.log(clickEvent)
+        const target = clickEvent.target as HTMLInputElement;
+        const value = target.value as cardColor;
 
+        // if the same card was selected, deselect it
+        if (value === previouslySelected) {
+            target.checked = false;
+            previouslySelected = null;
+            deselectCard();
+        }
 
-    function selectCard(changeEvent: ChangeEvent<HTMLInputElement>) {
-        console.log(changeEvent)
-        const value = changeEvent.target.value;
+        else {
+            console.log(value);
+            previouslySelected = value;
+            selectCard(value);
+        }
     }
 
     const listTrainCards = Object.keys(trainHand).map((key) => {
@@ -33,7 +36,7 @@ export default function TrainHand({ trainHand }: TrainHandProps) {
         if (trainHand[color] > 0) {
             return <li key={color}>
                 <label className="switch">
-                    <input onChange={selectCard} type="checkbox" value={color} />
+                    <input onClick={handleOnClick} type="radio" name="traincard" value={color} />
                     <div className='train-card-wrapper'>
                         <img className="train-card-img" draggable={false} src={`/cards/${color}.svg?url`} alt={color} />
                         <span className="train-card-badge">{trainHand[color]}</span>
