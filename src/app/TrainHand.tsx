@@ -3,30 +3,24 @@ import { cardColor } from '../../interfaces'
 
 interface TrainHandProps {
     trainHand: Record<cardColor, number>;
+    selectedCard: cardColor | null;
     selectCard: (color: cardColor) => void;
     deselectCard: () => void;
 }
 
-export default function TrainHand({ trainHand, selectCard, deselectCard }: TrainHandProps) {
-
-    let previouslySelected = null as cardColor | null;
-
+export default function TrainHand({ trainHand, selectedCard, selectCard, deselectCard }: TrainHandProps) {
 
     function handleOnClick(clickEvent: MouseEvent<HTMLInputElement>) {
-        console.log(clickEvent)
         const target = clickEvent.target as HTMLInputElement;
         const value = target.value as cardColor;
 
         // if the same card was selected, deselect it
-        if (value === previouslySelected) {
+        if (value === selectedCard) {
             target.checked = false;
-            previouslySelected = null;
             deselectCard();
         }
 
         else {
-            console.log(value);
-            previouslySelected = value;
             selectCard(value);
         }
     }
@@ -36,9 +30,16 @@ export default function TrainHand({ trainHand, selectCard, deselectCard }: Train
         if (trainHand[color] > 0) {
             return <li key={color}>
                 <label className="switch">
-                    <input onClick={handleOnClick} type="radio" name="traincard" value={color} />
+                    <input 
+                        onClick={handleOnClick} 
+                        // add dummy onChange to suppress react error about using checked prop
+                        onChange={e => e}
+                        type="radio" 
+                        name="traincard" 
+                        value={color} 
+                        checked={color===selectedCard ? true : false}/>
                     <div className='train-card-wrapper'>
-                        <img className="train-card-img" draggable={false} src={`/cards/${color}.svg?url`} alt={color} />
+                        <img className="train-card-img" draggable={false} src={`/cards/${color}.svg?url`} alt={color}/>
                         <span className="train-card-badge">{trainHand[color]}</span>
                     </div>
                 </label>

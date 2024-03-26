@@ -44,7 +44,7 @@ export class Player implements IPlayer {
     black: 0,
     loco: 0,
   };
-  currentSelectedCard?: cardColor;
+  selectedCard: cardColor | null = null;
 
   constructor(
     name: string,
@@ -56,9 +56,9 @@ export class Player implements IPlayer {
 
   playTrains(cost: number) {
     this.trains = this.trains - cost;
-    if (this.currentSelectedCard !== undefined) {
-      const remainingCost = cost - this.trainHand[this.currentSelectedCard];
-      this.trainHand[this.currentSelectedCard] = this.trainHand[this.currentSelectedCard] - cost;
+    if (this.selectedCard !== null) {
+      const remainingCost = cost - this.trainHand[this.selectedCard];
+      this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
       this.trainHand['loco'] = this.trainHand['loco'] - remainingCost;
     }
   }
@@ -183,9 +183,9 @@ export class Controller implements IController {
 
     // check if played cards meet route cost
     let playedCardsValid;
-    const selectedColor = this.currentPlayer.currentSelectedCard;
+    const selectedColor = this.currentPlayer.selectedCard;
     // no selected card
-    if (selectedColor === undefined) {
+    if (selectedColor === null) {
       playedCardsValid = false;
     }
     else {
@@ -291,10 +291,10 @@ export class Controller implements IController {
 
   setSelectedCard(color?: cardColor): void {
     if (color) {
-      this.currentPlayer.currentSelectedCard = color;
+      this.currentPlayer.selectedCard = color;
     }
     else {
-      this.currentPlayer.currentSelectedCard = undefined;
+      this.currentPlayer.selectedCard = null;
     }
   }
 }
