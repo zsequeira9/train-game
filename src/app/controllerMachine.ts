@@ -36,6 +36,7 @@ export const controllerMachine = setup({
         'claimRoute': {
           target: 'endTurn',
           guard: ({ context, event }) => {
+            // TODO: do this in a more xstate way?
             if (context.controller.currentPlayer.selectedCard === null) {
               console.log("No card selected");
               return false;
@@ -58,28 +59,28 @@ export const controllerMachine = setup({
           }),
         },
         'drawTrainCardFace': [
-          // if the user drew a locomotive, end turn
           {
+            // if the user drew a locomotive, end turn
             target: 'endTurn',
             guard: ({ context, event }) => {
-              const card = context.controller.getFaceUpTrainCard(event.trainCardId);
+              const card = context.controller.getOpenTrainCard(event.trainCardId);
               if (card.cardColor === "loco") {
                 return true;
               }
               return false;
             },
             actions: assign(({ context, event }) => {
-              context.controller.drawFaceUpTrainCard(event.trainCardId);
+              context.controller.drawOpenTrainCard(event.trainCardId);
               return {
                 controller: context.controller
               };
             }),
           },
-          // if the user did not draw locomotive, draw second card
           {
+            // if the user did not draw locomotive, draw second card
             target: 'drawSecondCard',
             actions: assign(({ context, event }) => {
-              context.controller.drawFaceUpTrainCard(event.trainCardId);
+              context.controller.drawOpenTrainCard(event.trainCardId);
               return {
                 controller: context.controller
               };
@@ -89,7 +90,7 @@ export const controllerMachine = setup({
         'drawTrainCardDeck': {
           target: 'drawSecondCard',
           actions: assign(({ context }) => {
-            context.controller.drawDeckTrainCard();
+            context.controller.drawTrainCardDeck();
             return {
               controller: context.controller
             };
@@ -112,7 +113,7 @@ export const controllerMachine = setup({
           target: 'endTurn',
           // user is not allowed to draw locomotive on second draw
           guard: ({ context, event }) => {
-            const card = context.controller.getFaceUpTrainCard(event.trainCardId);
+            const card = context.controller.getOpenTrainCard(event.trainCardId);
             if (card.cardColor === "loco") {
               // TODO: display modal upon this condition
               return false;
@@ -120,7 +121,7 @@ export const controllerMachine = setup({
             return true;
           },
           actions: assign(({ context, event }) => {
-            context.controller.drawFaceUpTrainCard(event.trainCardId);
+            context.controller.drawOpenTrainCard(event.trainCardId);
             return {
               controller: context.controller
             };
@@ -129,7 +130,7 @@ export const controllerMachine = setup({
         'drawTrainCardDeck': {
           target: 'endTurn',
           actions: assign(({ context }) => {
-            context.controller.drawDeckTrainCard();
+            context.controller.drawTrainCardDeck();
             return {
               controller: context.controller
             };

@@ -19,7 +19,8 @@ export default function TrainHand({ trainHand, selectedCard, selectCard, deselec
             target.checked = false;
             deselectCard();
         }
-
+        
+        // a new card was selected
         else {
             selectCard(value);
         }

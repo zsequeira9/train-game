@@ -13,7 +13,7 @@ export default function TrainGame() {
   const [state, send] = useMachine(controllerMachine, { input: gameController });
 
   /**
-   * Assign clicked route to the current player
+   * Attempt to claim route group of selected svg rect
    * @param clickEvent click event fired from route
    */
   function claimRoute(clickEvent: MouseEvent<SVGElement>) {
@@ -74,7 +74,7 @@ export default function TrainGame() {
       </li>
   );
 
-  const listTrainUp = state.context.controller.trainFaceUp.map((trainCard) =>
+  const listTrainUp = state.context.controller.openTrainDeck.map((trainCard) =>
     <li key={trainCard.id}>
         <button className="button" onClick={() =>
           send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })} >

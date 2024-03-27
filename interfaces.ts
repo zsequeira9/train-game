@@ -1,4 +1,4 @@
-export class Route implements IRoute {
+export class Route {
   id: string;
   city1: string;
   city2: string;
@@ -28,11 +28,11 @@ export class Route implements IRoute {
   }
 }
 
-export class Player implements IPlayer {
+export class Player {
   name: string;
   color: PlayerColor;
   trains: number = 45;
-  destinations: IDestinationCard[] = [];
+  destinations: DestinationCard[] = [];
   trainHand: Record<cardColor, number> = {
     red: 0,
     blue: 0,
@@ -54,46 +54,43 @@ export class Player implements IPlayer {
     this.color = color;
   }
 
+  /**
+   * Decrement trains and cards based on selectedCard
+   * @param cost Route cost
+   */
   playTrains(cost: number) {
     this.trains = this.trains - cost;
     if (this.selectedCard !== null) {
       const remainingCost = cost - this.trainHand[this.selectedCard];
+      // TODO: picking locomotive will result in a wrong outcome!
       this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
       this.trainHand['loco'] = this.trainHand['loco'] - remainingCost;
     }
   }
 
   get destinationString(): string {
-    return this.destinations.reduce((accumulator: string, route: IDestinationCard) =>
+    return this.destinations.reduce((accumulator: string, route: DestinationCard) =>
       accumulator + route.city1 + "-" + route.city2 + ", ",
       "",
     );
   }
 
-  get trainHandString(): string {
-    let trainHand = "";
-    for (const [key, value] of Object.entries(this.trainHand)) {
-      trainHand = trainHand.concat(" | ", `${key}:${value}`);
-    }
-    return trainHand;
-  }
-
 }
 
-export class Controller implements IController {
+export class Controller {
   playerSequence: Player[];
   currentPlayerIndex: number;
   destinationDeck: destinationDeck;
   routeIndex: Record<string, Route>;
   trainDeck: trainCard[];
-  trainFaceUp: trainCard[];
+  openTrainDeck: trainCard[];
   doubleLaneMin: number = 3;
-  gameLog: IEvent[] = [];
+  gameLog: Event[] = [];
   trainDiscard: trainCard[] = [];
 
   constructor(
     playerSequence: Player[],
-    routeIndex: Record<string, IRoute>,
+    routeIndex: Record<string, Route>,
   ) {
     this.playerSequence = playerSequence;
 
@@ -103,57 +100,21 @@ export class Controller implements IController {
 
     this.routeIndex = routeIndex;
 
-    const [trainDeck, faceUp] = this.generateTrainDeck();
+    const [trainDeck, openTrainDeck] = this.generateTrainDeck();
 
     this.trainDeck = trainDeck;
 
-    this.trainFaceUp = faceUp;
+    this.openTrainDeck = openTrainDeck;
   }
 
   /**
-   * Generate face up deck using first five cards in train deck
+   * Return the current player
    */
-  drawFaceUpTrains(): void{
-    const faceUp = this.trainDeck.slice(0, 5);
-    this.trainDeck = this.trainDeck.slice(5);
-    this.trainFaceUp = faceUp;
-  }
-
-  /**
-   * @returns shuffled train deck, face up train cards
-   */
-  generateTrainDeck(): [trainCard[], trainCard[]] {
-    // TODO: make this function less stupid!
-    const cardColors = ["red", "blue", "green", "yellow",
-      "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
-
-    cardColors.push(Array(14).fill("loco"));
-    const cardColorsTyped = cardColors.flat() as cardColor[];
-
-    //shuffle the list
-    for (let i = cardColorsTyped.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * i);
-      const temp = cardColorsTyped[i];
-      cardColorsTyped[i] = cardColorsTyped[j];
-      cardColorsTyped[j] = temp;
-    }
-
-    let trainCards = [] as trainCard[];
-    // add an id for each 
-    for (let i = 0; i < cardColorsTyped.length; i++) {
-      trainCards[i] = { id: i, cardColor: cardColorsTyped[i] };
-    }
-
-    const faceUpTrains = trainCards.slice(0, 5);
-    trainCards = trainCards.slice(5);
-    return [trainCards, faceUpTrains];
-  }
-
   get currentPlayer(): Player {
     return this.playerSequence[this.currentPlayerIndex];
   }
 
-  /**
+/**
  * Assign route to currentPlayer
  * @param routeId Id of a route
  */
@@ -161,18 +122,22 @@ export class Controller implements IController {
     const route = this.getRoute(routeId);
     route.owner = this.currentPlayer;
     this.currentPlayer.playTrains(route.length);
+    // TODO: this.trainDiscard.add(list_trains_played)
   }
 
   /**
    * Check if a route can be played by the currentPlayer
+   *    
    * @param routeId Id of a route
    * @returns If player can play route
    */
   canPlayRoute(routeId: string) {
     const route = this.getRoute(routeId);
+
+    // Route should not have an owner
     const isFree = route.owner === undefined;
 
-    // check double lane constraint
+    // Route should not be blocked by sibling route
     const sibling = this.getRouteSibling(routeId);
     // default to true if no sibling route
     let isDoubleFree = true;
@@ -181,15 +146,16 @@ export class Controller implements IController {
       isDoubleFree = (sibling.owner === undefined || isDoubleLaneAllowed);
     }
 
-    // check if played cards meet route cost
+    // Played cards should meet route cost
     let playedCardsValid;
     const selectedColor = this.currentPlayer.selectedCard;
-    // no selected card
+    // no selected card TODO: should never be the case, but variable can be type null causing type error
     if (selectedColor === null) {
       playedCardsValid = false;
     }
     else {
       const isCorrectColor = (route.color === RouteColor.GREY || selectedColor === route.color || selectedColor === 'loco')
+      // TODO: wrong if selectedColor === "loco"
       const hasEnoughCards = (this.currentPlayer.trainHand[selectedColor] + this.currentPlayer.trainHand["loco"] >= route.length);
       playedCardsValid = isCorrectColor && hasEnoughCards;  
     }
@@ -242,12 +208,51 @@ export class Controller implements IController {
   }
 
   /**
-   * Return a card from the list of face up trains. Does not mutate trainFaceUp
+   * Generate initial train card decks
+   * @returns shuffled train deck, open train cards
+   */
+  generateTrainDeck(): [trainCard[], trainCard[]] {
+    // TODO: make this function less stupid!
+    const cardColors = ["red", "blue", "green", "yellow",
+      "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
+
+    cardColors.push(Array(14).fill("loco"));
+    const cardColorsTyped = cardColors.flat() as cardColor[];
+
+    //shuffle the list
+    for (let i = cardColorsTyped.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = cardColorsTyped[i];
+      cardColorsTyped[i] = cardColorsTyped[j];
+      cardColorsTyped[j] = temp;
+    }
+
+    let trainDeck = [] as trainCard[];
+    // add an id for each 
+    for (let i = 0; i < cardColorsTyped.length; i++) {
+      trainDeck[i] = { id: i, cardColor: cardColorsTyped[i] };
+    }
+
+    const openTrainDeck = trainDeck.slice(0, 5);
+    trainDeck = trainDeck.slice(5);
+    return [trainDeck, openTrainDeck];
+  }
+
+  /**
+   * Discard current open train and draw a new open train deck
+   * Called when 3 locomotives cards are open
+   */
+  redrawOpenTrainDeck(): void{
+    // TODO: write redrawOpenTrainDeck!
+  }
+  
+  /**
+   * Return a card from the list of open train cards. Does not mutate trainFaceUp
    * @param trainCardId Id of a train card
    * @returns trainCard
    */
-  getFaceUpTrainCard(trainCardId: number): trainCard | never {
-    const selectedCard = this.trainFaceUp.find((trainCard) => trainCard.id === trainCardId);
+  getOpenTrainCard(trainCardId: number): trainCard | never {
+    const selectedCard = this.openTrainDeck.find((trainCard) => trainCard.id === trainCardId);
     if (selectedCard == undefined) {
       throw new Error("trainCard not found!");
     }
@@ -258,20 +263,20 @@ export class Controller implements IController {
    * Draw a card from the faceup pile into the players hand.
    * @param trainCardId Id of a train card
    */
-  drawFaceUpTrainCard(trainCardId: number): void {
-    const card = this.getFaceUpTrainCard(trainCardId);
+  drawOpenTrainCard(trainCardId: number): void {
+    const card = this.getOpenTrainCard(trainCardId);
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
     // remove from stack and add a new card to the faceup pile
-    this.trainFaceUp = this.trainFaceUp.filter((trainCard) => trainCard.id !== trainCardId);
-    this.trainFaceUp.push(this.getDeckTrainCard());
+    this.openTrainDeck = this.openTrainDeck.filter((trainCard) => trainCard.id !== trainCardId);
+    this.openTrainDeck.push(this.popTrainCardDeck());
   }
 
   /**
    * Returns the first card off the train deck. Mutates trainDeck!
    * @returns trainCard
    */
-  getDeckTrainCard(): trainCard | never {
+  popTrainCardDeck(): trainCard | never {
     const newCard = this.trainDeck.shift();
     if (newCard === undefined) {
       // TODO: if newCard is undefined, need to reshuffle the deck!
@@ -283,12 +288,16 @@ export class Controller implements IController {
   /**
    * Draw a card from the deck into the players hand.
    */
-  drawDeckTrainCard(): void {
-    const card = this.getDeckTrainCard();
+  drawTrainCardDeck(): void {
+    const card = this.popTrainCardDeck();
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
   }
 
+  /**
+   * Set the current players selected card
+   * @param color cardColor the player selected
+   */
   setSelectedCard(color?: cardColor): void {
     if (color) {
       this.currentPlayer.selectedCard = color;
@@ -300,23 +309,23 @@ export class Controller implements IController {
 }
 
 export class destinationDeck {
-  destinationDeck: IDestinationCard[] = [];
+  destinationDeck: DestinationCard[] = [];
 
   constructor() {
-    // TODO: read from a list of routes
-    const routeCard: IDestinationCard = {
+    // TODO: read from a list of destinations
+    const routeCard: DestinationCard = {
       city1: "Sault St Marie",
       city2: "Toronto",
       points: 2,
     };
     this.destinationDeck.push(routeCard);
-    const routeCard2: IDestinationCard = {
+    const routeCard2: DestinationCard = {
       city1: "Toronto",
       city2: "Rochester",
       points: 1000000,
     };
     this.destinationDeck.push(routeCard2);
-    const routeCard3: IDestinationCard = {
+    const routeCard3: DestinationCard = {
       city1: "Rochester",
       city2: "Corning",
       points: 1000000,
@@ -324,7 +333,12 @@ export class destinationDeck {
     this.destinationDeck.push(routeCard3);
   }
 
-  drawDestinations(n: number): IDestinationCard[] {
+  /**
+   * Draw n destination cards off the deck
+   * @param n Number cards to draw
+   * @returns List of cards
+   */
+  drawDestinations(n: number): DestinationCard[] {
     const routes = this.destinationDeck.slice(0, n);
     this.destinationDeck = this.destinationDeck.slice(n);
     return routes;
@@ -353,26 +367,8 @@ export enum PlayerColor {
   PURPLE = "player-purple",
 }
 
-export interface IRoute {
-  id: string;
-  city1: string;
-  city2: string;
-  lane_index: number;
-  length: number;
-  color: RouteColor;
-  owner?: Player;
-}
 
-
-export interface IPlayer {
-  name: string;
-  trains: number;
-  color: PlayerColor;
-  destinations: IDestinationCard[];
-  trainHand: Record<cardColor, number>;
-}
-
-export interface IDestinationCard {
+export interface DestinationCard {
   city1: string;
   city2: string;
   points: number;
@@ -385,15 +381,6 @@ export interface trainCard {
   cardColor: cardColor;
 }
 
-export interface IController {
-  playerSequence: IPlayer[];
-  destinationDeck: destinationDeck;
-  gameLog: IEvent[];
-  trainDeck: trainCard[];
-  trainFaceUp: trainCard[];
-  trainDiscard: trainCard[];
-}
-
-export interface IEvent {
+export interface Event {
   message: string;
 }
