@@ -57,15 +57,49 @@ export class Player {
   /**
    * Decrement trains and cards based on selectedCard
    * @param cost Route cost
+   * @param routeColor Route color
    */
-  playTrains(cost: number) {
-    this.trains = this.trains - cost;
+  playTrains(cost: number, routeColor: RouteColor): trainCard[] | never{
     if (this.selectedCard !== null) {
+      let playedTrains = [] as trainCard[];
+      this.trains = this.trains - cost;
+
+      // calculate cost which should be covered by card other than selected
       const remainingCost = cost - this.trainHand[this.selectedCard];
-      // TODO: picking locomotive will result in a wrong outcome!
-      this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
-      this.trainHand['loco'] = this.trainHand['loco'] - remainingCost;
+      if (remainingCost > 0) {
+        cost = this.trainHand[this.selectedCard];
+      }
+
+      if (this.selectedCard === "loco") {
+
+        if (routeColor === RouteColor.GREY) {
+          // Pick the first color that can cover remaining cost
+          for (const key in this.trainHand) {
+            let keyColor = key as cardColor;
+
+            if (this.trainHand[keyColor] >= remainingCost) {
+              this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
+              this.trainHand[keyColor] = this.trainHand[keyColor] - remainingCost;
+              break;
+            }
+          }
+        }
+
+        // Play cards based on route color
+        else {
+          this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
+          this.trainHand[routeColor] = this.trainHand[routeColor] - remainingCost;
+        }
+      }
+
+      // Selected color card
+      else {
+        this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
+        this.trainHand['loco'] = this.trainHand['loco'] - remainingCost;
+      }
+      return playedTrains;
     }
+    throw new Error("No card selected!") 
   }
 
   get destinationString(): string {
@@ -121,7 +155,7 @@ export class Controller {
   playRoute(routeId: string): void {
     const route = this.getRoute(routeId);
     route.owner = this.currentPlayer;
-    this.currentPlayer.playTrains(route.length);
+    this.currentPlayer.playTrains(route.length, route.color);
     // TODO: this.trainDiscard.add(list_trains_played)
   }
 
@@ -149,14 +183,46 @@ export class Controller {
     // Played cards should meet route cost
     let playedCardsValid;
     const selectedColor = this.currentPlayer.selectedCard;
-    // no selected card TODO: should never be the case, but variable can be type null causing type error
+
+    // No currently selected card
     if (selectedColor === null) {
       playedCardsValid = false;
     }
+
     else {
-      const isCorrectColor = (route.color === RouteColor.GREY || selectedColor === route.color || selectedColor === 'loco')
-      // TODO: wrong if selectedColor === "loco"
-      const hasEnoughCards = (this.currentPlayer.trainHand[selectedColor] + this.currentPlayer.trainHand["loco"] >= route.length);
+      let isCorrectColor: boolean = false;
+      let hasEnoughCards: boolean = false;
+
+      // Selected a locomotive card
+      if (selectedColor === "loco") {
+
+        if (route.color === RouteColor.GREY) {
+          // Check if there are enough cards of any color to cover remaining cost
+          const remainingCost = route.length - this.currentPlayer.trainHand[selectedColor];
+
+          for (const key in this.currentPlayer.trainHand) {
+            let color = key as cardColor;
+            if (this.currentPlayer.trainHand[color] >= remainingCost) {
+              hasEnoughCards = true;
+              isCorrectColor = true;
+              break;
+            }
+          }
+        }
+
+        // Check if there are enough cards of route color to cover remaining cost
+        else {
+          hasEnoughCards = (this.currentPlayer.trainHand[selectedColor] + this.currentPlayer.trainHand[route.color] >= route.length);
+          isCorrectColor = hasEnoughCards;
+        }
+      }
+
+      // Selected color card
+      else {
+        isCorrectColor = (route.color === RouteColor.GREY || selectedColor === route.color);
+        hasEnoughCards = (this.currentPlayer.trainHand[selectedColor] + this.currentPlayer.trainHand["loco"] >= route.length);
+      }
+
       playedCardsValid = isCorrectColor && hasEnoughCards;  
     }
     
@@ -185,7 +251,6 @@ export class Controller {
     const siblingId = `${routeId.split(':')[0]}:${routeId.split(':')[1] === "0" ? 1 : 0}`;
     for (const id in this.routeIndex) {
       if (id.includes(siblingId)) {
-        console.log("Sibling: ", id);
         return this.routeIndex[id];
       }
     }
