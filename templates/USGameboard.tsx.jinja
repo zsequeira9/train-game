@@ -16,6 +16,17 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     {{ city }}
                 {% endfor %}
             </g>
+            <g id="Labels">
+                {% for label in city_labels %}
+                    <text
+                        className="city-label"
+                        x="{{label.x}}"
+                        y="{{label.y}}"
+                        id="text{{label.value}}">
+                       {{label.value}}     
+                    </text>
+                {% endfor %}
+            </g>
             <g id="Routes">
                 {% for route in routes %}
                     {% if route.isGroup %}

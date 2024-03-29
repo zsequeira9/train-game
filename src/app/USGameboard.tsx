@@ -86,6 +86,297 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     <circle  id="sault_st_marie" cx="182.6" cy="38.71" r="1.965" />
                 
             </g>
+            <g id="Labels">
+                
+                    <text
+                        className="city-label"
+                        x="14.57"
+                        y="25.12"
+                        id="textVancouver">
+                       Vancouver     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="52.88"
+                        y="20.53"
+                        id="textCalgary">
+                       Calgary     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="14.71"
+                        y="42.1"
+                        id="textSeattle">
+                       Seattle     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="24.34"
+                        y="62.43"
+                        id="textPortland">
+                       Portland     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="74.15"
+                        y="61"
+                        id="textHelena">
+                       Helena     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="119.7"
+                        y="23.2"
+                        id="textWinnipeg">
+                       Winnipeg     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="134.4"
+                        y="53.7"
+                        id="textDuluth">
+                       Duluth     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="180.6"
+                        y="31.25"
+                        id="textSault St.">
+                       Sault St.     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="212.9"
+                        y="44.7"
+                        id="textToronto">
+                       Toronto     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="229.3"
+                        y="19.29"
+                        id="textMontreal">
+                       Montreal     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="242.4"
+                        y="59.78"
+                        id="textNew York">
+                       New York     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="240.5"
+                        y="83.4"
+                        id="textWashington">
+                       Washington     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="229.5"
+                        y="99.37"
+                        id="textRaleigh">
+                       Raleigh     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="233.5"
+                        y="115"
+                        id="textCharelston">
+                       Charelston     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="241.3"
+                        y="157.8"
+                        id="textMiami">
+                       Miami     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="212.9"
+                        y="112.7"
+                        id="textAtlanta">
+                       Atlanta     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="169.6"
+                        y="120"
+                        id="textLittle Rock">
+                       Little Rock     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="183.5"
+                        y="150"
+                        id="textNew">
+                       New     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="156.4"
+                        y="154.1"
+                        id="textHouston">
+                       Houston     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="152.1"
+                        y="137.2"
+                        id="textDallas">
+                       Dallas     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="157"
+                        y="98.91"
+                        id="textKansas">
+                       Kansas     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="132.7"
+                        y="108.8"
+                        id="textOklahoma">
+                       Oklahoma     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="110.7"
+                        y="95.17"
+                        id="textDenver">
+                       Denver     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="87.43"
+                        y="119.1"
+                        id="textSanta Fe">
+                       Santa Fe     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="91.22"
+                        y="150.4"
+                        id="textEl Paso">
+                       El Paso     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="56.95"
+                        y="137.9"
+                        id="textPhoenix">
+                       Phoenix     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="56.07"
+                        y="122.2"
+                        id="textLas Vegas">
+                       Las Vegas     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="19.61"
+                        y="136.5"
+                        id="textLos Angeles">
+                       Los Angeles     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="24.83"
+                        y="110.5"
+                        id="textSan Francisco">
+                       San Francisco     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="45.07"
+                        y="86.44"
+                        id="textSalt Lake City">
+                       Salt Lake City     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="181.7"
+                        y="76.07"
+                        id="textChicago">
+                       Chicago     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="235.4"
+                        y="39.07"
+                        id="textBoston">
+                       Boston     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="147"
+                        y="82.58"
+                        id="textOmaha">
+                       Omaha     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="175.6"
+                        y="96.17"
+                        id="textSaint Louis">
+                       Saint Louis     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="198.1"
+                        y="103.8"
+                        id="textNashville">
+                       Nashville     
+                    </text>
+                
+                    <text
+                        className="city-label"
+                        x="228.8"
+                        y="69.69"
+                        id="textPittsburgh">
+                       Pittsburgh     
+                    </text>
+                
+            </g>
             <g id="Routes">
                 
                     
