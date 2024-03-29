@@ -59,47 +59,50 @@ export class Player {
    * @param cost Route cost
    * @param routeColor Route color
    */
-  playTrains(cost: number, routeColor: RouteColor): trainCard[] | never{
+  playTrains(cost: number, routeColor: RouteColor): cardColor[] | never {
     if (this.selectedCard !== null) {
-      let playedTrains = [] as trainCard[];
+      let playedTrains = [] as cardColor[];
       this.trains = this.trains - cost;
 
       // calculate cost which should be covered by card other than selected
       const remainingCost = cost - this.trainHand[this.selectedCard];
+
       if (remainingCost > 0) {
         cost = this.trainHand[this.selectedCard];
-      }
 
-      if (this.selectedCard === "loco") {
+        // Set the card to use to cover remaining cost, if any
+        // default to locomotive
+        let remainingCostCard: cardColor = "loco";
 
-        if (routeColor === RouteColor.GREY) {
+        if (this.selectedCard === "loco") {
           // Pick the first color that can cover remaining cost
-          for (const key in this.trainHand) {
-            let keyColor = key as cardColor;
+          if (routeColor === RouteColor.GREY) {
+            for (const key in this.trainHand) {
+              let keyColor = key as cardColor;
 
-            if (this.trainHand[keyColor] >= remainingCost) {
-              this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
-              this.trainHand[keyColor] = this.trainHand[keyColor] - remainingCost;
-              break;
+              if (keyColor !== "loco" && this.trainHand[keyColor] >= remainingCost) {
+                remainingCostCard = keyColor;
+              }
             }
+          }
+          // Play cards based on route color
+          else {
+            remainingCostCard = routeColor;
           }
         }
 
-        // Play cards based on route color
-        else {
-          this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
-          this.trainHand[routeColor] = this.trainHand[routeColor] - remainingCost;
-        }
+        // remove extra card from hand
+        playedTrains.push(...Array(remainingCost).fill(remainingCostCard));
+        this.trainHand[remainingCostCard] = this.trainHand[remainingCostCard] - remainingCost;
       }
 
-      // Selected color card
-      else {
-        this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
-        this.trainHand['loco'] = this.trainHand['loco'] - remainingCost;
-      }
+      // remove selected card from hand
+      this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
+      playedTrains.push(...Array(cost).fill(this.selectedCard));
+
       return playedTrains;
     }
-    throw new Error("No card selected!") 
+    throw new Error("No card selected!");
   }
 
   get destinationString(): string {
@@ -120,7 +123,7 @@ export class Controller {
   openTrainDeck: trainCard[];
   doubleLaneMin: number = 3;
   gameLog: Event[] = [];
-  trainDiscard: trainCard[] = [];
+  trainDiscard: cardColor[] = [];
 
   constructor(
     playerSequence: Player[],
@@ -148,15 +151,15 @@ export class Controller {
     return this.playerSequence[this.currentPlayerIndex];
   }
 
-/**
- * Assign route to currentPlayer
- * @param routeId Id of a route
- */
+  /**
+   * Assign route to currentPlayer
+   * @param routeId Id of a route
+   */
   playRoute(routeId: string): void {
     const route = this.getRoute(routeId);
     route.owner = this.currentPlayer;
-    this.currentPlayer.playTrains(route.length, route.color);
-    // TODO: this.trainDiscard.add(list_trains_played)
+    let playedTrains = this.currentPlayer.playTrains(route.length, route.color);
+    this.trainDiscard.push(...playedTrains);
   }
 
   /**
@@ -223,9 +226,9 @@ export class Controller {
         hasEnoughCards = (this.currentPlayer.trainHand[selectedColor] + this.currentPlayer.trainHand["loco"] >= route.length);
       }
 
-      playedCardsValid = isCorrectColor && hasEnoughCards;  
+      playedCardsValid = isCorrectColor && hasEnoughCards;
     }
-    
+
     return isFree && isDoubleFree && playedCardsValid;
   }
 
@@ -307,10 +310,10 @@ export class Controller {
    * Discard current open train and draw a new open train deck
    * Called when 3 locomotives cards are open
    */
-  redrawOpenTrainDeck(): void{
+  redrawOpenTrainDeck(): void {
     // TODO: write redrawOpenTrainDeck!
   }
-  
+
   /**
    * Return a card from the list of open train cards. Does not mutate trainFaceUp
    * @param trainCardId Id of a train card
@@ -341,13 +344,40 @@ export class Controller {
    * Returns the first card off the train deck. Mutates trainDeck!
    * @returns trainCard
    */
-  popTrainCardDeck(): trainCard | never {
-    const newCard = this.trainDeck.shift();
+  popTrainCardDeck(): trainCard {
+    let newCard = this.trainDeck.shift();
     if (newCard === undefined) {
-      // TODO: if newCard is undefined, need to reshuffle the deck!
-      throw new Error("no new train cards!");
+      // No cards left in train deck, reshuffle the deck
+      this.reshuffleTrainDeck();
+      newCard = this.trainDeck.shift();
+      if (newCard === undefined) {
+        throw new Error("No Cards!")
+      }
     }
     return newCard;
+  }
+
+  /**
+   * Push shuffled cards from trainDiscard to trainDeck
+   */
+  reshuffleTrainDeck(): void {
+    console.log("reshuffling train deck")
+
+    // shuffle discards
+    for (let i = this.trainDiscard.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = this.trainDiscard[i];
+      this.trainDiscard[i] = this.trainDiscard[j];
+      this.trainDiscard[j] = temp;
+    }
+
+    // push to train deck
+    for (let i = 0; i < this.trainDiscard.length; i++) {
+      this.trainDeck[i] = { id: i, cardColor: this.trainDiscard[i] };
+    }
+
+    this.trainDiscard = [];
+
   }
 
   /**
