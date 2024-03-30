@@ -47,15 +47,14 @@ export default function TrainGame() {
 
   /**
    * Select a card from player's hand
-   * @param color 
+   * @param color card color
    */
   function selectCard(color: cardColor): void {
     send({ type: 'selectTrainCardHand', color: color})
   }
 
   /**
-   * Deselect a card from player's hand
-   * @param color 
+   * Deselect card from player's hand
    */
   function deselectCard(): void {
     send({ type: 'deselectTrainCardHand'})

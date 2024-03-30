@@ -128,12 +128,13 @@ export class Controller {
   constructor(
     playerSequence: Player[],
     routeIndex: Record<string, Route>,
+    destinationList: DestinationCard[],
   ) {
     this.playerSequence = playerSequence;
 
     this.currentPlayerIndex = 0;
 
-    this.destinationDeck = new destinationDeck();
+    this.destinationDeck = new destinationDeck(destinationList);
 
     this.routeIndex = routeIndex;
 
@@ -264,7 +265,7 @@ export class Controller {
    * Draw destinations off destination deck
    */
   drawDestinations(): void {
-    const newRoutes = this.destinationDeck.drawDestinations(1);
+    const newRoutes = this.destinationDeck.drawDestinations(3);
     this.currentPlayer.destinations.push(...newRoutes);
   }
 
@@ -406,26 +407,8 @@ export class Controller {
 export class destinationDeck {
   destinationDeck: DestinationCard[] = [];
 
-  constructor() {
-    // TODO: read from a list of destinations
-    const routeCard: DestinationCard = {
-      city1: "Sault St Marie",
-      city2: "Toronto",
-      points: 2,
-    };
-    this.destinationDeck.push(routeCard);
-    const routeCard2: DestinationCard = {
-      city1: "Toronto",
-      city2: "Rochester",
-      points: 1000000,
-    };
-    this.destinationDeck.push(routeCard2);
-    const routeCard3: DestinationCard = {
-      city1: "Rochester",
-      city2: "Corning",
-      points: 1000000,
-    };
-    this.destinationDeck.push(routeCard3);
+  constructor(destinationList: DestinationCard[]) {
+    this.destinationDeck = this.shuffleDestinations(destinationList);
   }
 
   /**
@@ -438,6 +421,22 @@ export class destinationDeck {
     this.destinationDeck = this.destinationDeck.slice(n);
     return routes;
   }
+
+  /**
+   * Shuffle list of destinations 
+   * @param destinationList list of destinations
+   * @returns shuffled list
+   */
+  shuffleDestinations(destinationList: DestinationCard[]): DestinationCard[] {
+    for (let i = destinationList.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i);
+      const temp = destinationList[i];
+      destinationList[i] = destinationList[j];
+      destinationList[j] = temp;
+    }
+    return destinationList;
+  }
+
 }
 
 export enum RouteColor {

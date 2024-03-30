@@ -5,6 +5,8 @@ import {
 
 import { USRoutes } from "./routes/us_routes";
 
+import { USDestinations } from "./destinations/us_destinations";
+
     
 const Player1 = new Player(
     "Zelia",
@@ -18,6 +20,7 @@ const Player1 = new Player(
   
   export const gameController = new Controller(
     [Player1, Player2],
-    USRoutes
+    USRoutes,
+    USDestinations,
   );
 
