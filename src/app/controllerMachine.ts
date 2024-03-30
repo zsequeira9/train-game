@@ -11,11 +11,80 @@ export const controllerMachine = setup({
   context: ({ input }) => (
     { controller: input }
   ),
-  initial: 'myTurn',
+  initial: 'firstTurn',
   states: {
+    /**
+     * Starting State - Draw Destination Cards
+     */
+    firstTurn: {
+      on: {
+        // must draw destination cards
+        'drawDest': {
+          target: 'initDrawingDestinationCards',
+          actions: assign(({ context }) => {
+            context.controller.drawDestinations();
+            return {
+              controller: context.controller
+            };
+          }),
+        },
+      },
+      // if all players have drawn destinations, transition to normal play
+      always: {
+        target: 'endTurn',
+        guard: ({ context }) => {
+          return (!context.controller.isFirstTurn && context.controller.playerSequence[0] === context.controller.currentPlayer)
+        },
+        actions: assign(({ context }) => {
+          context.controller.minSelectedDestinations = 1;
+          context.controller.endTurn();
+          return {
+            controller: context.controller
+          };
+        }),
+      },
+    },
+    /**
+     * Select from drawn Destination Cards
+     */
+    initDrawingDestinationCards: {
+      on: {
+        'selectedDestinationCards': {
+          target: 'endInitTurn',
+          guard: ({ context, event }) => {
+            return (event.selectedCards.length >= context.controller.minSelectedDestinations)
+          },
+          actions: assign(({ context, event }) => {
+            context.controller.selectDestinations(event.selectedCards, event.discardedCards);
+            return {
+              controller: context.controller
+            };
+          }),
+        },
+      }
+    },
+    /**
+     * End a player's initial turn
+     */
+    endInitTurn: {
+      always: {
+        target: 'firstTurn',
+        actions: assign(({ context }) => {
+          context.controller.setIsFirstTurn();
+          context.controller.endTurn();
+          return {
+            controller: context.controller
+          };
+        }),
+      }
+    },
+    /**
+     * Normal player turn
+     */
     myTurn: {
       on: {
-        'selectTrainCardHand':{
+        // Select a train card from hand
+        'selectTrainCardHand': {
           target: 'myTurn',
           actions: assign(({ context, event }) => {
             context.controller.setSelectedCard(event.color);
@@ -24,6 +93,7 @@ export const controllerMachine = setup({
             };
           }),
         },
+        // deselect a train card from hand
         'deselectTrainCardHand': {
           target: 'myTurn',
           actions: assign(({ context }) => {
@@ -33,6 +103,7 @@ export const controllerMachine = setup({
             };
           }),
         },
+        // claim a route 
         'claimRoute': {
           target: 'endTurn',
           guard: ({ context, event }) => {
@@ -58,6 +129,7 @@ export const controllerMachine = setup({
             };
           }),
         },
+        // draw a face up train card
         'drawTrainCardFace': [
           {
             // if the user drew a locomotive, end turn
@@ -78,7 +150,7 @@ export const controllerMachine = setup({
           },
           {
             // if the user did not draw locomotive, draw second card
-            target: 'drawSecondCard',
+            target: 'drawingSecondCard',
             actions: assign(({ context, event }) => {
               context.controller.drawOpenTrainCard(event.trainCardId);
               return {
@@ -87,8 +159,9 @@ export const controllerMachine = setup({
             }),
           },
         ],
+        // Draw a card from the train deck
         'drawTrainCardDeck': {
-          target: 'drawSecondCard',
+          target: 'drawingSecondCard',
           actions: assign(({ context }) => {
             context.controller.drawTrainCardDeck();
             return {
@@ -96,8 +169,9 @@ export const controllerMachine = setup({
             };
           }),
         },
+        // Draw destination cards
         'drawDest': {
-          target: 'endTurn',
+          target: 'drawingDestinationCards',
           actions: assign(({ context }) => {
             context.controller.drawDestinations();
             return {
@@ -107,8 +181,31 @@ export const controllerMachine = setup({
         },
       }
     },
-    drawSecondCard: {
+    /**
+     * Select from drawn Destination Cards
+     */
+    drawingDestinationCards: {
       on: {
+        'selectedDestinationCards': {
+          target: 'endTurn',
+          guard: ({ context, event }) => {
+            return (event.selectedCards.length >= context.controller.minSelectedDestinations)
+          },
+          actions: assign(({ context, event }) => {
+            context.controller.selectDestinations(event.selectedCards, event.discardedCards);
+            return {
+              controller: context.controller
+            };
+          }),
+        }
+      }
+    },
+    /**
+     * Draw a second card
+     */
+    drawingSecondCard: {
+      on: {
+        // Draw a face up train card
         'drawTrainCardFace': {
           target: 'endTurn',
           // user is not allowed to draw locomotive on second draw
@@ -127,6 +224,7 @@ export const controllerMachine = setup({
             };
           }),
         },
+        // Draw a card from the train deck
         'drawTrainCardDeck': {
           target: 'endTurn',
           actions: assign(({ context }) => {
@@ -138,6 +236,9 @@ export const controllerMachine = setup({
         },
       }
     },
+    /**
+     * End normal player turn
+     */
     endTurn: {
       always: {
         target: 'myTurn',

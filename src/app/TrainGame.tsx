@@ -6,7 +6,8 @@ import { controllerMachine } from './controllerMachine';
 import { gameController } from "./gamelogic";
 import USGameboard from "./USGameboard";
 import TrainHand from "./TrainHand";
-import { cardColor } from "../../interfaces";
+import DestinationsSelector from "./DestinationsSelector";
+import { DestinationCard, cardColor } from "../../interfaces";
 
 export default function TrainGame() {
 
@@ -60,6 +61,10 @@ export default function TrainGame() {
     send({ type: 'deselectTrainCardHand'})
   }
 
+  function selectDestinations(selectedCards: DestinationCard[], discardedCards: DestinationCard[]): void {
+    send({ type: 'selectedDestinationCards', selectedCards: selectedCards, discardedCards: discardedCards });
+  }
+
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
       <li key={player.name}>
@@ -68,7 +73,7 @@ export default function TrainGame() {
             {player.name}
           </h1>
           <p>Number of trains: {player.trains}</p>
-          <p>Destinations: {player.destinationString}</p>
+          <p>Destinations: {state.context.controller.currentPlayer === player ? player.destinationString : null}</p>
         </div>
       </li>
   );
@@ -82,9 +87,17 @@ export default function TrainGame() {
     </li>
   );
 
+  const destinationSelector = <DestinationsSelector 
+    destinationOptions={state.context.controller.currentPlayer.destinationOptions} 
+    selectDestinations={selectDestinations} />
+
+  const displayedDestinationSelector = (state.value === 'drawingDestinationCards' || state.value === 'initDrawingDestinationCards')
+     ? destinationSelector : null
+
   return (
     <main className="wrapper">
       <div className="main">
+        {displayedDestinationSelector}
         <ul className="header list">{listPlayerInfo}</ul>
         <div className="gameboard"><USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
         <div className="footer">

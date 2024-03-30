@@ -45,6 +45,7 @@ export class Player {
     loco: 0,
   };
   selectedCard: cardColor | null = null;
+  destinationOptions: DestinationCard[] = [];
 
   constructor(
     name: string,
@@ -122,6 +123,8 @@ export class Controller {
   trainDeck: trainCard[];
   openTrainDeck: trainCard[];
   doubleLaneMin: number = 3;
+  minSelectedDestinations: number = 2;
+  isFirstTurn: boolean = true;
   gameLog: Event[] = [];
   trainDiscard: cardColor[] = [];
 
@@ -150,6 +153,15 @@ export class Controller {
    */
   get currentPlayer(): Player {
     return this.playerSequence[this.currentPlayerIndex];
+  }
+
+  /**
+   * Set isFirstTurn
+   */
+  setIsFirstTurn(): void {
+    if (this.isFirstTurn) {
+      this.isFirstTurn = false;
+    }
   }
 
   /**
@@ -265,8 +277,20 @@ export class Controller {
    * Draw destinations off destination deck
    */
   drawDestinations(): void {
-    const newRoutes = this.destinationDeck.drawDestinations(3);
-    this.currentPlayer.destinations.push(...newRoutes);
+    const newCards = this.destinationDeck.drawDestinations(3);
+    this.currentPlayer.destinationOptions.push(...newCards);
+  }
+
+
+  /**
+   * Add selected cards to player's hand, and discards to destination deck
+   * @param selectedCards 
+   * @param discardedCards 
+   */
+  selectDestinations(selectedCards: DestinationCard[], discardedCards: DestinationCard[]): void {
+    this.currentPlayer.destinationOptions = [];
+    this.currentPlayer.destinations.push(...selectedCards);
+    this.destinationDeck.pushDiscards(discardedCards);
   }
 
   /**
@@ -435,6 +459,10 @@ export class destinationDeck {
       destinationList[j] = temp;
     }
     return destinationList;
+  }
+
+  pushDiscards(discards: DestinationCard[]): void {
+    this.destinationDeck.push(...discards);
   }
 
 }
