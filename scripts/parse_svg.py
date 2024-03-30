@@ -159,7 +159,6 @@ def generate_gameboard_file(root):
                 "x": tspan.attrib['x'],
                 "y": tspan.attrib['y'],
                 "value": tspan.text,
-                "style": True if idx == 1 else False
             })
             full_name = full_name + tspan.text
             
@@ -168,6 +167,7 @@ def generate_gameboard_file(root):
             "y": city_label.attrib['y'],
             "tspans": tspans,
             "full_name": full_name,
+            "className": "city-label city-label-centered" if idx == 1 else "city-label"
         })
         
     for route in root.find("*/[@id='Routes']").findall('*'):

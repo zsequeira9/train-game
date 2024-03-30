@@ -18,9 +18,9 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
             </g>
             <g id="Labels">
                 {% for label in city_labels %}
-                    <text className="city-label" id="{{label.full_name}}" x="{{label.x}}" y="{{label.y}}">
+                    <text className="{{label.className}}" id="{{label.full_name}}" x="{{label.x}}" y="{{label.y}}">
                        {% for tspan in label.tspans %}
-                            <tspan id="{{label.full_name + tspan.id}}" x="{{tspan.x}}" y="{{tspan.y}}" {% if tspan.style %} {{ 'style={{textAlign: "center", textAnchor: "middle"}}' }} {% endif %}>
+                            <tspan id="{{label.full_name + tspan.id}}" x="{{tspan.x}}" y="{{tspan.y}}">
                                 {{tspan.value}}
                             </tspan> 
                        {% endfor %} 
