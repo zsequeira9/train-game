@@ -144,11 +144,31 @@ def generate_route_file(root):
         message.write(content)
 
 def generate_gameboard_file(root):
-    """Generates a react component which returns the gameboard svg"""
     cities = []
+    city_labels = []
     routes = []
     for city in root.find("*/[@id='Cities']").findall('*'):
         cities.append(ET.tostring(city).decode().replace('xmlns="http://www.w3.org/2000/svg"', ''))
+
+    for city_label in root.find("*/[@id='Labels']").findall('*'):
+        tspans = []
+        full_name = ""
+        for idx, tspan in enumerate(city_label.findall('{http://www.w3.org/2000/svg}tspan')):
+            tspans.append({
+                "id": str(idx),
+                "x": tspan.attrib['x'],
+                "y": tspan.attrib['y'],
+                "value": tspan.text,
+                "style": True if idx == 1 else False
+            })
+            full_name = full_name + tspan.text
+            
+        city_labels.append({
+            "x": city_label.attrib['x'],
+            "y": city_label.attrib['y'],
+            "tspans": tspans,
+            "full_name": full_name,
+        })
         
     for route in root.find("*/[@id='Routes']").findall('*'):
         num_trains = len(route.findall('{http://www.w3.org/2000/svg}rect'))
@@ -226,6 +246,7 @@ def generate_gameboard_file(root):
     content = template.render(
         cities=cities,
         routes=routes,
+        city_labels=city_labels,
     )
     with open(gameboard_outfile, mode="w", encoding="utf-8") as message:
         message.write(content)
