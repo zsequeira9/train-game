@@ -306,11 +306,12 @@ export class Controller {
    */
   generateTrainDeck(): [trainCard[], trainCard[]] {
     // TODO: make this function less stupid!
+
     const cardColors = ["red", "blue", "green", "yellow",
       "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
 
     cardColors.push(Array(14).fill("loco"));
-    const cardColorsTyped = cardColors.flat() as cardColor[];
+    let cardColorsTyped = cardColors.flat() as cardColor[];
 
     //shuffle the list
     for (let i = cardColorsTyped.length - 1; i > 0; i--) {
@@ -318,6 +319,14 @@ export class Controller {
       const temp = cardColorsTyped[i];
       cardColorsTyped[i] = cardColorsTyped[j];
       cardColorsTyped[j] = temp;
+    }
+
+    // assign 4 cards to each player
+    for (let i = 0; i < this.playerSequence.length; i++) {
+      cardColorsTyped.slice(0, 4).forEach((color) => {
+        this.playerSequence[i].trainHand[color] = 1;
+      })
+      cardColorsTyped = cardColorsTyped.slice(4);
     }
 
     let trainDeck = [] as trainCard[];
@@ -328,6 +337,7 @@ export class Controller {
 
     const openTrainDeck = trainDeck.slice(0, 5);
     trainDeck = trainDeck.slice(5);
+
     return [trainDeck, openTrainDeck];
   }
 
@@ -336,7 +346,10 @@ export class Controller {
    * Called when 3 locomotives cards are open
    */
   redrawOpenTrainDeck(): void {
-    // TODO: write redrawOpenTrainDeck!
+    console.log("3 Locomotives, reshuffling cards!")
+    this.trainDiscard.push(...this.openTrainDeck.map((card) => card.cardColor))
+    this.openTrainDeck = this.trainDeck.slice(0, 5);
+    this.trainDeck = this.trainDeck.slice(5);
   }
 
   /**
@@ -360,9 +373,16 @@ export class Controller {
     const card = this.getOpenTrainCard(trainCardId);
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
+    
     // remove from stack and add a new card to the faceup pile
     this.openTrainDeck = this.openTrainDeck.filter((trainCard) => trainCard.id !== trainCardId);
     this.openTrainDeck.push(this.popTrainCardDeck());
+
+    // if three locomotives face up, redraw the open cards
+    const numberLocos = this.openTrainDeck.filter((card) => card.cardColor === "loco").length
+    if (numberLocos === 3) {
+      this.redrawOpenTrainDeck()
+    }
   }
 
   /**
