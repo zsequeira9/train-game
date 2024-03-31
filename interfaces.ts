@@ -324,7 +324,7 @@ export class Controller {
     // assign 4 cards to each player
     for (let i = 0; i < this.playerSequence.length; i++) {
       cardColorsTyped.slice(0, 4).forEach((color) => {
-        this.playerSequence[i].trainHand[color] = 1;
+        this.playerSequence[i].trainHand[color] = this.playerSequence[i].trainHand[color] + 1;
       })
       cardColorsTyped = cardColorsTyped.slice(4);
     }

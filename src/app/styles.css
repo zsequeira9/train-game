@@ -250,7 +250,7 @@ body {
   position: relative;
   cursor: pointer;
   width: 100px;
-  margin: 9px;
+  padding: 5px
 }
 
 .train-card-img {

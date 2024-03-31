@@ -78,12 +78,9 @@ export default function TrainGame() {
       </li>
   );
 
-  const listTrainUp = state.context.controller.openTrainDeck.map((trainCard) =>
-    <li key={trainCard.id}>
-        <button className="button" onClick={() =>
-          send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })} >
-          {trainCard.cardColor}
-          </button>
+  const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) => 
+    <li key={trainCard.id} className='train-card-wrapper' onClick={() => send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
+        <img className="train-card-img" draggable={false} src={`/cards/${trainCard.cardColor}.svg?url`} alt={trainCard.cardColor}/>
     </li>
   );
 
@@ -113,7 +110,7 @@ export default function TrainGame() {
         <button className="button" onClick={() => send({ type: 'drawTrainCardDeck' })}>
           draw from train deck
         </button>
-        <ul className="list">{listTrainUp}</ul>
+        <ul className="list">{listOpenTrainCards}</ul>
       </div>
     </main>
   );
