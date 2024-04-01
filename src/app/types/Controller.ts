@@ -59,7 +59,7 @@ export class Controller {
     playRoute(routeId: string): void {
       const route = this.getRoute(routeId);
       route.owner = this.currentPlayer;
-      let playedTrains = this.currentPlayer.playTrains(route.length, route.color);
+      let playedTrains = this.currentPlayer.playTrains(route);
       this.trainDiscard.push(...playedTrains);
       console.log(`Played trains ${playedTrains} on route ${route.city1}-${route.city2}`)
     }

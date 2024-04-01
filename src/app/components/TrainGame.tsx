@@ -74,6 +74,7 @@ export default function TrainGame() {
           </h1>
           <p>Number of trains: {player.trains}</p>
           <p>Destinations: {state.context.controller.currentPlayer === player ? player.destinationString : null}</p>
+          <p>Completed Destinations: {state.context.controller.currentPlayer === player ? player.completedDestinationString : null}</p>
         </div>
       </li>
   );
