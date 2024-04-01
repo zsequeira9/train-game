@@ -11,12 +11,12 @@ export const controllerMachine = setup({
   context: ({ input }) => (
     { controller: input }
   ),
-  initial: 'myTurn',
+  initial: 'initTurn',
   states: {
     /**
      * Starting State - Draw Destination Cards
      */
-    firstTurn: {
+    initTurn: {
       on: {
         // must draw destination cards
         'drawDest': {
@@ -68,7 +68,7 @@ export const controllerMachine = setup({
      */
     endInitTurn: {
       always: {
-        target: 'firstTurn',
+        target: 'initTurn',
         actions: assign(({ context }) => {
           context.controller.setIsFirstTurn();
           context.controller.endTurn();

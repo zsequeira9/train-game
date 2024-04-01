@@ -9,15 +9,15 @@ export class Player {
     destinations: DestinationCard[] = [];
     completedDestinations: DestinationCard[] = [];
     trainHand: Record<cardColor, number> = {
-      red: 10,
-      blue: 10,
-      green: 10,
-      yellow: 10,
-      orange: 10,
-      pink: 10,
-      white: 10,
-      black: 10,
-      loco: 10,
+      red: 0,
+      blue: 0,
+      green: 0,
+      yellow: 0,
+      orange: 0,
+      pink: 0,
+      white: 0,
+      black: 0,
+      loco: 0,
     };
     selectedCard: cardColor | null = null;
     destinationOptions: DestinationCard[] = [];
@@ -96,7 +96,7 @@ export class Player {
       for (let i = 0; i < this.destinations.length; i++) {
         let city1 = this.destinations[i].city1;
         let city2 = this.destinations[i].city2;
-        
+
         // city1 and city2 have the same root, are connected
         if (this.connectedCities.findRoot(city1) === this.connectedCities.findRoot(city2)) {
           this.completedDestinations.push(this.destinations[i]);
