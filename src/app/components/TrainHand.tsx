@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import { cardColor } from '../../interfaces'
+import { cardColor } from '../types/interfaces'
 
 interface TrainHandProps {
     trainHand: Record<cardColor, number>;

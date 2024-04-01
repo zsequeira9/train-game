@@ -1,4 +1,4 @@
-import { DestinationCard } from "../../interfaces";
+import { DestinationCard } from "../types/interfaces";
 
 interface DestinationSelectorProps {
     destinationOptions: DestinationCard[];

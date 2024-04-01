@@ -2,12 +2,12 @@
 import { MouseEvent } from "react";
 import { useMachine } from '@xstate/react';
 
-import { controllerMachine } from './controllerMachine';
-import { gameController } from "./gamelogic";
+import { controllerMachine } from '../controllerMachine';
+import { gameController } from "../gamelogic";
 import USGameboard from "./USGameboard";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
-import { DestinationCard, cardColor } from "../../interfaces";
+import { DestinationCard, cardColor } from "../types/interfaces";
 
 export default function TrainGame() {
 

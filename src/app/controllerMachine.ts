@@ -1,5 +1,5 @@
 import { assign, setup } from 'xstate';
-import { Controller } from '../../interfaces';
+import { Controller } from "./types/Controller"; 
 
 export const controllerMachine = setup({
   types: {} as {

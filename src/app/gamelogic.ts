@@ -1,7 +1,6 @@
-import { 
-    Player, 
-    PlayerColor, 
-    Controller } from "../../interfaces";
+import { PlayerColor } from "./types/interfaces";
+import { Player } from "./types/Player";
+import { Controller } from "./types/Controller"; 
 
 import { USRoutes } from "./routes/us_routes";
 

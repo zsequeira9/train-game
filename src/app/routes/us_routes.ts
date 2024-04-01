@@ -1,4 +1,4 @@
-import { RouteColor, Route} from "../../../interfaces";
+import { RouteColor, Route} from "../types/interfaces";
 export const USRoutes = {
  
     "vancouver-calgary:0:grey:3": {
