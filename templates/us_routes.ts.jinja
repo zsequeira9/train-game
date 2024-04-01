@@ -1,4 +1,5 @@
-import { RouteColor, Route} from "../../../interfaces";
+import { RouteColor} from "../types/interfaces";
+import { Route } from "../types/Route";
 export const USRoutes = {
  {% for route in route_list %}
     "{{route.id}}": {

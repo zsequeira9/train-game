@@ -61,6 +61,7 @@ export class Controller {
       route.owner = this.currentPlayer;
       let playedTrains = this.currentPlayer.playTrains(route.length, route.color);
       this.trainDiscard.push(...playedTrains);
+      console.log(`Played trains ${playedTrains} on route ${route.city1}-${route.city2}`)
     }
   
     /**
@@ -179,6 +180,8 @@ export class Controller {
       this.currentPlayer.destinationOptions = [];
       this.currentPlayer.destinations.push(...selectedCards);
       this.destinationDeck.pushDiscards(discardedCards);
+      console.log(`Selected destinations ${selectedCards.reduce((accumulator: string, route: DestinationCard) =>
+        accumulator + route.city1 + "-" + route.city2 + ", ", "")}`);
     }
   
     /**
@@ -271,6 +274,7 @@ export class Controller {
       if (numberLocos === 3) {
         this.redrawOpenTrainDeck()
       }
+      console.log("Drew train card", card.cardColor)
     }
   
     /**
@@ -291,35 +295,13 @@ export class Controller {
     }
   
     /**
-     * Push shuffled cards from trainDiscard to trainDeck
-     */
-    reshuffleTrainDeck(): void {
-      console.log("reshuffling train deck")
-  
-      // shuffle discards
-      for (let i = this.trainDiscard.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * i);
-        const temp = this.trainDiscard[i];
-        this.trainDiscard[i] = this.trainDiscard[j];
-        this.trainDiscard[j] = temp;
-      }
-  
-      // push to train deck
-      for (let i = 0; i < this.trainDiscard.length; i++) {
-        this.trainDeck[i] = { id: i, cardColor: this.trainDiscard[i] };
-      }
-  
-      this.trainDiscard = [];
-  
-    }
-  
-    /**
      * Draw a card from the deck into the players hand.
      */
     drawTrainCardDeck(): void {
       const card = this.popTrainCardDeck();
       // increment number of cards in hand
       this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
+      console.log("Drew train card", card.cardColor)
     }
   
     /**
@@ -334,4 +316,24 @@ export class Controller {
         this.currentPlayer.selectedCard = null;
       }
     }
+
+    /**
+     * Push shuffled cards from trainDiscard to trainDeck
+     */
+      reshuffleTrainDeck(): void {  
+        // shuffle discards
+        for (let i = this.trainDiscard.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * i);
+          const temp = this.trainDiscard[i];
+          this.trainDiscard[i] = this.trainDiscard[j];
+          this.trainDiscard[j] = temp;
+        }
+    
+        // push to train deck
+        for (let i = 0; i < this.trainDiscard.length; i++) {
+          this.trainDeck[i] = { id: i, cardColor: this.trainDiscard[i] };
+        }
+    
+        this.trainDiscard = [];
+      }
   }

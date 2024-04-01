@@ -237,8 +237,8 @@ export const controllerMachine = setup({
       }
     },
     /**
-     * End normal player turn
-     */
+    * End normal player turn
+    */
     endTurn: {
       always: {
         target: 'myTurn',
