@@ -9,7 +9,7 @@ from copy import deepcopy
 infile = 'drawing.svg'
 svg_outfile = os.path.join('.', '.', 'public', 'ticket-nobg.svg')
 gameboard_outfile = os.path.join('.', '.', 'src', 'app', 'USGameboard.tsx')
-route_list_outfile = os.path.join('.', '.', 'src', 'app', 'routes', 'us_routes.ts')
+route_list_outfile = os.path.join('.', '.', 'src', 'app', 'types', 'RouteDeck.ts')
 
 ns = {'svg': 'http://www.w3.org/2000/svg',
       'ttr': 'https://train-game.github.io',
@@ -138,7 +138,7 @@ def generate_route_file(root):
                 "color": id_split[2],
                 "length": int(id_split[3]),
             })
-    template = jinja_env.get_template("us_routes.ts.jinja")
+    template = jinja_env.get_template("RouteDeck.ts.jinja")
     content = template.render(route_list=route_list)
     with open(route_list_outfile, mode="w", encoding="utf-8") as message:
         message.write(content)

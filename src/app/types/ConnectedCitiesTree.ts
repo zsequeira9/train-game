@@ -74,6 +74,7 @@ export class ConnectedCitiesTrees {
         // set node1 root as parent of node2 tree
         this.nodes[node2Parent].parent = node1Parent;
         this.nodes[node1Parent].size = this.nodes[node1Parent].size + this.nodes[node2Parent].size;
+        console.log("nodes", this.nodes);
     }
 
     /**

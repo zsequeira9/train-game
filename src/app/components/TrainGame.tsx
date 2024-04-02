@@ -8,6 +8,7 @@ import USGameboard from "./USGameboard";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
 import { DestinationCard, cardColor } from "../types/interfaces";
+import { RouteDeck } from "../types/RouteDeck";
 
 export default function TrainGame() {
 
@@ -39,7 +40,7 @@ export default function TrainGame() {
    */
   function getTrainClass(routeId: string): string {
     let trainClass = "";
-    const route = state.context.controller.getRoute(routeId);
+    const route = RouteDeck.getRoute(routeId);
     if (route !== undefined) {
       trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }

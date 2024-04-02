@@ -1,0 +1,44 @@
+import { RouteColor} from "./interfaces";
+import { Route } from "./Route";
+export class RouteDeck {
+    static routeIndex: Record<string, Route> = {
+        {% for route in route_list %}
+        "{{route.id}}": {
+            id: "{{route.id}}",
+            city1: "{{route.city1}}",
+            city2: "{{route.city2}}",
+            lane_index: {{route.lane_index}},
+            color: RouteColor.{{route.color.upper()}},
+            length: {{route.length}}
+        },
+        {% endfor %}
+    }
+
+    /**
+     * Return a route from the route list based on ID
+     * @param routeId Id of a route
+     * @returns Route from the route list
+     */
+    static getRoute(routeId: string): Route | never {
+        const route = this.routeIndex[routeId];
+        if (route == undefined) {
+            throw new Error("Route not found!");
+        }
+        return route;
+    }
+
+    /**
+     * Return the sibling of a route, or undefined if it is not a double laned route
+     * @param routeId Id of a route
+     * @returns Second lane of route if it exists, otherwise undefined
+     */
+    static getRouteSibling(routeId: string): Route | undefined {
+        const siblingId = `${routeId.split(':')[0]}:${routeId.split(':')[1] === "0" ? 1 : 0}`;
+        for (const id in this.routeIndex) {
+            if (id.includes(siblingId)) {
+                return this.routeIndex[id];
+            }
+        }
+        return undefined;
+    }
+}

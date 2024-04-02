@@ -33,7 +33,7 @@ export const controllerMachine = setup({
       always: {
         target: 'endTurn',
         guard: ({ context }) => {
-          return (!context.controller.isFirstTurn && context.controller.playerSequence[0] === context.controller.currentPlayer)
+          return (!context.controller.isInitTurn && context.controller.playerSequence[0] === context.controller.currentPlayer)
         },
         actions: assign(({ context }) => {
           context.controller.minSelectedDestinations = 1;
@@ -70,7 +70,9 @@ export const controllerMachine = setup({
       always: {
         target: 'initTurn',
         actions: assign(({ context }) => {
-          context.controller.setIsFirstTurn();
+          if (context.controller.isInitTurn) {
+            context.controller.isInitTurn = false;
+          };
           context.controller.endTurn();
           return {
             controller: context.controller

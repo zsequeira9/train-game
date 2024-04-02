@@ -18,7 +18,7 @@ export default function DestinationsSelector({ destinationOptions, selectDestina
     const listDestinations = destinationOptions.map((card) => {
         return <li key={card.city1 + card.city2}>
             <button className="button" onClick={() => {console.log("selected", card); selectedCards.push(card)}}>
-                {card.city1 + "-" + card.city2}
+                {card.city1 + "-" + card.city2 + "-" + card.points}
             </button>
         </li>
     })
