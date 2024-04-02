@@ -2,8 +2,8 @@ import { PlayerColor } from "./types/interfaces";
 import { Player } from "./types/Player";
 import { Controller } from "./types/Controller"; 
 
-import { USRoutes } from "./routes/us_routes";
-import { USDestinations } from "./destinations/us_destinations";
+import { USRoutes } from "./routes/USRoutes";
+import { USDestinations } from "./destinations/USDestinations";
 
 const DEBUG = true;
 
