@@ -6,7 +6,7 @@ export class Player {
     name: string;
     color: PlayerColor;
     trains: number = 45;
-    destinations: DestinationCard[] = [];
+    incompleteDestinations: DestinationCard[] = [];
     completedDestinations: DestinationCard[] = [];
     trainHand: Record<cardColor, number> = {
       red: 0,
@@ -26,9 +26,13 @@ export class Player {
     constructor(
       name: string,
       color: PlayerColor,
+      startingTrains?: number,
     ) {
       this.name = name;
       this.color = color;
+      if (startingTrains) {
+        this.trains = startingTrains;
+      }
       this.connectedCities = new ConnectedCitiesTrees();
     }
   
@@ -93,20 +97,22 @@ export class Player {
      */
     checkDestinations() {
       // iterate through outstanding destinations 
-      for (let i = 0; i < this.destinations.length; i++) {
-        let city1 = this.destinations[i].city1;
-        let city2 = this.destinations[i].city2;
+      let completedDestinations = [] as DestinationCard[];
+      for (let i = 0; i < this.incompleteDestinations.length; i++) {
+        let city1 = this.incompleteDestinations[i].city1;
+        let city2 = this.incompleteDestinations[i].city2;
 
         // city1 and city2 have the same root, are connected
         if (this.connectedCities.findRoot(city1) === this.connectedCities.findRoot(city2)) {
-          this.completedDestinations.push(this.destinations[i]);
-          this.destinations.splice(i, 1);
+          completedDestinations.push(this.incompleteDestinations[i]);
         }
       }
+      this.completedDestinations.push(...completedDestinations);
+      this.incompleteDestinations.filter((outstanding) => completedDestinations.find(completed => outstanding === completed))
     }
   
     get destinationString(): string {
-      return this.destinations.reduce((accumulator: string, route: DestinationCard) =>
+      return this.incompleteDestinations.reduce((accumulator: string, route: DestinationCard) =>
         accumulator + route.city1 + "-" + route.city2 + ", ",
         "",
       );

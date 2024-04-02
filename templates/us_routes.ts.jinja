@@ -1,0 +1,14 @@
+import { RouteColor} from "../types/interfaces";
+import { RouteIndex } from "../types/RouteDeck";
+export const USRoutes = {
+ {% for route in route_list %}
+    "{{route.id}}": {
+        id: "{{route.id}}",
+        city1: "{{route.city1}}",
+        city2: "{{route.city2}}",
+        lane_index: {{route.lane_index}},
+        color: RouteColor.{{route.color.upper()}},
+        length: {{route.length}}
+    },
+  {% endfor %}
+} as RouteIndex;

@@ -3,12 +3,11 @@ import { MouseEvent } from "react";
 import { useMachine } from '@xstate/react';
 
 import { controllerMachine } from '../controllerMachine';
-import { gameController } from "../gamelogic";
+import { gameController } from "../initController";
 import USGameboard from "./USGameboard";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
 import { DestinationCard, cardColor } from "../types/interfaces";
-import { RouteDeck } from "../types/RouteDeck";
 
 export default function TrainGame() {
 
@@ -40,7 +39,7 @@ export default function TrainGame() {
    */
   function getTrainClass(routeId: string): string {
     let trainClass = "";
-    const route = RouteDeck.getRoute(routeId);
+    const route = state.context.controller.routeDeck.getRoute(routeId);
     if (route !== undefined) {
       trainClass = route.owner !== undefined ? `train ${route.owner.color}` : "train";
     }

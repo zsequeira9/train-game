@@ -198,8 +198,8 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                 
                     <text className="city-label" id="Charleston" x="233.5" y="115">
                        
-                            <tspan id="Charleston" x="233.5" y="115">
-                            Charleston
+                            <tspan id="Charleston0" x="233.5" y="115">
+                                Charleston
                             </tspan> 
                         
                     </text>

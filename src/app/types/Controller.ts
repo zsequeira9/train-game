@@ -1,31 +1,40 @@
 import { DestinationCard, cardColor, RouteColor, trainCard, } from "./interfaces";
 import { DestinationDeck } from "./DestinationDeck";
 import { Player } from "./Player";
-import { RouteDeck } from "./RouteDeck";
+import { RouteDeck, RouteIndex } from "./RouteDeck";
 
 export class Controller {
   playerSequence: Player[];
-  currentPlayerIndex: number;
-  destinationDeck: DestinationDeck;
+  doubleLaneMin: number = 3;
+  numberCards: number = 4;
+  isDebugMode: boolean = false;
+
   trainDeck: trainCard[];
   openTrainDeck: trainCard[] = [];
-  doubleLaneMin: number = 3;
+  trainDiscard: cardColor[] = [];
+
+  routeDeck: RouteDeck;
+  destinationDeck: DestinationDeck;
+
   minSelectedDestinations: number = 2;
   isInitTurn: boolean = true;
+  currentPlayerIndex: number;
+
   gameLog: Event[] = [];
-  trainDiscard: cardColor[] = [];
-  isDebugMode: boolean = false;
-  numberCards: number = 4;
 
   constructor(
     playerSequence: Player[],
+    routeIndex: RouteIndex,
+    destinationDeck: DestinationCard[],
     isDebugMode: boolean
   ) {
     this.playerSequence = playerSequence;
 
     this.currentPlayerIndex = 0;
 
-    this.destinationDeck = new DestinationDeck();
+    this.routeDeck = new RouteDeck(routeIndex);
+
+    this.destinationDeck = new DestinationDeck(destinationDeck);
 
     this.trainDeck = this.generateTrainDeck();
 
@@ -189,7 +198,7 @@ export class Controller {
    * @param routeId Id of a route
    */
   playRoute(routeId: string): void {
-    const route = RouteDeck.getRoute(routeId);
+    const route = this.routeDeck.getRoute(routeId);
     route.owner = this.currentPlayer;
     let playedTrains = this.currentPlayer.playTrains(route);
     this.trainDiscard.push(...playedTrains);
@@ -203,13 +212,13 @@ export class Controller {
    * @returns If player can play route
    */
   canPlayRoute(routeId: string) {
-    const route = RouteDeck.getRoute(routeId);
+    const route = this.routeDeck.getRoute(routeId);
 
     // Route should not have an owner
     const isFree = route.owner === undefined;
 
     // Route should not be blocked by sibling route
-    const sibling = RouteDeck.getRouteSibling(routeId);
+    const sibling = this.routeDeck.getRouteSibling(routeId);
     // default to true if no sibling route
     let isDoubleFree = true;
     if (sibling !== undefined) {
@@ -282,7 +291,7 @@ export class Controller {
    */
   selectDestinations(selectedCards: DestinationCard[], discardedCards: DestinationCard[]): void {
     this.currentPlayer.destinationOptions = [];
-    this.currentPlayer.destinations.push(...selectedCards);
+    this.currentPlayer.incompleteDestinations.push(...selectedCards);
     this.destinationDeck.pushDiscards(discardedCards);
     console.log(`Selected destinations ${selectedCards.reduce((accumulator: string, route: DestinationCard) =>
       accumulator + route.city1 + "-" + route.city2 + ", ", "")}`);
