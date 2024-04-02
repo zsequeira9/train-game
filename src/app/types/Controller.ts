@@ -19,21 +19,20 @@ export class Controller {
 
   constructor(
     playerSequence: Player[],
-    destinationList: DestinationCard[],
     isDebugMode: boolean
   ) {
     this.playerSequence = playerSequence;
 
     this.currentPlayerIndex = 0;
 
-    this.destinationDeck = new DestinationDeck(destinationList);
+    this.destinationDeck = new DestinationDeck();
 
     this.trainDeck = this.generateTrainDeck();
 
     this.redrawOpenTrainDeck();
 
     if (isDebugMode) {
-      this.numberCards = Math.floor(105 / this.playerSequence.length)
+      this.numberCards = Math.floor(105 / this.playerSequence.length);
     }
 
     this.dealPlayerCards(this.numberCards);

@@ -1,5 +1,5 @@
 import { assign, setup } from 'xstate';
-import { Controller } from "./types/Controller"; 
+import { Controller } from "./types/Controller";
 
 export const controllerMachine = setup({
   types: {} as {
@@ -242,16 +242,31 @@ export const controllerMachine = setup({
     * End normal player turn
     */
     endTurn: {
-      always: {
-        target: 'myTurn',
-        actions: assign(({ context }) => {
-          context.controller.setSelectedCard();
-          context.controller.endTurn();
-          return {
-            controller: context.controller
-          };
-        }),
-      }
+      always: [
+        {
+          guard: ({ context }) => context.controller.currentPlayer.trains <= 2,
+          target: 'finalTurn'
+        },
+        {
+          target: 'myTurn',
+          actions: assign(({ context }) => {
+            context.controller.setSelectedCard();
+            context.controller.endTurn();
+            return {
+              controller: context.controller
+            };
+          }),
+        }
+      ]
+    },
+    finalTurn: {
+      type: 'final',
+      actions: assign(({ context }) => {
+        console.log("Final Turn")
+        return {
+          controller: context.controller
+        };
+      }),
     }
   },
 });
