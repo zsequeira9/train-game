@@ -25,11 +25,14 @@ export default function DestinationsSelector({ destinationOptions, selectDestina
 
     // TODO: make this a popup
     return (
-        <div>
+        <div className="destination-popup-wrapper">
+        <div className="destination-popup">
+            <h2>Select a route please</h2>
+            <ul className="list">{listDestinations}</ul>
             <button className="button" onClick={() => selectDestinations(selectedCards, getDiscards())}>
                 OKAY?
             </button>
-            <ul className="list">{listDestinations}</ul>
+        </div>
         </div>
     )
 }
