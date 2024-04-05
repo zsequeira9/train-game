@@ -17,7 +17,8 @@ export class Controller {
   destinationDeck: DestinationDeck;
 
   minSelectedDestinations: number = 2;
-  isInitTurn: boolean = true;
+  hasRoundCompleted: boolean = false;
+  isFinalRound: boolean = false;
   currentPlayerIndex: number;
 
   gameLog: Event[] = [];
@@ -217,6 +218,8 @@ export class Controller {
     // Route should not have an owner
     const isFree = route.owner === undefined;
 
+    const hasEnoughTrains = this.currentPlayer.trains >= route.length;
+
     // Route should not be blocked by sibling route
     const sibling = this.routeDeck.getRouteSibling(routeId);
     // default to true if no sibling route
@@ -272,7 +275,7 @@ export class Controller {
       playedCardsValid = isCorrectColor && hasEnoughCards;
     }
 
-    return isFree && isDoubleFree && playedCardsValid;
+    return isFree && hasEnoughTrains && isDoubleFree && playedCardsValid;
   }
 
   /**
@@ -302,6 +305,7 @@ export class Controller {
    * @param color cardColor the player selected
    */
   setSelectedCard(color?: cardColor): void {
+    // throw new Error("Test error!");
     if (color) {
       this.currentPlayer.selectedCard = color;
     }
@@ -310,10 +314,35 @@ export class Controller {
     }
   }
 
+
+  calculateScore(): void {
+
+  }
+
   /**
-   * Switch to next player in sequence. 
+   * End the current turn 
    */
   endTurn(): void {
+    // clear current selected card
+    this.setSelectedCard();
+
+    // check if is last round
+    if (this.currentPlayer.trains <= 2) {
+      this.isFinalRound = true;
+      console.log("Final Turn!")
+    }
+
+    // set next player in sequence to current player
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerSequence.length;
+    console.log("Current Player", this.currentPlayer);
+
+    // check if a full round of play has completed
+    if (this.currentPlayerIndex === 0) {
+      this.hasRoundCompleted = true;
+    }
+    else {
+      this.hasRoundCompleted = false;
+    }
+    
   }
 }

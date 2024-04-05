@@ -1,7 +1,10 @@
-import { assign, setup } from 'xstate';
+import { assign, setup, log } from 'xstate';
 import { Controller } from "./types/Controller";
 
 // TODO: catch exceptions and make game tolerant to them!
+// TODO: refactor out endTurn ?
+// TODO: come up with naming scheme
+// TODO: clean up 
 
 export const controllerMachine = setup({
   types: {} as {
@@ -33,13 +36,12 @@ export const controllerMachine = setup({
       },
       // if all players have drawn destinations, transition to normal play
       always: {
-        target: 'endTurn',
+        target: 'myTurn',
         guard: ({ context }) => {
-          return (!context.controller.isInitTurn && context.controller.playerSequence[0] === context.controller.currentPlayer)
+          return (context.controller.hasRoundCompleted)
         },
         actions: assign(({ context }) => {
           context.controller.minSelectedDestinations = 1;
-          context.controller.endTurn();
           return {
             controller: context.controller
           };
@@ -52,34 +54,18 @@ export const controllerMachine = setup({
     initDrawingDestinationCards: {
       on: {
         'selectedDestinationCards': {
-          target: 'endInitTurn',
+          target: 'initTurn',
           guard: ({ context, event }) => {
             return (event.selectedCards.length >= context.controller.minSelectedDestinations)
           },
           actions: assign(({ context, event }) => {
             context.controller.selectDestinations(event.selectedCards, event.discardedCards);
+            context.controller.endTurn();
             return {
               controller: context.controller
             };
           }),
         },
-      }
-    },
-    /**
-     * End a player's initial turn
-     */
-    endInitTurn: {
-      always: {
-        target: 'initTurn',
-        actions: assign(({ context }) => {
-          if (context.controller.isInitTurn) {
-            context.controller.isInitTurn = false;
-          };
-          context.controller.endTurn();
-          return {
-            controller: context.controller
-          };
-        }),
       }
     },
     /**
@@ -183,7 +169,20 @@ export const controllerMachine = setup({
             };
           }),
         },
-      }
+      },
+      // End the game
+      always: {
+        target: 'endGame',
+        guard: ({ context }) => {
+          return (context.controller.isFinalRound && context.controller.hasRoundCompleted)
+        },
+        actions: assign(({ context }) => {
+          context.controller.calculateScore();
+          return {
+            controller: context.controller
+          };
+        }),
+      },
     },
     /**
      * Select from drawn Destination Cards
@@ -244,31 +243,21 @@ export const controllerMachine = setup({
     * End normal player turn
     */
     endTurn: {
-      always: [
-        {
-          guard: ({ context }) => context.controller.currentPlayer.trains <= 2,
-          target: 'finalTurn'
-        },
-        {
-          target: 'myTurn',
-          actions: assign(({ context }) => {
-            context.controller.setSelectedCard();
-            context.controller.endTurn();
-            return {
-              controller: context.controller
-            };
-          }),
-        }
-      ]
+      always: {
+        target: 'myTurn',
+        actions: assign(({ context }) => {
+          context.controller.endTurn();
+          return {
+            controller: context.controller
+          };
+        }),
+      }
     },
-    finalTurn: {
+    endGame: {
       type: 'final',
-      actions: assign(({ context }) => {
-        console.log("Final Turn")
-        return {
-          controller: context.controller
-        };
+      output: ({ context }) => ({
+        controller: context.controller,
       }),
-    }
+    },
   },
 });
