@@ -1,7 +1,8 @@
 import { DestinationCard, cardColor, RouteColor, trainCard, } from "./interfaces";
 import { DestinationDeck } from "./DestinationDeck";
 import { Player } from "./Player";
-import { RouteDeck, RouteIndex } from "./RouteDeck";
+import { RouteDeck } from "./RouteDeck";
+import { RouteIndex } from "./interfaces";
 
 export class Controller {
   playerSequence: Player[];
@@ -315,8 +316,28 @@ export class Controller {
   }
 
 
+  // TODO: this should happen in parts each step
+    /**
+   * Successfully completing a Continuous Path of routes between two cities listed on your Destination Ticket(s);
+   * Claiming a Route between two adjacent cities on the map;
+   * Completing the Longest Continuous Path of routes.
+   */
   calculateScore(): void {
+    this.playerSequence.forEach((player) => {
+      let score: number = 0;
+      // completed destination points 
+      score + player.completedDestinations.reduce(
+        (sum, destination) => sum + destination.points,
+        0,
+      );
 
+      // incomplete destination points
+      score - player.incompleteDestinations.reduce(
+        (sum, destination) => sum + destination.points,
+        0,
+      );
+      player.score = score;
+    });
   }
 
   /**

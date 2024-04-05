@@ -1,4 +1,4 @@
-import { assign, setup, log } from 'xstate';
+import { assign, setup } from 'xstate';
 import { Controller } from "./types/Controller";
 
 // TODO: catch exceptions and make game tolerant to them!

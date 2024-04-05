@@ -22,6 +22,7 @@ export class Player {
     selectedCard: cardColor | null = null;
     destinationOptions: DestinationCard[] = [];
     connectedCities: ConnectedCitiesTrees;
+    score: number = 0;
   
     constructor(
       name: string,
@@ -96,19 +97,24 @@ export class Player {
      * Check all outstanding destinations to see which if any where completed
      */
     checkDestinations() {
+      const completedIndices = [] as number[];
+
       // iterate through outstanding destinations 
-      let completedDestinations = [] as DestinationCard[];
       for (let i = 0; i < this.incompleteDestinations.length; i++) {
         let city1 = this.incompleteDestinations[i].city1;
         let city2 = this.incompleteDestinations[i].city2;
 
         // city1 and city2 have the same root, are connected
         if (this.connectedCities.findRoot(city1) === this.connectedCities.findRoot(city2)) {
-          completedDestinations.push(this.incompleteDestinations[i]);
+          this.completedDestinations.push(this.incompleteDestinations[i]);
+          completedIndices.push(i);
         }
       }
-      this.completedDestinations.push(...completedDestinations);
-      this.incompleteDestinations.filter((outstanding) => completedDestinations.find(completed => outstanding === completed))
+
+      // remove completed destinations
+      completedIndices.forEach((i) => {
+        this.incompleteDestinations.splice(i, 1);
+      });
     }
   
     get destinationString(): string {

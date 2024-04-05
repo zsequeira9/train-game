@@ -8,9 +8,9 @@ import { USDestinations } from "./destinations/USDestinations";
 const DEBUG = true;
 
 let startingTrains = undefined;
-if (DEBUG) {
-  startingTrains = 10;
-}
+// if (DEBUG) {
+//   startingTrains = 10;
+// }
 
     
 const Player1 = new Player(

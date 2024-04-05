@@ -1,3 +1,5 @@
+import { Route } from "./Route";
+
 export enum RouteColor {
   RED = "red",
   GREEN = "green",
@@ -37,3 +39,4 @@ export interface trainCard {
 export interface Event {
   message: string;
 }
+export type RouteIndex = Record<string, Route>;

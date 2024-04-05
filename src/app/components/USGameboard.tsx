@@ -2058,19 +2058,19 @@ export default function USGameboard({ claimRoute, getTrainClass}: USGameboardPro
                     
                 
                     
-                        <g id="los_angeles-los_vegas:0:grey:2" className="grey" transform="" onClick={claimRoute}>
+                        <g id="los_angeles-las_vegas:0:grey:2" className="grey" transform="" onClick={claimRoute}>
                             
                             <rect width="8.991" height="3.175" x="-95.94" y="92.54" transform="rotate(-62.53)"
-                                id="los_angeles-los_vegas:0:grey:2:track:0" className={ "track" } />
+                                id="los_angeles-las_vegas:0:grey:2:track:0" className={ "track" } />
                             
                             <rect width="8.991" height="3.175" x="15" y="125" transform="rotate(-13.35)"
-                                id="los_angeles-los_vegas:0:grey:2:track:1" className={ "track" } />
+                                id="los_angeles-las_vegas:0:grey:2:track:1" className={ "track" } />
                             
                             <rect width="6.74325" height="2.3812499999999996" x="-95.94" y="92.54" transform="rotate(-62.53)"
-                                id="los_angeles-los_vegas:0:grey:2:train:0" className={ getTrainClass("los_angeles-los_vegas:0:grey:2") } />
+                                id="los_angeles-las_vegas:0:grey:2:train:0" className={ getTrainClass("los_angeles-las_vegas:0:grey:2") } />
                             
                             <rect width="6.74325" height="2.3812499999999996" x="15" y="125" transform="rotate(-13.35)"
-                                id="los_angeles-los_vegas:0:grey:2:train:1" className={ getTrainClass("los_angeles-los_vegas:0:grey:2") } />
+                                id="los_angeles-las_vegas:0:grey:2:train:1" className={ getTrainClass("los_angeles-las_vegas:0:grey:2") } />
                             
                         </g>
                     

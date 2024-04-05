@@ -1,5 +1,5 @@
 import { RouteColor} from "../types/interfaces";
-import { RouteIndex } from "../types/RouteDeck";
+import { RouteIndex } from "../types/interfaces";
 export const USRoutes = {
  
     "vancouver-calgary:0:grey:3": {
@@ -623,10 +623,10 @@ export const USRoutes = {
         length: 3
     },
   
-    "los_angeles-los_vegas:0:grey:2": {
-        id: "los_angeles-los_vegas:0:grey:2",
+    "los_angeles-las_vegas:0:grey:2": {
+        id: "los_angeles-las_vegas:0:grey:2",
         city1: "los_angeles",
-        city2: "los_vegas",
+        city2: "las_vegas",
         lane_index: 0,
         color: RouteColor.GREY,
         length: 2

@@ -1,6 +1,5 @@
 import { Route } from "./Route";
-
-export type RouteIndex = Record<string, Route>
+import { RouteIndex } from "./interfaces";
 
 export class RouteDeck {
     routeIndex: RouteIndex
