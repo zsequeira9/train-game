@@ -23,7 +23,6 @@ export default function DestinationsSelector({ destinationOptions, selectDestina
         </li>
     })
 
-    // TODO: make this a popup
     return (
         <div className="destination-popup-wrapper">
         <div className="destination-popup">

@@ -1,6 +1,7 @@
 import { PlayerColor, DestinationCard, cardColor, RouteColor } from "./interfaces";
-import { Route } from "./Route";
 import { ConnectedCitiesTrees } from "./ConnectedCitiesTree";
+import { Route } from "./Route";
+import { RouteGraph } from "./RouteGraph";
 
 export class Player {
     name: string;
@@ -21,7 +22,8 @@ export class Player {
     };
     selectedCard: cardColor | null = null;
     destinationOptions: DestinationCard[] = [];
-    connectedCities: ConnectedCitiesTrees;
+    connectedCities: ConnectedCitiesTrees = new ConnectedCitiesTrees();
+    routeGraph: RouteGraph = new RouteGraph();
     score: number = 0;
   
     constructor(
@@ -34,7 +36,6 @@ export class Player {
       if (startingTrains) {
         this.trains = startingTrains;
       }
-      this.connectedCities = new ConnectedCitiesTrees();
     }
   
     /**
@@ -84,6 +85,9 @@ export class Player {
         this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
         playedTrains.push(...Array(cost).fill(this.selectedCard));
 
+        // add new route edge to graph
+        this.routeGraph.addEdge(route);
+
         // mark city1, city2 as connected and check destinations
         this.connectedCities.union(route.city1, route.city2);
         this.checkDestinations();
@@ -97,7 +101,7 @@ export class Player {
      * Check all outstanding destinations to see which if any where completed
      */
     checkDestinations() {
-      const completedIndices = [] as number[];
+      const incompleteDestinations = [] as DestinationCard[];
 
       // iterate through outstanding destinations 
       for (let i = 0; i < this.incompleteDestinations.length; i++) {
@@ -107,14 +111,15 @@ export class Player {
         // city1 and city2 have the same root, are connected
         if (this.connectedCities.findRoot(city1) === this.connectedCities.findRoot(city2)) {
           this.completedDestinations.push(this.incompleteDestinations[i]);
-          completedIndices.push(i);
+        }
+
+        else { 
+          incompleteDestinations.push(this.incompleteDestinations[i]);
         }
       }
 
       // remove completed destinations
-      completedIndices.forEach((i) => {
-        this.incompleteDestinations.splice(i, 1);
-      });
+      this.incompleteDestinations = incompleteDestinations;
     }
   
     get destinationString(): string {

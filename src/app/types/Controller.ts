@@ -316,26 +316,31 @@ export class Controller {
   }
 
 
-  // TODO: this should happen in parts each step
+  // TODO: some calculations should happen at each step
     /**
-   * Successfully completing a Continuous Path of routes between two cities listed on your Destination Ticket(s);
-   * Claiming a Route between two adjacent cities on the map;
-   * Completing the Longest Continuous Path of routes.
+   * GOOD - Successfully completing a Continuous Path of routes between two cities listed on your Destination Ticket(s);
+   * TODO - Claiming a Route between two adjacent cities on the map;
+   * TODO - Completing the Longest Continuous Path of routes.
    */
   calculateScore(): void {
     this.playerSequence.forEach((player) => {
       let score: number = 0;
       // completed destination points 
-      score + player.completedDestinations.reduce(
+      score = score + player.completedDestinations.reduce(
         (sum, destination) => sum + destination.points,
         0,
       );
 
       // incomplete destination points
-      score - player.incompleteDestinations.reduce(
+      score = score - player.incompleteDestinations.reduce(
         (sum, destination) => sum + destination.points,
         0,
       );
+
+      let [path, length] = player.routeGraph.getLongestPath();
+      console.log('Longest Path:', path);
+      console.log('Longest Path Length', length);
+      console.log(score);
       player.score = score;
     });
   }

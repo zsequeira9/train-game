@@ -61,10 +61,16 @@ export default function TrainGame() {
     send({ type: 'deselectTrainCardHand'})
   }
 
+  /**
+   * Choose which destination cards to keep in hand
+   * @param selectedCards Selected destination cards
+   * @param discardedCards Unselected destination cards
+   */
   function selectDestinations(selectedCards: DestinationCard[], discardedCards: DestinationCard[]): void {
     send({ type: 'selectedDestinationCards', selectedCards: selectedCards, discardedCards: discardedCards });
   }
 
+  // TODO: start refactoring these into their own component!
   const listPlayerInfo = state.context.controller.playerSequence.map(
     (player) =>
       <li key={player.name}>
@@ -73,11 +79,19 @@ export default function TrainGame() {
             {player.name}
           </h1>
           <p>Number of trains: {player.trains}</p>
-          <p>Destinations: {state.context.controller.currentPlayer === player ? player.destinationString : null}</p>
-          <p>Completed Destinations: {state.context.controller.currentPlayer === player ? player.completedDestinationString : null}</p>
+          <p>Destinations: {player.destinationString}</p>
+          <p>Completed Destinations: {player.completedDestinationString}</p>
         </div>
       </li>
   );
+
+  listPlayerInfo.push(<li key="calcScore">
+    <div>
+      <button className="button" onClick={e => state.context.controller.calculateScore()}>
+        calc score
+      </button>
+    </div>
+  </li>)
 
   const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) => 
     <li key={trainCard.id} className='train-card-wrapper' onClick={() => send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
