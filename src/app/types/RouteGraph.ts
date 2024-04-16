@@ -107,13 +107,13 @@ export class RouteGraph {
                 else {
                     currPath.push(node);
                 }
+
                 if (node.edges.length === 1) {
                     // terminus
                     let total = 0;
                     for (let i = currPath.length-1; i >= 1; i--) {
                         // add from the last node to the second
-                        let edgeToParent = currPath[i].edges.find((edge) => edge.to.name === currPath[i-1].name);
-                        let length = edgeToParent?.length === undefined ? 0 : edgeToParent.length; // deal with stupid undefined error
+                        let length = this.edgeLength(currPath[i], currPath[i-1]);
 
                         total = total + length;
                         currPath[i].value = total;
@@ -121,12 +121,15 @@ export class RouteGraph {
                     }
 
                 }
+
                 if (node.edges.length === 2) {
                     // one edge other then parent
                     let nextNode = node.edges.find((edge) => edge.to.name !== node.name); 
-                    let newTreeNode = {parent: node, value: null, ...nextNode} as treeNode;
+                    if (nextNode) {
+                        let newTreeNode = {parent: node, value: null, ...nextNode.to} as treeNode;
+                        stack = this.pushToStack(node, newTreeNode, stack);
+                    }
 
-                    this.pushToStack(node, newTreeNode, stack);
                 }
 
                 if (node.edges.length > 2) {
@@ -135,7 +138,7 @@ export class RouteGraph {
                         // if not an edge to current node
                         if (edge.to.name !== node.name) {
                             let newTreeNode = {parent: node, value: null, ...edge.to} as treeNode;
-                            this.pushToStack(node, newTreeNode, stack);
+                            stack = this.pushToStack(node, newTreeNode, stack);
                         }
                     }
                 }
@@ -151,20 +154,43 @@ export class RouteGraph {
      * @param newNode 
      * @param stack 
      */
-    pushToStack(currentNode: treeNode, newNode: treeNode, stack: treeNode[]) {
-        // if node already exists in stack, split the node's edges
-        let existingNodeIdx = stack.findIndex((node) => (node.name == newNode.name))
+    pushToStack(currentNode: treeNode, newNode: treeNode, stack: treeNode[]): treeNode[] {
+        // if newNode already exists in stack, split newNode
+        let existingNodeIdx = stack.findIndex((node) => (node.name == newNode.name));
         if (existingNodeIdx !== -1) {
-            // remove edge from node in stack to current node
-            stack[existingNodeIdx].edges.filter((node) => node.to !== currentNode);
+            console.log("Old Node Before", stack[existingNodeIdx]);
+            console.log("Current Node Before", currentNode);
+            let length = this.edgeLength(stack[existingNodeIdx], currentNode);
 
-            // remove edge from new node to previously added node's parent
-            newNode.edges.filter((node) => node.to !== stack[existingNodeIdx].parent)
-            // remove it from the parent
+            // remove edge from node in stack to current node
+            stack[existingNodeIdx].edges.filter((edge) => edge.to.name !== currentNode.name);
+            currentNode.edges.filter((edge) => edge.to.name !== stack[existingNodeIdx].name);
+
+
+            // create new node 
+            let newNodePrime = {
+                name: newNode.name + 'PRIME',
+                edges: [{to: currentNode, length: length}],
+                parent: currentNode,
+                value: newNode.value,
+            } as treeNode;
+
+            console.log("New Split node", newNodePrime);
+            console.log("Old Node After", stack[existingNodeIdx]);
+            console.log("Current Node after", currentNode);
+            currentNode.edges.push({to: newNodePrime, length: length})
+            stack = [newNodePrime].concat(stack);
         }
         else {
             stack = [newNode].concat(stack);
         }
+        return stack;
+    }
+
+    edgeLength(node1: treeNode, node2: treeNode): number {
+        let edgeToParent = node1.edges.find((edge) => edge.to.name === node2.name);
+        let length = edgeToParent?.length === undefined ? 0 : edgeToParent.length; // deal with stupid undefined error
+        return length;
     }
 
 } 
