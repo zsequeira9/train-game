@@ -16,7 +16,7 @@ export const controllerMachine = setup({
   context: ({ input }) => (
     { controller: input }
   ),
-  initial: 'initTurn',
+  initial: 'myTurn',
   states: {
     /**
      * Starting State - Draw Destination Cards
