@@ -337,8 +337,9 @@ export class Controller {
         0,
       );
 
-      let [path, length] = player.routeGraph.getLongestPath();
-      console.log('Longest Path:', path);
+      let length = player.routeGraph.getLongestPath();
+      // console.log('Longest Path:', path);
+      console.log(player);
       console.log('Longest Path Length', length);
       console.log(score);
       player.score = score;
