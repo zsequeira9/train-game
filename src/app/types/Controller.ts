@@ -1,8 +1,7 @@
-import { DestinationCard, cardColor, RouteColor, trainCard, } from "./interfaces";
+import { DestinationCard, cardColor, RouteColor, trainCard, RouteIndex} from "./interfaces";
 import { DestinationDeck } from "./DestinationDeck";
 import { Player } from "./Player";
 import { RouteDeck } from "./RouteDeck";
-import { RouteIndex } from "./interfaces";
 
 export class Controller {
   playerSequence: Player[];
@@ -16,6 +15,7 @@ export class Controller {
 
   routeDeck: RouteDeck;
   destinationDeck: DestinationDeck;
+  routeScoringTable: Record<number, number>;
 
   minSelectedDestinations: number = 2;
   hasRoundCompleted: boolean = false;
@@ -28,6 +28,7 @@ export class Controller {
     playerSequence: Player[],
     routeIndex: RouteIndex,
     destinationDeck: DestinationCard[],
+    routeScoringTable: Record<number, number>,
     isDebugMode: boolean
   ) {
     this.playerSequence = playerSequence;
@@ -37,6 +38,8 @@ export class Controller {
     this.routeDeck = new RouteDeck(routeIndex);
 
     this.destinationDeck = new DestinationDeck(destinationDeck);
+
+    this.routeScoringTable = routeScoringTable;
 
     this.trainDeck = this.generateTrainDeck();
 
@@ -56,6 +59,7 @@ export class Controller {
     return this.playerSequence[this.currentPlayerIndex];
   }
 
+  // TODO: think about how this train deck logic could be in its own class
   /**
   * Generate initial train card decks.
   * @returns shuffled train deck
@@ -202,7 +206,10 @@ export class Controller {
   playRoute(routeId: string): void {
     const route = this.routeDeck.getRoute(routeId);
     route.owner = this.currentPlayer;
-    let playedTrains = this.currentPlayer.playTrains(route);
+    // TODO: cost should be determined here!
+    // TODO: card colors needed to play route should be determined here!
+    const points = this.routeScoringTable[route.length];
+    let playedTrains = this.currentPlayer.playTrains(route, points);
     this.trainDiscard.push(...playedTrains);
     console.log(`Played trains ${playedTrains} on route ${route.city1}-${route.city2}`)
   }
@@ -316,33 +323,10 @@ export class Controller {
   }
 
 
-  // TODO: some calculations should happen at each step
-    /**
-   * GOOD - Successfully completing a Continuous Path of routes between two cities listed on your Destination Ticket(s);
-   * TODO - Claiming a Route between two adjacent cities on the map;
-   * TODO - Completing the Longest Continuous Path of routes.
-   */
-  calculateScore(): void {
+  calculateFinalScore(): void {
     this.playerSequence.forEach((player) => {
-      let score: number = 0;
-      // completed destination points 
-      score = score + player.completedDestinations.reduce(
-        (sum, destination) => sum + destination.points,
-        0,
-      );
-
-      // incomplete destination points
-      score = score - player.incompleteDestinations.reduce(
-        (sum, destination) => sum + destination.points,
-        0,
-      );
-
-      let length = player.routeGraph.getLongestPath();
-      // console.log('Longest Path:', path);
-      console.log(player);
-      console.log('Longest Path Length', length);
-      console.log(score);
-      player.score = score;
+      // TODO: calculate/ compare who got the longest train
+      player.calculateDestinationScore();
     });
   }
 

@@ -1,6 +1,9 @@
 import { RouteColor } from "./interfaces";
 import { Player } from "./Player";
 
+/**
+ * TODO: mark if special requirements for playing (ferry, tunnel, mountain, etc)
+ */
 export class Route {
     id: string;
     city1: string;

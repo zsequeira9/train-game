@@ -38,12 +38,15 @@ export class Player {
       }
     }
   
+
     /**
-     * Decrement trains and cards based on selectedCard
-     * @param cost Route cost
-     * @param routeColor Route color
+     * Play a route. Decrement trains and train cards, and mark cities as being connected.
+     * 
+     * @param route Route being claimed
+     * @param points Points for claiming the route
+     * @returns List of cards that were played
      */
-    playTrains(route: Route): cardColor[] | never {
+    playTrains(route: Route, points: number): cardColor[] | never {
       if (this.selectedCard !== null) {
         let playedTrains = [] as cardColor[];
         let cost = route.length;
@@ -85,12 +88,15 @@ export class Player {
         this.trainHand[this.selectedCard] = this.trainHand[this.selectedCard] - cost;
         playedTrains.push(...Array(cost).fill(this.selectedCard));
 
-        // add new route edge to graph
+        // add new route edge to longest path graph
         this.routeGraph.addEdge(route);
 
         // mark city1, city2 as connected and check destinations
         this.connectedCities.union(route.city1, route.city2);
         this.checkDestinations();
+
+        // add route points to score 
+        this.score += points;
   
         return playedTrains;
       }
@@ -120,6 +126,23 @@ export class Player {
 
       // remove completed destinations
       this.incompleteDestinations = incompleteDestinations;
+    }
+
+    calculateDestinationScore(): void {
+      let score: number = 0;
+      // completed destination points 
+      score = score + this.completedDestinations.reduce(
+        (sum, destination) => sum + destination.points,
+        0,
+      );
+
+      // incomplete destination points
+      score = score - this.incompleteDestinations.reduce(
+        (sum, destination) => sum + destination.points,
+        0,
+      );
+
+      this.score += score;
     }
   
     get destinationString(): string {

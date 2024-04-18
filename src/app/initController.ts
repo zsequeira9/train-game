@@ -4,6 +4,7 @@ import { Controller } from "./types/Controller";
 
 import { USRoutes } from "./routes/USRoutes";
 import { USDestinations } from "./destinations/USDestinations";
+import { USRouteScoringTable } from "./routeScoringTables/USRouteScoringTable";
 
 const DEBUG = true;
 
@@ -29,6 +30,7 @@ export const gameController = new Controller(
   [Player1, Player2],
   USRoutes,
   USDestinations,
+  USRouteScoringTable,
   DEBUG
 );
 

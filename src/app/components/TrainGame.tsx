@@ -81,13 +81,14 @@ export default function TrainGame() {
           <p>Number of trains: {player.trains}</p>
           <p>Destinations: {player.destinationString}</p>
           <p>Completed Destinations: {player.completedDestinationString}</p>
+          <p>Score: {player.score}</p>
         </div>
       </li>
   );
 
   listPlayerInfo.push(<li key="calcScore">
     <div>
-      <button className="button" onClick={e => state.context.controller.calculateScore()}>
+      <button className="button" onClick={e => state.context.controller.calculateFinalScore()}>
         calc score
       </button>
     </div>

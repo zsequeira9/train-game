@@ -24,10 +24,10 @@ export class RouteGraph {
     }
 
     getLongestPath(): number {
-        let paths = [] as number[];
-        for (const edge of this.edges) {
-            // console.log("Length for edge", edge, length, path);
-        }
+        // let paths = [] as number[];
+        // for (const edge of this.edges) {
+        //     console.log("Length for edge", edge, length, path);
+        // }
         return 0
     }
 

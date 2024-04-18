@@ -16,7 +16,7 @@ export const controllerMachine = setup({
   context: ({ input }) => (
     { controller: input }
   ),
-  initial: 'myTurn',
+  initial: 'initTurn',
   states: {
     /**
      * Starting State - Draw Destination Cards
@@ -177,7 +177,7 @@ export const controllerMachine = setup({
           return (context.controller.isFinalRound && context.controller.hasRoundCompleted)
         },
         actions: assign(({ context }) => {
-          context.controller.calculateScore();
+          context.controller.calculateFinalScore();
           return {
             controller: context.controller
           };
