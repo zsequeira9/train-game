@@ -26,31 +26,9 @@ export class RouteGraph {
     getLongestPath(): number {
         let paths = [] as number[];
         for (const edge of this.edges) {
-            let [length, path] = this.sweep(edge, edge.from, edge.length, [edge]);
-            console.log("Length for edge", edge, length, path);
+            // console.log("Length for edge", edge, length, path);
         }
         return 0
-    }
-
-    sweep(edge: edge, node: string, length: number, visited: edge[]): [number, edge[]] {
-        // iterate through all nodes connected to current node
-        let adjacentNodes = this.findAdjacent(node);
-        for (const adj of adjacentNodes) {
-            if (edge.from === adj.node || edge.to === adj.node) { // current edge
-                console.log("Current Edge", edge, node, adj.node);
-                continue;
-            }
-            else if (this.getEdge(node, adj.node, visited) !== undefined) { // edge is already visited
-                console.log("Edge already visited, returning")
-                return [length, visited];
-            }
-            else {
-                const [successor, all_visited] = this.sweep({from: node, to: adj.node, length: adj.length}, adj.node, length + adj.length, visited.concat({from: node, to: adj.node, length: adj.length}));
-                console.log("Reccurring deeper from node", node, successor);
-            }
-        }
-        console.log("Exiting sweep for node", node)
-        return [length, visited];
     }
 
     getEdge(node1: string, node2: string, list: edge[]): edge | undefined{
