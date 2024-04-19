@@ -10,6 +10,7 @@ export const controllerMachine = setup({
   types: {} as {
     context: { controller: Controller },
     input: Controller,
+    output: {controller: Controller},
   },
 }).createMachine({
   id: 'player',
@@ -255,9 +256,9 @@ export const controllerMachine = setup({
     },
     endGame: {
       type: 'final',
-      output: ({ context }) => ({
-        controller: context.controller,
-      }),
     },
   },
+  output: ({ context }) => ({
+    controller: context.controller,
+  }),
 });

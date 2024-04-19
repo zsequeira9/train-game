@@ -86,13 +86,6 @@ export default function TrainGame() {
       </li>
   );
 
-  listPlayerInfo.push(<li key="calcScore">
-    <div>
-      <button className="button" onClick={e => state.context.controller.calculateFinalScore()}>
-        calc score
-      </button>
-    </div>
-  </li>)
 
   const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) => 
     <li key={trainCard.id} className='train-card-wrapper' onClick={() => send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
@@ -107,10 +100,19 @@ export default function TrainGame() {
   const displayedDestinationSelector = (state.value === 'drawingDestinationCards' || state.value === 'initDrawingDestinationCards')
      ? destinationSelector : null
 
+  const winner = <h2>Winning Player: {state.output?.controller.winningPlayer?.name}</h2>
+
+  if (state.status === 'done') {
+    console.log("Final Output:", state.output);
+  }
+
+  const displayedWinner = (state.status === 'done') ? winner : null;
+
   return (
     <main className="wrapper">
       <div className="main">
         {displayedDestinationSelector}
+        {displayedWinner}
         <ul className="header list">{listPlayerInfo}</ul>
         <div className="gameboard"><USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
         <div className="footer">

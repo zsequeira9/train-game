@@ -18,9 +18,13 @@ export class Controller {
   routeScoringTable: Record<number, number>;
 
   minSelectedDestinations: number = 2;
+  currentPlayerIndex: number = 0;
+  firstPlayerInRound: number = 0;
   hasRoundCompleted: boolean = false;
   isFinalRound: boolean = false;
-  currentPlayerIndex: number;
+
+
+  winningPlayer: Player | null = null;
 
   gameLog: Event[] = [];
 
@@ -32,8 +36,6 @@ export class Controller {
     isDebugMode: boolean
   ) {
     this.playerSequence = playerSequence;
-
-    this.currentPlayerIndex = 0;
 
     this.routeDeck = new RouteDeck(routeIndex);
 
@@ -328,6 +330,22 @@ export class Controller {
       // TODO: calculate/ compare who got the longest train
       player.calculateDestinationScore();
     });
+    let winningPlayer = this.playerSequence[0]
+    for (const player of this.playerSequence) {
+      if (player.score > winningPlayer.score) {
+        winningPlayer = player;
+      }
+      if (player.score === winningPlayer.score) {
+        if (player.completedDestinations.length > winningPlayer.completedDestinations.length) {
+          winningPlayer = player;
+        }
+        if (player.completedDestinations.length === winningPlayer.completedDestinations.length) {
+          // TODO: set winner to whoever won longest train/ bonus
+        }
+      }
+    }
+    this.winningPlayer = winningPlayer;
+    console.log(winningPlayer.name, "won the game!")
   }
 
   /**
@@ -337,23 +355,24 @@ export class Controller {
     // clear current selected card
     this.setSelectedCard();
 
-    // check if is last round
-    if (this.currentPlayer.trains <= 2) {
+    // check if entering the last round
+    if (!this.isFinalRound && this.currentPlayer.trains <= 2) {
       this.isFinalRound = true;
-      console.log("Final Turn!")
+      this.firstPlayerInRound = this.currentPlayerIndex;
+      console.log("Final Turn!");
     }
 
-    // set next player in sequence to current player
-    this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerSequence.length;
-    console.log("Current Player", this.currentPlayer);
-
-    // check if a full round of play has completed
-    if (this.currentPlayerIndex === 0) {
+    // set it a round of play has completed
+    else if (this.currentPlayerIndex === this.firstPlayerInRound) {
       this.hasRoundCompleted = true;
     }
     else {
       this.hasRoundCompleted = false;
     }
+
+    // set next player in sequence to current player
+    this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerSequence.length;
+    console.log("Current Player", this.currentPlayer);
     
   }
 }
