@@ -51,14 +51,14 @@ export default function TrainGame() {
    * @param color card color
    */
   function selectCard(color: cardColor): void {
-    send({ type: 'selectTrainCardHand', color: color})
+    send({ type: 'selectTrainCardHand', color: color});
   }
 
   /**
    * Deselect card from player's hand
    */
   function deselectCard(): void {
-    send({ type: 'deselectTrainCardHand'})
+    send({ type: 'deselectTrainCardHand'});
   }
 
   /**
@@ -95,12 +95,12 @@ export default function TrainGame() {
 
   const destinationSelector = <DestinationsSelector 
     destinationOptions={state.context.controller.currentPlayer.destinationOptions} 
-    selectDestinations={selectDestinations} />
+    selectDestinations={selectDestinations} />;
 
   const displayedDestinationSelector = (state.value === 'drawingDestinationCards' || state.value === 'initDrawingDestinationCards')
-     ? destinationSelector : null
+     ? destinationSelector : null;
 
-  const winner = <h2>Winning Player: {state.output?.controller.winningPlayer?.name}</h2>
+  const winner = <h2>Winning Player: {state.output?.controller.winningPlayer?.name}</h2>;
 
   if (state.status === 'done') {
     console.log("Final Output:", state.output);

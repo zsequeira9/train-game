@@ -8,6 +8,7 @@ export class RouteGraph {
      * @param route 
      */
     addEdge(route: Route): void {
+        console.log("Added route", route);
     }
 
 } 

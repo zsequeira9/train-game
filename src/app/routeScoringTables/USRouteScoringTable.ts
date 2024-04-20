@@ -5,4 +5,4 @@ export const USRouteScoringTable: Record<number, number> = {
     4: 7,
     5: 10,
     6: 15,
-}
+};

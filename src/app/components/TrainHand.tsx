@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import { cardColor } from '../types/interfaces'
+import { cardColor } from '../types/interfaces';
 
 interface TrainHandProps {
     trainHand: Record<cardColor, number>;
@@ -27,7 +27,7 @@ export default function TrainHand({ trainHand, selectedCard, selectCard, deselec
     }
 
     const listTrainCards = Object.keys(trainHand).map((key) => {
-        let color = key as cardColor;
+        const color = key as cardColor;
         if (trainHand[color] > 0) {
             return <li key={color}>
                 <label className="switch">
@@ -44,7 +44,7 @@ export default function TrainHand({ trainHand, selectedCard, selectCard, deselec
                         <span className="train-card-badge">{trainHand[color]}</span>
                     </div>
                 </label>
-            </li>
+            </li>;
         }
     });
 

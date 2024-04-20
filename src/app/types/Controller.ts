@@ -73,7 +73,7 @@ export class Controller {
       "orange", "pink", "white", "black"].map(x => Array(12).fill(x));
 
     cardColors.push(Array(14).fill("loco"));
-    let cardColorsTyped = cardColors.flat() as cardColor[];
+    const cardColorsTyped = cardColors.flat() as cardColor[];
 
     //shuffle the list
     for (let i = cardColorsTyped.length - 1; i > 0; i--) {
@@ -83,7 +83,7 @@ export class Controller {
       cardColorsTyped[j] = temp;
     }
 
-    let trainDeck = [] as trainCard[];
+    const trainDeck = [] as trainCard[];
     // add an id for each 
     for (let i = 0; i < cardColorsTyped.length; i++) {
       trainDeck[i] = { id: i, cardColor: cardColorsTyped[i] };
@@ -112,8 +112,8 @@ export class Controller {
    * Discard current open train deck and draw a new open train deck.
    */
   redrawOpenTrainDeck(): void {
-    console.log("Redrawing Open Trains")
-    this.trainDiscard.push(...this.openTrainDeck.map((card) => card.cardColor))
+    console.log("Redrawing Open Trains");
+    this.trainDiscard.push(...this.openTrainDeck.map((card) => card.cardColor));
     this.openTrainDeck = this.trainDeck.slice(0, 5);
     this.trainDeck = this.trainDeck.slice(5);
   }
@@ -165,12 +165,12 @@ export class Controller {
     this.openTrainDeck.push(this.popTrainCardDeck());
 
     // if three locomotives face up, redraw the open cards
-    const numberLocos = this.openTrainDeck.filter((card) => card.cardColor === "loco").length
+    const numberLocos = this.openTrainDeck.filter((card) => card.cardColor === "loco").length;
     if (numberLocos === 3) {
       console.log("Three locomotives faceup!");
       this.redrawOpenTrainDeck();
     }
-    console.log("Drew train card", card.cardColor)
+    console.log("Drew train card", card.cardColor);
   }
 
   /**
@@ -184,7 +184,7 @@ export class Controller {
       this.reshuffleTrainDeck();
       newCard = this.trainDeck.shift();
       if (newCard === undefined) {
-        throw new Error("No Cards!")
+        throw new Error("No Cards!");
       }
     }
     return newCard;
@@ -198,7 +198,7 @@ export class Controller {
 
     // increment number of cards in hand
     this.currentPlayer.trainHand[card.cardColor] = this.currentPlayer.trainHand[card.cardColor] + 1;
-    console.log("Drew train card", card.cardColor)
+    console.log("Drew train card", card.cardColor);
   }
 
   /**
@@ -211,9 +211,9 @@ export class Controller {
     // TODO: cost should be determined here!
     // TODO: card colors needed to play route should be determined here!
     const points = this.routeScoringTable[route.length];
-    let playedTrains = this.currentPlayer.playTrains(route, points);
+    const playedTrains = this.currentPlayer.playTrains(route, points);
     this.trainDiscard.push(...playedTrains);
-    console.log(`Played trains ${playedTrains} on route ${route.city1}-${route.city2}`)
+    console.log(`Played trains ${playedTrains} on route ${route.city1}-${route.city2}`);
   }
 
   /**
@@ -260,7 +260,7 @@ export class Controller {
           const remainingCost = route.length - this.currentPlayer.trainHand[selectedColor];
 
           for (const key in this.currentPlayer.trainHand) {
-            let color = key as cardColor;
+            const color = key as cardColor;
             if (this.currentPlayer.trainHand[color] >= remainingCost) {
               hasEnoughCards = true;
               isCorrectColor = true;
@@ -330,7 +330,7 @@ export class Controller {
       // TODO: calculate/ compare who got the longest train
       player.calculateDestinationScore();
     });
-    let winningPlayer = this.playerSequence[0]
+    let winningPlayer = this.playerSequence[0];
     for (const player of this.playerSequence) {
       if (player.score > winningPlayer.score) {
         winningPlayer = player;
@@ -345,7 +345,7 @@ export class Controller {
       }
     }
     this.winningPlayer = winningPlayer;
-    console.log(winningPlayer.name, "won the game!")
+    console.log(winningPlayer.name, "won the game!");
   }
 
   /**

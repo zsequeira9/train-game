@@ -48,7 +48,7 @@ export class ConnectedCitiesTrees {
         { parent: 33, name: "saint_louis", size: 1 },
         { parent: 34, name: "nashville", size: 1 },
         { parent: 35, name: "pittsburgh", size: 1 }
-    ]
+    ];
 
     /**
      * Merge two trees containing node1, node2
@@ -66,7 +66,7 @@ export class ConnectedCitiesTrees {
 
         // ensure new root has at least as many decendents as other node
         if (this.nodes[node1Parent].size < this.nodes[node2Parent].size) {
-            let temp = node1Parent;
+            const temp = node1Parent;
             node1Parent = node2Parent;
             node2Parent = temp;
         }
@@ -82,7 +82,7 @@ export class ConnectedCitiesTrees {
      * @returns Index of parent element
      */
     findRoot(nodeName: string): number {
-        let idx = this.nodes.findIndex((node) => node.name === nodeName);
+        const idx = this.nodes.findIndex((node) => node.name === nodeName);
         return this._find(idx);
     }
 
@@ -94,7 +94,7 @@ export class ConnectedCitiesTrees {
     _find(node: number): number {
         if (this.nodes[node].parent !== node) {
             // set the parent of the node to the root
-            this.nodes[node].parent = this._find(this.nodes[node].parent)
+            this.nodes[node].parent = this._find(this.nodes[node].parent);
             return this.nodes[node].parent;
         }
         else {

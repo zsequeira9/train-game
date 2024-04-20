@@ -2,7 +2,7 @@ import { Route } from "./Route";
 import { RouteIndex } from "./interfaces";
 
 export class RouteDeck {
-    routeIndex: RouteIndex
+    routeIndex: RouteIndex;
 
     constructor(routeIndex: RouteIndex) {
         this.routeIndex = routeIndex;

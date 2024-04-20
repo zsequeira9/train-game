@@ -1,4 +1,4 @@
-import { DestinationCard } from "../types/interfaces"
+import { DestinationCard } from "../types/interfaces";
 export const USDestinations = [
     { city1: "boston", city2: "miami", points: 12 },
     { city1: "calgary", city2: "phoenix", points: 13 },
@@ -30,4 +30,4 @@ export const USDestinations = [
     { city1: "vancouver", city2: "santa_fe", points: 13 },
     { city1: "winnipeg", city2: "houston", points: 12 },
     { city1: "winnipeg", city2: "little_rock", points: 11 }
-] as DestinationCard[]
+] as DestinationCard[];

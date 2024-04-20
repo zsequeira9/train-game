@@ -48,7 +48,7 @@ export class Player {
      */
     playTrains(route: Route, points: number): cardColor[] | never {
       if (this.selectedCard !== null) {
-        let playedTrains = [] as cardColor[];
+        const playedTrains = [] as cardColor[];
         let cost = route.length;
         this.trains = this.trains - cost;
   
@@ -66,7 +66,7 @@ export class Player {
             // Pick the first color that can cover remaining cost
             if (route.color === RouteColor.GREY) {
               for (const key in this.trainHand) {
-                let keyColor = key as cardColor;
+                const keyColor = key as cardColor;
   
                 if (keyColor !== "loco" && this.trainHand[keyColor] >= remainingCost) {
                   remainingCostCard = keyColor;
@@ -111,8 +111,8 @@ export class Player {
 
       // iterate through outstanding destinations 
       for (let i = 0; i < this.incompleteDestinations.length; i++) {
-        let city1 = this.incompleteDestinations[i].city1;
-        let city2 = this.incompleteDestinations[i].city2;
+        const city1 = this.incompleteDestinations[i].city1;
+        const city2 = this.incompleteDestinations[i].city2;
 
         // city1 and city2 have the same root, are connected
         if (this.connectedCities.findRoot(city1) === this.connectedCities.findRoot(city2)) {

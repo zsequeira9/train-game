@@ -39,7 +39,7 @@ export const controllerMachine = setup({
       always: {
         target: 'myTurn',
         guard: ({ context }) => {
-          return (context.controller.hasRoundCompleted)
+          return (context.controller.hasRoundCompleted);
         },
         actions: assign(({ context }) => {
           context.controller.minSelectedDestinations = 1;
@@ -57,7 +57,7 @@ export const controllerMachine = setup({
         'selectedDestinationCards': {
           target: 'initTurn',
           guard: ({ context, event }) => {
-            return (event.selectedCards.length >= context.controller.minSelectedDestinations)
+            return (event.selectedCards.length >= context.controller.minSelectedDestinations);
           },
           actions: assign(({ context, event }) => {
             context.controller.selectDestinations(event.selectedCards, event.discardedCards);
@@ -175,7 +175,7 @@ export const controllerMachine = setup({
       always: {
         target: 'endGame',
         guard: ({ context }) => {
-          return (context.controller.isFinalRound && context.controller.hasRoundCompleted)
+          return (context.controller.isFinalRound && context.controller.hasRoundCompleted);
         },
         actions: assign(({ context }) => {
           context.controller.calculateFinalScore();
@@ -193,7 +193,7 @@ export const controllerMachine = setup({
         'selectedDestinationCards': {
           target: 'endTurn',
           guard: ({ context, event }) => {
-            return (event.selectedCards.length >= context.controller.minSelectedDestinations)
+            return (event.selectedCards.length >= context.controller.minSelectedDestinations);
           },
           actions: assign(({ context, event }) => {
             context.controller.selectDestinations(event.selectedCards, event.discardedCards);
