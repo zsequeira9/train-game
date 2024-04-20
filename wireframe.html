@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-size: 14pt;
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            padding: 0;
+            flex-direction: column;
+        }
+
+        /* Root */
+        main {
+            padding: 4px;
+            display: flex;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-direction: row;
+            border: 1px solid cadetblue;
+        }
+
+        /* Board */
+        .board-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 2;
+            flex-shrink: 1;
+            flex-basis: 100%;
+        }
+        .player-scores {
+            border: 2px solid pink;
+            padding: 4px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .player-info {
+            height: 80px;
+            width: 140px;
+            border: 2px solid darkviolet;
+        }
+        .map {
+            background-color: #1fe215;
+            flex-basis: 100%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            width: 100%;
+            max-height: 100vh;
+            height: 100vh;
+        }
+
+        /* Draw Pile */
+        .deck-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+            min-width: 80px;
+            justify-content: space-between;
+            padding: .5em 1em;
+        }
+        .deck-wrapper .train-card {
+            height: 60px;
+            width: 110px;
+            border: 2px solid darkgreen;
+        }
+
+        /* Private info (footer) */
+        .private-info {
+            border: 2px solid orangered;
+            padding: 1px;
+            display: flex;
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .player-routes {
+            border: 2px solid violet;
+        }
+        .player-routes .route-card {
+            height: 60px;
+            width: 110px;
+            border: 2px solid darkviolet;
+        }
+        .player-hand {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .player-hand .train-card {
+            height: 60px;
+            width: 60px;
+            border: 2px solid darkgreen;
+        }
+
+    </style>
+</head>
+<body>
+<main>
+    <div class="board-wrapper">
+        <div class="player-scores">
+            <div class="player-info">Player 1</div>
+            <div class="player-info">Player 2</div>
+            <div class="player-info">Player 3</div>
+            <div class="player-info">Player 4</div>
+            <div class="player-info">Player 5</div>
+        </div>
+        <div class="map"></div>
+    </div>
+    <div class="deck-wrapper">
+        <div class="route-pile">
+            <div class="train-card">ROUTE</div>
+        </div>
+        <div class="face-up">
+            <div class="train-card">Blue</div>
+            <div class="train-card">Red</div>
+            <div class="train-card">Green</div>
+            <div class="train-card">Green</div>
+            <div class="train-card">Red</div>
+        </div>
+        <div class="train-pile">
+            <div class="train-card">PILE</div>
+        </div>
+    </div>
+</main>
+<footer class="private-info">
+    <div class="player-routes">
+        <div class="route-card">NYC - Boston (4)</div>
+    </div>
+    <div class="player-hand">
+        <div class="train-card">Blue Train</div>
+        <div class="train-card">Red Train</div>
+        <div class="train-card">Green Train</div>
+    </div>
+    <div class="player-routes">
+        <div class="route-card">NYC - Boston (4)</div>
+    </div>
+</footer>
+</body>
+</html>
