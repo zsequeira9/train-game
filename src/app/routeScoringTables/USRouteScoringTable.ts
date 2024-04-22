@@ -6,3 +6,6 @@ export const USRouteScoringTable: Record<number, number> = {
     5: 10,
     6: 15,
 };
+
+// TODO: define interface for board config - config/base.ts
+// TODO: move to config/US.ts - one config per map

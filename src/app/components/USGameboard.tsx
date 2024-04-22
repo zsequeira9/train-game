@@ -4,7 +4,7 @@ interface USGameboardProps {
     claimRoute: MouseEventHandler;
     getTrainClass: (routeId: string) => string
 }
-
+// TODO: move to boards/USGameboard
 export default function USGameboard({ claimRoute, getTrainClass}: USGameboardProps) {
 
     return (

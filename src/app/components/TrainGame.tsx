@@ -11,6 +11,8 @@ import { DestinationCard, cardColor } from "../types/interfaces";
 
 export default function TrainGame() {
 
+  // TODO: move to state folder - only import one function instead of these two objects
+  // function should take boardconfig as arg
   const [state, send] = useMachine(controllerMachine, { input: gameController });
 
   /**
