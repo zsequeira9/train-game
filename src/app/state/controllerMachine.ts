@@ -1,5 +1,5 @@
 import { assign, setup } from 'xstate';
-import { Controller } from "./types/Controller";
+import { Controller } from "../types/Controller";
 
 // TODO: catch exceptions and make game tolerant to them!
 // TODO: refactor out endTurn ?

@@ -1,19 +1,18 @@
 'use client';
 import { MouseEvent } from "react";
-import { useMachine } from '@xstate/react';
 
-import { controllerMachine } from '../controllerMachine';
-import { gameController } from "../initController";
-import USGameboard from "./USGameboard";
+import { initControllerMachine } from "../state/initController";
+
+import USGameboard from "../boards/USGameboard";
+import { USConfig } from "../config/US";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
-import { DestinationCard, cardColor } from "../types/interfaces";
+import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
 
 export default function TrainGame() {
 
-  // TODO: move to state folder - only import one function instead of these two objects
-  // function should take boardconfig as arg
-  const [state, send] = useMachine(controllerMachine, { input: gameController });
+  const [state, send] = initControllerMachine(new USConfig, 
+    [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
 
   /**
    * Attempt to claim route group of selected svg rect
