@@ -1,11 +1,6 @@
-import { MouseEventHandler } from "react";
+import { GameboardProps } from "../types/interfaces";
 
-interface USGameboardProps {
-    claimRoute: MouseEventHandler;
-    getTrainClass: (routeId: string) => string
-}
-
-export default function USGameboard({ claimRoute, getTrainClass}: USGameboardProps) {
+export default function USGameboard({ claimRoute, getTrainClass}: GameboardProps): React.JSX.Element {
 
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.583 176.47686"

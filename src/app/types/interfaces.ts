@@ -1,3 +1,5 @@
+import { MouseEventHandler } from "react";
+
 import { Route } from "./Route";
 
 export enum RouteColor {
@@ -40,3 +42,8 @@ export interface Event {
   message: string;
 }
 export type RouteIndex = Record<string, Route>;
+
+export interface GameboardProps {
+    claimRoute: MouseEventHandler;
+    getTrainClass: (routeId: string) => string
+}

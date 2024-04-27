@@ -1,7 +1,8 @@
 import { baseConfig } from "../types/BaseConfig";
-import { DestinationCard, RouteIndex } from "../types/interfaces";
+import { DestinationCard, GameboardProps, RouteIndex } from "../types/interfaces";
 
 import { USRoutes } from "../routes/USRoutes";
+import USGameboard from "../boards/USGameboard";
 
 export class USConfig implements baseConfig {
     destinations: DestinationCard[] = [
@@ -45,4 +46,5 @@ export class USConfig implements baseConfig {
         5: 10,
         6: 15,
     };
+    board: (prop: GameboardProps) => React.JSX.Element = USGameboard; 
 }

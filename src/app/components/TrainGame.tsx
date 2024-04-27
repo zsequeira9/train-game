@@ -3,7 +3,6 @@ import { MouseEvent } from "react";
 
 import { initControllerMachine } from "../state/initController";
 
-import USGameboard from "../boards/USGameboard";
 import { USConfig } from "../config/US";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
@@ -11,7 +10,9 @@ import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
 
 export default function TrainGame() {
 
-  const [state, send] = initControllerMachine(new USConfig, 
+  const config = new USConfig;
+
+  const [state, send] = initControllerMachine(config, 
     [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
 
   /**
@@ -115,7 +116,7 @@ export default function TrainGame() {
         {displayedDestinationSelector}
         {displayedWinner}
         <ul className="header list">{listPlayerInfo}</ul>
-        <div className="gameboard"><USGameboard claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
+        <div className="gameboard"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
         <div className="footer">
           <div className="card"><h2 className={state.context.controller.currentPlayer.color}>{state.context.controller.currentPlayer.name}</h2></div>
           <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
