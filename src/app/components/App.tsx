@@ -113,7 +113,7 @@ export default function App() {
       <main>
         <div className="board-wrapper">
           <div className="player-scores">
-            <ul className="header list">{listPlayerInfo}</ul>
+            <ul className="">{listPlayerInfo}</ul>
           </div>
           <div className="map"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
         </div>
@@ -125,7 +125,7 @@ export default function App() {
             </button>
           </div>
 
-           <ul className="route-pile">{listOpenTrainCards}</ul>
+           <ul className="face-up">{listOpenTrainCards}</ul>
            <div className="train-pile">
             <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
               draw from train deck
@@ -133,14 +133,14 @@ export default function App() {
            </div>
         </div>
       </main>
-
+      
       <footer className="private-info">
-        <div className="player-routes">
-            <div className="route-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
+        <div className="player-dest">
+            <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
         </div>
         <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
-        <div className="player-routes">
-          <div className="route-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
+        <div className="player-dest">
+          <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
         </div>
       </footer>
     </div>
