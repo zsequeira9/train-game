@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
-import TrainGame from "./components/TrainGame";
-import './styles.css';
+import App from "./components/App";
+import './styles/main.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <TrainGame />
+    <App />
 );

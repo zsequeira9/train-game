@@ -1,3 +1,4 @@
+import '../styles/TrainHand.css'
 import { MouseEvent } from "react";
 import { cardColor } from '../types/interfaces';
 
@@ -62,7 +63,7 @@ export default function TrainHand({ trainHand, selectedCard, selectCard, deselec
                 <img src={'/cards/yellow.svg?url'} />
                 <img src={'/cards/white.svg?url'} />
             </div>
-            <ul className="train-hand list">{listTrainCards}</ul>
+            <ul className="player-hand">{listTrainCards}</ul>
         </div>
 
     );

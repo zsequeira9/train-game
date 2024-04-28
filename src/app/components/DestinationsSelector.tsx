@@ -1,3 +1,4 @@
+import '../styles/DestinationSelector.css'
 import { DestinationCard } from "../types/interfaces";
 
 interface DestinationSelectorProps {

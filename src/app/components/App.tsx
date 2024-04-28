@@ -8,7 +8,7 @@ import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
 import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
 
-export default function TrainGame() {
+export default function App() {
 
   const config = new USConfig;
 
@@ -81,8 +81,8 @@ export default function TrainGame() {
             {player.name}
           </h1>
           <p>Number of trains: {player.trains}</p>
-          <p>Destinations: {player.destinationString}</p>
-          <p>Completed Destinations: {player.completedDestinationString}</p>
+          <p>Destinations: {player.incompleteDestStr}</p>
+          <p>Completed Destinations: {player.completedDestStr}</p>
           <p>Score: {player.score}</p>
         </div>
       </li>
@@ -104,34 +104,45 @@ export default function TrainGame() {
 
   const winner = <h2>Winning Player: {state.output?.controller.winningPlayer?.name}</h2>;
 
-  if (state.status === 'done') {
-    console.log("Final Output:", state.output);
-  }
-
   const displayedWinner = (state.status === 'done') ? winner : null;
 
   return (
-    <main className="wrapper">
-      <div className="main">
-        {displayedDestinationSelector}
-        {displayedWinner}
-        <ul className="header list">{listPlayerInfo}</ul>
-        <div className="gameboard"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} /> </div>
-        <div className="footer">
-          <div className="card"><h2 className={state.context.controller.currentPlayer.color}>{state.context.controller.currentPlayer.name}</h2></div>
-          <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
+    <div className="wrapper">
+      {displayedWinner}
+      {displayedDestinationSelector}
+      <main>
+        <div className="board-wrapper">
+          <div className="player-scores">
+            <ul className="header list">{listPlayerInfo}</ul>
+          </div>
+          <div className="map"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
         </div>
-      </div>
+        </div>
+        <div className="deck-wrapper">
+          <div className="dest-pile">
+            <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
+              Draw Destination Cards?
+            </button>
+          </div>
 
-      <div className="sidebar">
-        <button className="button" onClick={() => send({ type: 'drawDest' })}>
-          Draw Destination Cards?
-        </button>
-        <button className="button" onClick={() => send({ type: 'drawTrainCardDeck' })}>
-          draw from train deck
-        </button>
-        <ul className="list">{listOpenTrainCards}</ul>
-      </div>
-    </main>
+           <ul className="route-pile">{listOpenTrainCards}</ul>
+           <div className="train-pile">
+            <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
+              draw from train deck
+            </button>
+           </div>
+        </div>
+      </main>
+
+      <footer className="private-info">
+        <div className="player-routes">
+            <div className="route-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
+        </div>
+        <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
+        <div className="player-routes">
+          <div className="route-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
+        </div>
+      </footer>
+    </div>
   );
 }

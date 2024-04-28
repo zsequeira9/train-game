@@ -145,14 +145,14 @@ export class Player {
       this.score += score;
     }
   
-    get destinationString(): string {
+    get incompleteDestStr(): string {
       return this.incompleteDestinations.reduce((accumulator: string, route: DestinationCard) =>
         accumulator + route.city1 + "-" + route.city2 + ", ",
         "",
       );
     }
 
-    get completedDestinationString(): string {
+    get completedDestStr(): string {
       return this.completedDestinations.reduce((accumulator: string, route: DestinationCard) =>
         accumulator + route.city1 + "-" + route.city2 + ", ",
         "",
