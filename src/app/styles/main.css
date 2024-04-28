@@ -182,48 +182,51 @@ body {
 
 .wrapper {
   display: flex;
+  flex-direction: row;
   max-height: 100vh;
 }
 
 .main {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 6;
   padding: 1rem;
 }
 
-.map {
+.board-wrapper {
   display: flex;
+  flex-grow: 6;
+  flex-shrink: 1;
+  flex-direction: column;
+}
+
+.deck-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 1;
+  justify-content: flex-start;
+}
+
+.map {
   flex-grow: 8;
   flex-shrink: 1;
   min-height: 0%;
   flex-basis: auto;
 }
 
-
-.footer {
+.private-info {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 0;
+  flex-shrink: 1;
   padding: 1rem;
 }
 
 
-.deck-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: flex-start;
-}
-
-.header {
-  display: flex;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: 50px;
-}
-
 .button {
   padding: .5rem .2rem;
   margin: .7rem .2rem;
-}
-
-.list {
-  list-style-type: none;
 }
 
 .card {

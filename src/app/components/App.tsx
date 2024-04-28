@@ -110,7 +110,7 @@ export default function App() {
     <div className="wrapper">
       {displayedWinner}
       {displayedDestinationSelector}
-      <main>
+      <div className="main">
         <div className="board-wrapper">
           <div className="player-scores">
             <ul className="">{listPlayerInfo}</ul>
@@ -132,8 +132,8 @@ export default function App() {
             </button>
            </div>
         </div>
-      </main>
-      
+      </div>
+
       <footer className="private-info">
         <div className="player-dest">
             <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
