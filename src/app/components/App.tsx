@@ -1,5 +1,5 @@
 'use client';
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 
 import { initControllerMachine } from "../state/initController";
 
@@ -7,6 +7,7 @@ import { USConfig } from "../config/US";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
 import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
+import { Client, Server } from "../p2p";
 
 export default function App() {
 
@@ -14,6 +15,10 @@ export default function App() {
 
   const [state, send] = initControllerMachine(config, 
     [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
+
+  const [server] = useState(new Server)
+
+  const [client] = useState(new Client)
 
   /**
    * Attempt to claim route group of selected svg rect
@@ -108,6 +113,9 @@ export default function App() {
 
   return (
     <div className="wrapper">
+      <div>Server Id: {server.serverId}</div>
+      <div>Client Id: {client.clientId}</div>
+      <button onClick={() => client.connectPeer(server.serverId)}>Connect to Server</button>
       {displayedWinner}
       {displayedDestinationSelector}
       <div className="main">
