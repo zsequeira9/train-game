@@ -1,5 +1,5 @@
 'use client';
-import { MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 
 import { initControllerMachine } from "../state/initController";
 
@@ -7,18 +7,54 @@ import { USConfig } from "../config/US";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
 import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
-import { Client, Server } from "../p2p";
 
+import {startPeer, stopPeerSession} from "../store/peer/PeerActions";
+import * as connectionAction from "../store/connection/ConnectionActions"
+import {PeerConnection} from "../p2p";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 export default function App() {
+
+  const peer = useAppSelector((state) => state.peer);
+  const connection = useAppSelector((state) => state.connection);
+  const dispatch = useAppDispatch();
+
+  const handleStartSession = () => {
+    dispatch(startPeer());
+  }
+
+  const handleStopSession = async () => {
+      await PeerConnection.closePeerSession()
+      dispatch(stopPeerSession());
+  }
+
+  const handleConnectOtherPeer = () => {
+      connection.id != null ? dispatch(connectionAction.connectPeer(connection.id || "")) : console.log("Please enter ID");
+  }
+
+  const handleUpload = async () => {
+    if (!connection.selectedId) {
+        console.log("Please select a connection");
+        return;
+    }
+    try {
+        // await setSendLoading(true);
+
+        await PeerConnection.sendConnection(connection.selectedId, {
+            message: "hello!"
+        })
+        // await setSendLoading(false)
+        console.log("Send file successfully")
+    } catch (err) {
+        // await setSendLoading(false)
+        console.log(err)
+    }
+  }
 
   const config = new USConfig;
 
   const [state, send] = initControllerMachine(config, 
     [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
 
-  const [server] = useState(new Server)
-
-  const [client] = useState(new Client)
 
   /**
    * Attempt to claim route group of selected svg rect
@@ -112,45 +148,80 @@ export default function App() {
   const displayedWinner = (state.status === 'done') ? winner : null;
 
   return (
-    <div className="wrapper">
-      <div>Server Id: {server.serverId}</div>
-      <div>Client Id: {client.clientId}</div>
-      <button onClick={() => client.connectPeer(server.serverId)}>Connect to Server</button>
-      {displayedWinner}
-      {displayedDestinationSelector}
-      <div className="main">
-        <div className="board-wrapper">
-          <div className="player-scores">
-            <ul className="">{listPlayerInfo}</ul>
+    <div>
+      <div className="wrapper">
+        {displayedWinner}
+        {displayedDestinationSelector}
+        <div className="main">
+          <div className="board-wrapper">
+            <div className="player-scores">
+              <ul className="">{listPlayerInfo}</ul>
+            </div>
+            <div className="map"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
           </div>
-          <div className="map"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
-        </div>
-        </div>
-        <div className="deck-wrapper">
-          <div className="dest-pile">
-            <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
-              Draw Destination Cards?
-            </button>
           </div>
+          <div className="deck-wrapper">
+            <div className="dest-pile">
+              <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
+                Draw Destination Cards?
+              </button>
+            </div>
 
-           <ul className="face-up">{listOpenTrainCards}</ul>
-           <div className="train-pile">
-            <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
-              draw from train deck
-            </button>
-           </div>
+            <ul className="face-up">{listOpenTrainCards}</ul>
+            <div className="train-pile">
+              <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
+                draw from train deck
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <footer className="private-info">
-        <div className="player-dest">
+        <footer className="private-info">
+          <div className="player-dest">
+              <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
+          </div>
+          <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
+          <div className="player-dest">
             <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
-        </div>
-        <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
-        <div className="player-dest">
-          <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
-        </div>
-      </footer>
+          </div>
+        </footer>
+    </div>
+
+    <div hidden={peer.started}>
+      <button onClick={handleStartSession}>Start</button>
+    </div>
+    <div hidden={!peer.started}>
+        <div>ID: {peer.id}</div>
+        <button onClick={async () => {
+            await navigator.clipboard.writeText(peer.id || "")
+            console.log("Copied: " + peer.id)
+        }}/>
+        <button onClick={handleStopSession}>Stop!</button>
+      </div>
+      <div hidden={!peer.started}>
+          <div>
+            <input placeholder={"ID"}
+              onChange={e => dispatch(connectionAction.changeConnectionInput(e.target.value))}
+              required={true}
+            />
+            <button onClick={handleConnectOtherPeer}>Connect</button>
+          </div>
+
+          <div title="Connection">
+              {
+                connection.list.length === 0
+                  ? <div>Waiting for connection ...</div>
+                  : <div>
+                      Select a connection
+                      <button onClick={e => dispatch(connectionAction.selectItem(connection.list[0]))} >connnect</button>
+                  </div>
+              }
+
+          </div>
+          <div title="Send File">
+              <button onClick={handleUpload}>upload</button>
+          </div>
+      </div>
     </div>
   );
 }
