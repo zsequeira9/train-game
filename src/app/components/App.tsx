@@ -6,13 +6,14 @@ import { initControllerMachine } from "../state/initController";
 import { USConfig } from "../config/US";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
+import PlayerScoresSection from "./PlayerScoresSection";
 import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
 
 export default function App() {
 
   const config = new USConfig;
 
-  const [state, send] = initControllerMachine(config, 
+  const [state, send] = initControllerMachine(config,
     [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
 
   /**
@@ -89,14 +90,14 @@ export default function App() {
   );
 
 
-  const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) => 
+  const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) =>
     <li key={trainCard.id} className='train-card-wrapper' onClick={() => send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
         <img className="train-card-img" draggable={false} src={`/cards/${trainCard.cardColor}.svg?url`} alt={trainCard.cardColor}/>
     </li>
   );
 
-  const destinationSelector = <DestinationsSelector 
-    destinationOptions={state.context.controller.currentPlayer.destinationOptions} 
+  const destinationSelector = <DestinationsSelector
+    destinationOptions={state.context.controller.currentPlayer.destinationOptions}
     selectDestinations={selectDestinations} />;
 
   const displayedDestinationSelector = (state.value === 'drawingDestinationCards' || state.value === 'initDrawingDestinationCards')
@@ -112,11 +113,10 @@ export default function App() {
       {displayedDestinationSelector}
       <main>
         <div className="board-wrapper">
-          <div className="player-scores">
-            <ul className="">{listPlayerInfo}</ul>
+            <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
+          <div className="map">
+            <config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
           </div>
-          <div className="map"><config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
-        </div>
         </div>
         <div className="deck-wrapper">
           <div className="dest-pile">
@@ -133,7 +133,7 @@ export default function App() {
            </div>
         </div>
       </main>
-      
+
       <footer className="private-info">
         <div className="player-dest">
             <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
