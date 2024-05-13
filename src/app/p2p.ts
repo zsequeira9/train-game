@@ -1,8 +1,9 @@
 import Peer, {DataConnection} from "peerjs";
+import { AnyEventObject } from "xstate";
 
 
 export interface Data {
-    message: string
+    event: AnyEventObject
 }
 
 let peer: Peer | undefined

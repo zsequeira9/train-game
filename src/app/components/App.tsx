@@ -12,14 +12,25 @@ import {startPeer, stopPeerSession} from "../store/peer/PeerActions";
 import * as connectionAction from "../store/connection/ConnectionActions"
 import {PeerConnection} from "../p2p";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
+import { AnyEventObject } from "xstate";
 export default function App() {
+
+  const config = new USConfig;
+
+  const [state, send] = initControllerMachine(config, 
+    [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
+
+  function syncSend(event: AnyEventObject) {
+    send(event);
+    sendEvent(event);
+  }
 
   const peer = useAppSelector((state) => state.peer);
   const connection = useAppSelector((state) => state.connection);
   const dispatch = useAppDispatch();
 
   const handleStartSession = () => {
-    dispatch(startPeer());
+    dispatch(startPeer(send));
   }
 
   const handleStopSession = async () => {
@@ -28,10 +39,10 @@ export default function App() {
   }
 
   const handleConnectOtherPeer = () => {
-      connection.id != null ? dispatch(connectionAction.connectPeer(connection.id || "")) : console.log("Please enter ID");
+      connection.id != null ? dispatch(connectionAction.connectPeer(connection.id || "", send)) : console.log("Please enter ID");
   }
 
-  const handleUpload = async () => {
+  const sendEvent = async (event: AnyEventObject) => {
     if (!connection.selectedId) {
         console.log("Please select a connection");
         return;
@@ -40,20 +51,15 @@ export default function App() {
         // await setSendLoading(true);
 
         await PeerConnection.sendConnection(connection.selectedId, {
-            message: "hello!"
+            event: event
         })
         // await setSendLoading(false)
-        console.log("Send file successfully")
+        console.log("Sent event!")
     } catch (err) {
         // await setSendLoading(false)
         console.log(err)
     }
   }
-
-  const config = new USConfig;
-
-  const [state, send] = initControllerMachine(config, 
-    [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false);
 
 
   /**
@@ -67,7 +73,7 @@ export default function App() {
       if (parentElement !== null) {
         const id = parentElement.id;
         if (state.can({ type: 'claimRoute', routeId: id })) {
-          send({
+          syncSend({
             type: 'claimRoute',
             routeId: id
           });
@@ -94,14 +100,14 @@ export default function App() {
    * @param color card color
    */
   function selectCard(color: cardColor): void {
-    send({ type: 'selectTrainCardHand', color: color});
+    syncSend({ type: 'selectTrainCardHand', color: color});
   }
 
   /**
    * Deselect card from player's hand
    */
   function deselectCard(): void {
-    send({ type: 'deselectTrainCardHand'});
+    syncSend({ type: 'deselectTrainCardHand'});
   }
 
   /**
@@ -110,7 +116,7 @@ export default function App() {
    * @param discardedCards Unselected destination cards
    */
   function selectDestinations(selectedCards: DestinationCard[], discardedCards: DestinationCard[]): void {
-    send({ type: 'selectedDestinationCards', selectedCards: selectedCards, discardedCards: discardedCards });
+    syncSend({ type: 'selectedDestinationCards', selectedCards: selectedCards, discardedCards: discardedCards });
   }
 
   // TODO: start refactoring these into their own component!
@@ -131,7 +137,7 @@ export default function App() {
 
 
   const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) => 
-    <li key={trainCard.id} className='train-card-wrapper' onClick={() => send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
+    <li key={trainCard.id} className='train-card-wrapper' onClick={() => syncSend({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
         <img className="train-card-img" draggable={false} src={`/cards/${trainCard.cardColor}.svg?url`} alt={trainCard.cardColor}/>
     </li>
   );
@@ -162,14 +168,14 @@ export default function App() {
           </div>
           <div className="deck-wrapper">
             <div className="dest-pile">
-              <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
+              <button className="train-card" onClick={() => syncSend({ type: 'drawDest' })}>
                 Draw Destination Cards?
               </button>
             </div>
 
             <ul className="face-up">{listOpenTrainCards}</ul>
             <div className="train-pile">
-              <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
+              <button className="train-card" onClick={() => syncSend({ type: 'drawTrainCardDeck' })}>
                 draw from train deck
               </button>
             </div>
@@ -192,10 +198,6 @@ export default function App() {
     </div>
     <div hidden={!peer.started}>
         <div>ID: {peer.id}</div>
-        <button onClick={async () => {
-            await navigator.clipboard.writeText(peer.id || "")
-            console.log("Copied: " + peer.id)
-        }}/>
         <button onClick={handleStopSession}>Stop!</button>
       </div>
       <div hidden={!peer.started}>
@@ -217,9 +219,6 @@ export default function App() {
                   </div>
               }
 
-          </div>
-          <div title="Send File">
-              <button onClick={handleUpload}>upload</button>
           </div>
       </div>
     </div>

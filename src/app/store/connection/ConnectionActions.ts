@@ -1,6 +1,7 @@
 import {ConnectionActionType} from "./ConnectionTypes";
 import {Dispatch} from "redux";
 import {PeerConnection} from "../../p2p";
+import { AnyEventObject } from "xstate";
 
 export const changeConnectionInput = (id: string) => ({
     type: ConnectionActionType.CONNECTION_INPUT_CHANGE, id
@@ -21,8 +22,8 @@ export const selectItem = (id: string) => ({
     type: ConnectionActionType.CONNECTION_ITEM_SELECT, id
 })
 
-export const connectPeer: (id: string) => (dispatch: Dispatch) => Promise<void>
-    = (id: string) => (async (dispatch) => {
+export const connectPeer: (id: string, callback: (f: AnyEventObject) => void) => (dispatch: Dispatch) => Promise<void>
+    = (id: string, callback: (f: AnyEventObject) => void) => (async (dispatch) => {
     dispatch(setLoading(true))
     try {
         await PeerConnection.connectPeer(id)
@@ -30,8 +31,9 @@ export const connectPeer: (id: string) => (dispatch: Dispatch) => Promise<void>
             console.log("Connection closed: " + id)
             dispatch(removeConnectionList(id))
         })
-        PeerConnection.onConnectionReceiveData(id, (file) => {
-            console.log(file.message)
+        PeerConnection.onConnectionReceiveData(id, (data) => {
+            console.log("Peer connection receive data", data.event)
+            callback(data.event)
         })
         dispatch(addConnectionList(id))
         dispatch(setLoading(false))

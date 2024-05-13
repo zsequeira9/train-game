@@ -2,6 +2,7 @@ import {PeerActionType} from "./PeerTypes";
 import {Dispatch} from "redux";
 import {PeerConnection} from "../../p2p";
 import {addConnectionList, removeConnectionList} from "../connection/ConnectionActions";
+import { AnyEventObject } from "xstate";
 
 export const startPeerSession = (id: string) => ({
     type: PeerActionType.PEER_SESSION_START, id
@@ -14,8 +15,8 @@ export const setLoading = (loading: boolean) => ({
     type: PeerActionType.PEER_LOADING, loading
 })
 
-export const startPeer: () => (dispatch: Dispatch) => Promise<void>
-    = () => (async (dispatch) => {
+export const startPeer: (callback: (f: AnyEventObject) => void) => (dispatch: Dispatch) => Promise<void>
+    = (callback: (f: AnyEventObject) => void) => (async (dispatch) => {
     dispatch(setLoading(true))
     try {
         const id = await PeerConnection.startPeerSession()
@@ -27,8 +28,9 @@ export const startPeer: () => (dispatch: Dispatch) => Promise<void>
                 console.log("Connection closed: " + peerId)
                 dispatch(removeConnectionList(peerId))
             })
-            PeerConnection.onConnectionReceiveData(peerId, (file) => {
-                console.log(file.message)
+            PeerConnection.onConnectionReceiveData(peerId, (data) => {
+                console.log("Peer receive data", data.event)
+                callback(data.event)
             })
         })
         dispatch(startPeerSession(id))
