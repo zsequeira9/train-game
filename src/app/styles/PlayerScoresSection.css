@@ -1,17 +1,67 @@
 .player-scores-section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: start;
+    background-color: var(--main-bg-color);
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 250px;
+    padding-left: 1em;
+    padding-right: 1em;
 }
+
 .player-scorecard {
     display: flex;
     flex-direction: column;
     flex-basis: auto;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-shrink: 1;
-    max-width: 200px;
-    box-shadow: 2px 2px 13px red;
+    width: 100%;
+    max-width: 250px;
     margin-right: 2em;
+    background-color: #CCC;
+}
+
+.player-purple.player-scorecard {
+    box-shadow: 2px 2px 13px var(--purple-player-color);
+}
+.player-purple.player-scorecard > .row {
+    border-color: var(--purple-player-color);
+}
+
+.player-blue.player-scorecard {
+    box-shadow: 2px 2px 13px var(--blue-player-color);
+}
+.player-blue.player-scorecard > .row {
+    border-color: var(--blue-player-color);
+}
+
+.player-red.player-scorecard {
+    box-shadow: 2px 2px 13px var(--red-player-color);
+}
+.player-red.player-scorecard > .row {
+    border-color: var(--red-player-color);
+}
+
+.player-green.player-scorecard {
+    box-shadow: 2px 2px 13px var(--green-player-color);
+}
+.player-green.player-scorecard > .row {
+    border-color: var(--green-player-color);
+}
+
+.player-yellow.player-scorecard {
+    box-shadow: 2px 2px 13px var(--yellow-player-color);
+}
+.player-yellow.player-scorecard > .row {
+    border-color: var(--yellow-player-color);
+}
+
+.player-black.player-scorecard {
+    box-shadow: 2px 2px 13px var(--black-player-color);
+}
+.player-black.player-scorecard > .row {
+    border-color: var(--black-player-color);
 }
 
 .player-scorecard .player-name {
@@ -26,7 +76,6 @@
 .player-scorecard > .row {
     border-style: outset;
     border-width: 2px 2px 2px 2px;
-    border-color: red;
 }
 
 .player-scorecard .player-cards .col {

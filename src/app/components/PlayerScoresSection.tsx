@@ -4,7 +4,8 @@ interface PlayerScoresSectionProps { playerList: Player[] }
 export default function PlayerScoresSection({playerList}: PlayerScoresSectionProps) {
 
     const renderPlayerCard = (player: Player) => {
-        return <div className="player-scorecard">
+        let rootClass = `player-scorecard ${player.color}`
+        return <div className={rootClass}>
             <div className="row player-name">{player.name}</div>
             <div className="row player-cards">
                 <div className="col">

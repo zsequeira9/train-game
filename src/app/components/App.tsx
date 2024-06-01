@@ -113,36 +113,33 @@ export default function App() {
       {displayedDestinationSelector}
       <main>
         <div className="board-wrapper">
-            <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
+          <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
           <div className="map">
             <config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
           </div>
-        </div>
-        <div className="deck-wrapper">
-          <div className="dest-pile">
-            <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
-              Draw Destination Cards?
-            </button>
-          </div>
+          <div className="deck-wrapper">
+            <div className="dest-pile">
+              <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
+                Draw Destination Cards?
+              </button>
+            </div>
 
-           <ul className="face-up">{listOpenTrainCards}</ul>
-           <div className="train-pile">
-            <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
-              draw from train deck
-            </button>
-           </div>
+            <ul className="face-up">{listOpenTrainCards}</ul>
+            <div className="train-pile">
+              <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
+                draw from train deck
+              </button>
+            </div>
+          </div>
         </div>
+        <footer className="private-info">
+          <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
+          <div className="player-dest">
+            <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
+          </div>
+        </footer>
       </main>
 
-      <footer className="private-info">
-        <div className="player-dest">
-            <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
-        </div>
-        <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
-        <div className="player-dest">
-          <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
-        </div>
-      </footer>
     </div>
   );
 }
