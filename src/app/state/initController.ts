@@ -8,7 +8,11 @@ import { Controller } from "../types/Controller";
 import { baseConfig } from '../types/BaseConfig';
 
 
-export function initControllerMachine(config: baseConfig, players: [string, PlayerColor][], debug: boolean) {
+export function initControllerMachine(
+  config: baseConfig, 
+  players: [string, PlayerColor][], 
+  debug: boolean
+) {
   let startingTrains = undefined;
   if (debug) {
     startingTrains = 10;
@@ -18,6 +22,7 @@ export function initControllerMachine(config: baseConfig, players: [string, Play
 
 
   const gameController = new Controller(
+    "something.", 
     playerList,
     config.routes,
     config.destinations,

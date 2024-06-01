@@ -13,6 +13,29 @@ import * as connectionAction from "../store/connection/ConnectionActions"
 import {PeerConnection} from "../p2p";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import { AnyEventObject } from "xstate";
+
+/**
+ * TODO: Story: Recreate host selection screen - Create/ Join
+ * 1. Create / Join screen
+ * 2. Create screen
+ * 3. Join screen 
+ * 
+ * 
+ * Host
+ *  - only handles communication
+ *  - startLobby, clientConnect(return new controller), clientDisconnect(), startGame
+ * setup -
+ *  peerid to client map
+ * 
+ * main loop - 
+ *  host sends 'your turn' msg to next player
+ *  host receive transition from client
+ *  host sends transition + checksum compliment to other clients
+ *  clients perform transition + checksum && checksum compliment, send back to host
+ *  next tick
+ */
+
+
 export default function App() {
 
   const config = new USConfig;

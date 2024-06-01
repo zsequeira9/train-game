@@ -1,9 +1,11 @@
+import seedrandom from 'seedrandom';
 import { DestinationCard, cardColor, RouteColor, trainCard, RouteIndex} from "./interfaces";
 import { DestinationDeck } from "./DestinationDeck";
 import { Player } from "./Player";
 import { RouteDeck } from "./RouteDeck";
 
 export class Controller {
+  random: seedrandom.PRNG;
   playerSequence: Player[];
   doubleLaneMin: number = 3;
   numberCards: number = 4;
@@ -29,17 +31,20 @@ export class Controller {
   gameLog: Event[] = [];
 
   constructor(
+    seed: string,
     playerSequence: Player[],
     routeIndex: RouteIndex,
     destinationDeck: DestinationCard[],
     routeScoringTable: Record<number, number>,
     isDebugMode: boolean
   ) {
+    this.random = seedrandom(seed);
+
     this.playerSequence = playerSequence;
 
     this.routeDeck = new RouteDeck(routeIndex);
 
-    this.destinationDeck = new DestinationDeck(destinationDeck);
+    this.destinationDeck = new DestinationDeck(destinationDeck, this.random);
 
     this.routeScoringTable = routeScoringTable;
 
@@ -77,7 +82,7 @@ export class Controller {
 
     //shuffle the list
     for (let i = cardColorsTyped.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * i);
+      const j = Math.floor(this.random() * i);
       const temp = cardColorsTyped[i];
       cardColorsTyped[i] = cardColorsTyped[j];
       cardColorsTyped[j] = temp;
@@ -124,7 +129,7 @@ export class Controller {
   reshuffleTrainDeck(): void {
     // shuffle discards
     for (let i = this.trainDiscard.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * i);
+      const j = Math.floor(this.random() * i);
       const temp = this.trainDiscard[i];
       this.trainDiscard[i] = this.trainDiscard[j];
       this.trainDiscard[j] = temp;
