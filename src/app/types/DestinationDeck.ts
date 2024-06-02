@@ -1,9 +1,12 @@
+import seedrandom from "seedrandom";
 import { DestinationCard } from "./interfaces";
 
 export class DestinationDeck {
+    random: seedrandom.PRNG;
     destinationDeck: DestinationCard[];
 
-    constructor(destinationDeck: DestinationCard[]) {
+    constructor(destinationDeck: DestinationCard[], random: seedrandom.PRNG) {
+      this.random = random;
       this.destinationDeck = destinationDeck;
       this.shuffleDestinations();
     }
@@ -24,7 +27,7 @@ export class DestinationDeck {
      */
     shuffleDestinations(): void {
       for (let i = this.destinationDeck.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * i);
+        const j = Math.floor(this.random() * i);
         const temp = this.destinationDeck[i];
         this.destinationDeck[i] = this.destinationDeck[j];
         this.destinationDeck[j] = temp;

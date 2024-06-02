@@ -11,8 +11,10 @@
   "dependencies": {
     "@vitejs/plugin-react": "^4.2.1",
     "@xstate/react": "^4.1.0",
+    "netplayjs": "^0.4.1",
     "react": "^18",
     "react-dom": "^18",
+    "seedrandom": "^3.0.5",
     "vite": "^5.1.6",
     "xstate": "^5.8.0"
   },
@@ -20,6 +22,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/seedrandom": "^3.0.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "eslint": "^8",
     "eslint-plugin-react-hooks": "^4.6.0",
