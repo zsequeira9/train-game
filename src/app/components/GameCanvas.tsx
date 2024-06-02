@@ -1,24 +1,26 @@
 'use client';
 import { MouseEvent } from "react";
 
-import { initControllerMachine } from "../state/initController";
-
 import { useMachine } from '@xstate/react';
 
 import { controllerMachine } from '../state/controllerMachine';
 
-import { USConfig } from "../config/US";
 import TrainHand from "./TrainHand";
 import DestinationsSelector from "./DestinationsSelector";
 import PlayerScoresSection from "./PlayerScoresSection";
-import { DestinationCard, PlayerColor, cardColor } from "../types/interfaces";
+import { DestinationCard, cardColor } from "../types/interfaces";
+import { baseConfig } from "../types/BaseConfig";
+import { Controller } from "../types/Controller";
 
-export default function GameCanvas() {
 
-  const config = new USConfig;
+interface GameCanvasProps {
+  config: baseConfig;
+  controller: Controller;
+}
 
-  const [state, send] = useMachine(controllerMachine, { input: initControllerMachine(config,
-    [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false) });
+export default function GameCanvas({config, controller}: GameCanvasProps) {
+
+  const [state, send] = useMachine(controllerMachine, { input:  controller});
 
   /**
    * Attempt to claim route group of selected svg rect
@@ -78,20 +80,20 @@ export default function GameCanvas() {
   }
 
   // TODO: start refactoring these into their own component!
-  const listPlayerInfo = state.context.controller.playerSequence.map(
-    (player) =>
-      <li key={player.name}>
-        <div className="card">
-          <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
-            {player.name}
-          </h1>
-          <p>Number of trains: {player.trains}</p>
-          <p>Destinations: {player.incompleteDestStr}</p>
-          <p>Completed Destinations: {player.completedDestStr}</p>
-          <p>Score: {player.score}</p>
-        </div>
-      </li>
-  );
+  // const listPlayerInfo = state.context.controller.playerSequence.map(
+  //   (player) =>
+  //     <li key={player.name}>
+  //       <div className="card">
+  //         <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
+  //           {player.name}
+  //         </h1>
+  //         <p>Number of trains: {player.trains}</p>
+  //         <p>Destinations: {player.incompleteDestStr}</p>
+  //         <p>Completed Destinations: {player.completedDestStr}</p>
+  //         <p>Score: {player.score}</p>
+  //       </div>
+  //     </li>
+  // );
 
 
   const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) =>
