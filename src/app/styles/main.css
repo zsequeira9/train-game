@@ -193,15 +193,12 @@ body {
 
 .wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-height: 100vh;
   width: 100vw;
 }
 
-.main {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-grow: 6;
+main {
   padding: 1rem;
   flex-grow: 1;
   flex-shrink: 1;
@@ -210,40 +207,45 @@ body {
   flex-direction: column;
 }
 
-.board-wrapper {
-  display: flex;
-  flex-grow: 6;
-  flex-shrink: 1;
-  flex-direction: column;
-}
-
-.deck-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  flex-shrink: 1;
-  justify-content: flex-start;
-}
-
 .map {
+  display: flex;
   flex-grow: 8;
   flex-shrink: 1;
   flex-basis: auto;
   background-color: var(--board-bg-color);
 }
 
-.private-info {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-grow: 0;
-  flex-shrink: 1;
+
+.footer {
   padding: 1rem;
 }
 
+.board-wrapper {
+    display: flex;
+  flex-direction: row;
+  max-height: 80vh;
+}
+.deck-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 50px;
+}
 
 .button {
   padding: .5rem .2rem;
   margin: .7rem .2rem;
+}
+
+.list {
+  list-style-type: none;
 }
 
 .card {

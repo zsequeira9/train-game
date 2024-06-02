@@ -49,9 +49,12 @@ export default function PlayerScoresSection({playerList}: PlayerScoresSectionPro
     }
 
     return (
-        <div className="player-scores-section">
-            {playerList.map(renderPlayerCard)}
-        </div>
-
+        <ul className="player-scores-section">
+            {playerList.map(player =>
+            <li key={player.name}>
+                {renderPlayerCard(player)}
+            </li>
+            )}
+      </ul>
     );
 }
