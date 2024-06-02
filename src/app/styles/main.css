@@ -1,3 +1,14 @@
+:root {
+  --purple-player-color: purple;
+  --blue-player-color: blue;
+  --red-player-color: red;
+  --green-player-color: green;
+  --yellow-player-color: yellow;
+  --black-player-color: black;
+  --main-bg-color: #440044;
+  --board-bg-color: antiquewhite;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,7 +17,7 @@
 
 html,
 body {
-  background-color: antiquewhite;
+  background-color: var(--main-bg-color);
 }
 
 
@@ -139,43 +150,43 @@ body {
 }
 
 .player-red {
-  fill: red;
-  color: red;
+  fill: var(--red-player-color);
+  /*color: red;*/
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-green {
-  fill: green;
-  color: green;
+  fill: var(--green-player-color);
+  /*color: green;*/
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-blue {
-  fill: blue;
-  color: blue;
+  fill: var(--blue-player-color);
+  /*color: blue;*/
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-yellow {
-  fill: yellow;
-  color: yellow;
+  fill: var(--yellow-player-color);
+  /*color: yellow;*/
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-black {
-  fill: black;
-  color: black;
+  fill: var(--black-player-color);
+  /*color: black;*/
   fill-opacity: 1;
   stroke-opacity: 1;
 }
 
 .player-purple {
-  fill: purple;
-  color: purple;
+  fill: var(--purple-player-color);
+  /*color: purple;*/
   fill-opacity: 1;
   stroke-opacity: 1;
 }
@@ -184,6 +195,7 @@ body {
   display: flex;
   flex-direction: row;
   max-height: 100vh;
+  width: 100vw;
 }
 
 .main {
@@ -191,6 +203,11 @@ body {
   flex-wrap: nowrap;
   flex-grow: 6;
   padding: 1rem;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .board-wrapper {
@@ -211,8 +228,8 @@ body {
 .map {
   flex-grow: 8;
   flex-shrink: 1;
-  min-height: 0%;
   flex-basis: auto;
+  background-color: var(--board-bg-color);
 }
 
 .private-info {
@@ -237,3 +254,12 @@ body {
 }
 
 
+.private-info {
+  padding: 1px;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: auto;
+  flex-direction: row;
+  justify-content: space-between;
+}

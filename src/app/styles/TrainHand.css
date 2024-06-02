@@ -1,5 +1,6 @@
 .player-hand {
     list-style: none;
+    display:flex;
 }
 
 .switch {

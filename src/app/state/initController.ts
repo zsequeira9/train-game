@@ -1,7 +1,3 @@
-import { useMachine } from '@xstate/react';
-
-import { controllerMachine } from './controllerMachine';
-
 import { PlayerColor } from "../types/interfaces";
 import { Player } from "../types/Player";
 import { Controller } from "../types/Controller"; 
@@ -29,5 +25,5 @@ export function initControllerMachine(
     config.routeScoringTable,
     debug
   );
-  return useMachine(controllerMachine, { input: gameController })
+  return gameController
 } 
