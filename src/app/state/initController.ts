@@ -1,14 +1,14 @@
-import { useMachine } from '@xstate/react';
-
-import { controllerMachine } from './controllerMachine';
-
 import { PlayerColor } from "../types/interfaces";
 import { Player } from "../types/Player";
 import { Controller } from "../types/Controller"; 
 import { baseConfig } from '../types/BaseConfig';
 
 
-export function initControllerMachine(config: baseConfig, players: [string, PlayerColor][], debug: boolean) {
+export function initControllerMachine(
+  config: baseConfig, 
+  players: [string, PlayerColor][], 
+  debug: boolean
+) {
   let startingTrains = undefined;
   if (debug) {
     startingTrains = 10;
@@ -18,11 +18,12 @@ export function initControllerMachine(config: baseConfig, players: [string, Play
 
 
   const gameController = new Controller(
+    "something.", 
     playerList,
     config.routes,
     config.destinations,
     config.routeScoringTable,
     debug
   );
-  return useMachine(controllerMachine, { input: gameController })
+  return gameController
 } 
