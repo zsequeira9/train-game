@@ -7,14 +7,12 @@ import { baseConfig } from '../types/BaseConfig';
 export function initControllerMachine(
   config: baseConfig, 
   players: [string, PlayerColor][], 
-  debug: boolean
+  debug: boolean,
+  startingTrains?: number,
 ) {
-  let startingTrains = undefined;
-  if (debug) {
-    startingTrains = 10;
-  }
 
-  const playerList = players.map((player) => new Player(player[0], player[1], startingTrains));
+  const playerList = players.map((player) => new Player(
+    player[0], player[1], startingTrains));
 
 
   const gameController = new Controller(

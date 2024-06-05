@@ -8,8 +8,8 @@ from copy import deepcopy
 
 infile = 'drawing.svg'
 svg_outfile = os.path.join('.', '.', 'public', 'ticket-nobg.svg')
-gameboard_outfile = os.path.join('.', '.', 'src', 'app', 'boards', 'USGameboard.tsx')
-route_list_outfile = os.path.join('.', '.', 'src', 'app', 'routes', 'USRoutes.ts')
+gameboard_outfile = os.path.join('.', '.', 'src', 'app', 'config', 'boards', 'USGameboard.tsx')
+route_list_outfile = os.path.join('.', '.', 'src', 'app', 'config', 'routes', 'USRoutes.ts')
 ns = {'svg': 'http://www.w3.org/2000/svg',
       'ttr': 'https://train-game.github.io',
           'inkscape': 'http://www.inkscape.org/namespaces/inkscape'}
