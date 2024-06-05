@@ -7,38 +7,50 @@ import { PlayerColor } from "../types/interfaces";
 import { initControllerMachine } from "../state/initController";
 
 export default function App() {
+    let playerColorList = [
+        PlayerColor.RED,
+        PlayerColor.GREEN,
+        PlayerColor.BLUE,
+        PlayerColor.YELLOW,
+        PlayerColor.BLACK,
+        PlayerColor.PURPLE
+    ] as PlayerColor[];
 
-  const [players, setPlayers] = useState<string>('');
+    const [setup, setSetup] = useState<boolean>(true);
 
-  const [debug, setDebug] = useState<boolean>(false);
+    const [players, setPlayers] = useState<[string, PlayerColor][]>([]);
 
-  const config = new USConfig;
+    const [debug, setDebug] = useState<boolean>(false);
 
-  const controller = initControllerMachine(config,
-    [["Zelia", PlayerColor.YELLOW], ["Chris", PlayerColor.PURPLE]], false)
+    const config = new USConfig;
 
-  return (
-    <main>
-      <div className="destination-popup-wrapper">
-      <div className="destination-popup">
-        <label>
-          Players: <input 
-            value={players} 
-            onChange={e => setPlayers(e.target.value)}
-            type="text"/>
-        </label>
-        <label>
-          Debug? <input 
-            value={debug ? 1 : 0}
-            onChange={e => setDebug(e.target.checked)}
-            type="checkbox"/>
-        </label>
-        <button>
-          Start?
-        </button>
+    const controller = initControllerMachine(config, players, debug)
+
+    const gameConfigDialogue = <div className="destination-popup-wrapper">
+        <div className="destination-popup">
+            <label>
+                Players: <input
+                    onChange={e => {
+                        let names = e.target.value.split(",");
+                        setPlayers(names.map((name, i) => [name, playerColorList[i]]))
+                    }}
+                    type="text" />
+            </label>
+            <label>
+                Debug? <input
+                    value={debug ? 1 : 0}
+                    onChange={e => setDebug(e.target.checked)}
+                    type="checkbox" />
+            </label>
+            <button onClick={() => setSetup(false)}>
+                Start?
+            </button>
         </div>
-        </div>
-      <GameCanvas config={config} controller={controller} />
-    </main>
-  )
+    </div>
+
+    return (
+        <main>
+            {setup ? gameConfigDialogue : <GameCanvas config={config} controller={controller} />}
+        </main>
+    )
 }

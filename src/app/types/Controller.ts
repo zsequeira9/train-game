@@ -21,7 +21,7 @@ export class Controller {
 
   minSelectedDestinations: number = 2;
   currentPlayerIndex: number = 0;
-  firstPlayerInRound: number = 0;
+  endOfRound: number;
   hasRoundCompleted: boolean = false;
   isFinalRound: boolean = false;
 
@@ -41,6 +41,8 @@ export class Controller {
     this.random = seedrandom(seed);
 
     this.playerSequence = playerSequence;
+
+    this.endOfRound = this.playerSequence.length-1;
 
     this.routeDeck = new RouteDeck(routeIndex);
 
@@ -363,12 +365,12 @@ export class Controller {
     // check if entering the last round
     if (!this.isFinalRound && this.currentPlayer.trains <= 2) {
       this.isFinalRound = true;
-      this.firstPlayerInRound = this.currentPlayerIndex;
+      this.endOfRound = this.currentPlayerIndex;
       console.log("Final Turn!");
     }
 
     // set it a round of play has completed
-    else if (this.currentPlayerIndex === this.firstPlayerInRound) {
+    else if (this.currentPlayerIndex === this.endOfRound) {
       this.hasRoundCompleted = true;
     }
     else {
