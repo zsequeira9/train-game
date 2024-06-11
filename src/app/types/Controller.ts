@@ -362,19 +362,19 @@ export class Controller {
     // clear current selected card
     this.setSelectedCard();
 
+    // set it a round of play has completed
+    if (this.currentPlayerIndex === this.endOfRound) {
+      this.hasRoundCompleted = true;
+    }
+    else {
+      this.hasRoundCompleted = false;
+    }
+
     // check if entering the last round
     if (!this.isFinalRound && this.currentPlayer.trains <= 2) {
       this.isFinalRound = true;
       this.endOfRound = this.currentPlayerIndex;
       console.log("Final Turn!");
-    }
-
-    // set it a round of play has completed
-    else if (this.currentPlayerIndex === this.endOfRound) {
-      this.hasRoundCompleted = true;
-    }
-    else {
-      this.hasRoundCompleted = false;
     }
 
     // set next player in sequence to current player
