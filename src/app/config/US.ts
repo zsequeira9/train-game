@@ -1,8 +1,8 @@
 import { baseConfig } from "../types/BaseConfig";
 import { DestinationCard, GameboardProps, RouteIndex } from "../types/interfaces";
 
-import { USRoutes } from "../routes/USRoutes";
-import USGameboard from "../boards/USGameboard";
+import { USRoutes } from "./routes/USRoutes";
+import USGameboard from "./boards/USGameboard";
 
 export class USConfig implements baseConfig {
     destinations: DestinationCard[] = [

@@ -254,6 +254,9 @@ export const controllerMachine = setup({
         }),
       }
     },
+    /**
+     * Ending state of game
+     */
     endGame: {
       type: 'final',
     },

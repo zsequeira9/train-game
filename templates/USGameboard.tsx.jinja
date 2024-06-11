@@ -1,4 +1,4 @@
-import { GameboardProps } from "../types/interfaces";
+import { GameboardProps } from "../../types/interfaces";
 
 export default function USGameboard({ claimRoute, getTrainClass}: GameboardProps): React.JSX.Element {
 

@@ -1,5 +1,5 @@
-import { RouteColor} from "../types/interfaces";
-import { RouteIndex } from "../types/interfaces";
+import { RouteColor} from "../../types/interfaces";
+import { RouteIndex } from "../../types/interfaces";
 export const USRoutes = {
  
     "vancouver-calgary:0:grey:3": {
