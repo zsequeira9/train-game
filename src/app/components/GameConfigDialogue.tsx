@@ -1,4 +1,5 @@
 import { PlayerColor } from "../types/interfaces";
+import initPeer from "../network/host";
 
 interface GameConfigDialogueProps {
     startingTrains: number;
@@ -52,6 +53,9 @@ export default function GameConfigDialogue({
                     onChange={e => setDebug(e.target.checked)}
                     type="checkbox" />
             </label>
+            <button onClick={() => {initPeer()}}>
+                Start a lobby
+            </button>
             {debug && debugConfigDialogue}
             <button onClick={() => setSetup(false)}>
                 Start?
