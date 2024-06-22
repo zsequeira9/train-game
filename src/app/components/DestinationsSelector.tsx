@@ -1,38 +1,60 @@
-import '../styles/DestinationSelector.css'
+import styles from '../styles/DestinationSelector.module.css'
 import { DestinationCard } from "../types/interfaces";
 
-interface DestinationSelectorProps {
-    destinationOptions: DestinationCard[];
-    selectDestinations: (selectedCards: DestinationCard[], discardedCards: DestinationCard[]) => void;
+export interface DestinationSelectorProps {
+  destinationOptions: DestinationCard[];
+  selectDestinations: (selectedCards: DestinationCard[], discardedCards: DestinationCard[]) => void;
+}
+
+interface SelectedCardMap {
+  selected: boolean
+  item: DestinationCard
 }
 
 export default function DestinationsSelector({ destinationOptions, selectDestinations }: DestinationSelectorProps) {
-    const selectedCards = [] as DestinationCard[];
+  const selections = Object.fromEntries(destinationOptions.map(card => [
+    card.id,
+    { selected: false, item: card }
+  ])) as Record<string, SelectedCardMap>
 
-    /**
-     * @returns List of cards that were not selected
-     */
-    function getDiscards(): DestinationCard[] {
-        return destinationOptions.filter((card) => selectedCards.find((selectedCard) => selectedCard === card));
-    }
+  /**
+   * @returns List of cards that were not selected
+   */
+  function getDiscards(): DestinationCard[] {
+    const out = Object.values(selections).filter(card => !card.selected).map(card => card.item)
+    console.log(out)
+    return out
+  }
 
-    const listDestinations = destinationOptions.map((card) => {
-        return <li key={card.city1 + card.city2}>
-            <button className="button" onClick={() => {console.log("selected", card); selectedCards.push(card);}}>
-                {card.city1 + "-" + card.city2 + "-" + card.points}
-            </button>
-        </li>;
-    });
+  function getSelections(): DestinationCard[] {
+    return Object.values(selections).filter(card => card.selected).map(card => card.item)
+  }
 
+  const listDestinations = destinationOptions.map((card) => {
+    const key = card.city1 + card.city2
     return (
-        <div className="destination-popup-wrapper">
-        <div className="destination-popup">
-            <h2>Select a route please</h2>
-            <ul className="list">{listDestinations}</ul>
-            <button className="button" onClick={() => selectDestinations(selectedCards, getDiscards())}>
-                OKAY?
-            </button>
+      <label className={styles.destinationCardWrapper} key={key}>
+        <input type="checkbox"
+               name={key}
+               onChange={(e) => selections[card.id].selected = e.target.checked}/>
+
+        <div className={styles.destinationCard}>
+          {card.city1 + "-" + card.city2 + "-" + card.points}
         </div>
-        </div>
+
+      </label>
     );
+  });
+
+  return (
+    <div className={styles.destinationSelector}>
+      <h3>Choose a few Destinations</h3>
+      {listDestinations}
+      <button className="button" onClick={() => {
+        selectDestinations(getSelections(), getDiscards())
+      }}>
+        Continue
+      </button>
+    </div>
+  );
 }

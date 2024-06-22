@@ -36,7 +36,7 @@ export class USConfig implements baseConfig {
         { city1: "vancouver", city2: "santa_fe", points: 13 },
         { city1: "winnipeg", city2: "houston", points: 12 },
         { city1: "winnipeg", city2: "little_rock", points: 11 }
-    ];
+    ].map(data => new DestinationCard(data as DestinationCard));
     routes: RouteIndex = USRoutes;
     routeScoringTable: Record<number, number> = {
         1: 1, 

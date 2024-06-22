@@ -96,12 +96,12 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
   return (
     <div className={styles.wrapper}>
       {displayedWinner}
-      {displayedDestinationSelector}
 
       <div className={styles.board}>
 
         <div className={styles.sidebar}>
           <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
+          {displayedDestinationSelector}
         </div>
 
         <div className={styles.map}>

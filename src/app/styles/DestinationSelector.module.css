@@ -1,0 +1,40 @@
+.destinationSelector {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: skyblue;
+}
+
+.destinationCardWrapper {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 4em;
+  margin: 1em .5em;
+  padding: .5em;
+}
+
+.destinationCardWrapper > input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.destinationCardWrapper > input[type="checkbox"]:checked + .destinationCard {
+  border: 3px solid gold;
+}
+
+.destinationCard {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 4em;
+  margin: 1em .5em;
+  border: 3px solid transparent;
+  padding: .5em;
+}
