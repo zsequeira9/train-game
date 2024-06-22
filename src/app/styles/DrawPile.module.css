@@ -1,0 +1,7 @@
+.deck {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-basis: 100px;
+}
+

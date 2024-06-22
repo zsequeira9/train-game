@@ -7,12 +7,22 @@
   --black-player-color: black;
   --main-bg-color: #440044;
   --board-bg-color: antiquewhite;
+
+  --blue-train-color: #06a3e9;
+  --red-train-color: #cd4138;
+  --green-train-color: #9bc754;
+  --yellow-train-color: #e1e84b;
+  --black-train-color: #000000;
+  --pink-train-color: #e99dcd;
+  --white-train-color: #e7eaf2;
+  --orange-train-color: #d09034;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  list-style-type: none;
 }
 
 html,
@@ -22,7 +32,7 @@ body {
 
 
 .blue {
-  fill: #06a3e9;
+  fill: var(--blue-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -32,7 +42,7 @@ body {
 }
 
 .red {
-  fill: #cd4138;
+  fill: var(--red-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -42,7 +52,7 @@ body {
 }
 
 .pink {
-  fill: #e99dcd;
+  fill: var(--pink-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -52,7 +62,7 @@ body {
 }
 
 .black {
-  fill: #000000;
+  fill: var(--black-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -62,7 +72,7 @@ body {
 }
 
 .white {
-  fill: #e7eaf2;
+  fill: var(--white-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -72,7 +82,7 @@ body {
 }
 
 .yellow {
-  fill: #e1e84b;
+  fill: var(--yellow-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -92,7 +102,7 @@ body {
 }
 
 .green {
-  fill: #9bc754;
+  fill: var(--green-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -102,7 +112,7 @@ body {
 }
 
 .orange {
-  fill: #d09034;
+  fill: var(--orange-train-color);
   fill-opacity: 1;
   stroke-opacity: 1;
   stroke-dasharray: none;
@@ -191,13 +201,6 @@ body {
   stroke-opacity: 1;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
-  width: 100vw;
-}
-
 main {
   padding: 1rem;
   flex-grow: 1;
@@ -207,30 +210,10 @@ main {
   flex-direction: column;
 }
 
-.map {
-  display: flex;
-  flex-grow: 8;
-  flex-shrink: 1;
-  flex-basis: auto;
-  background-color: var(--board-bg-color);
-}
-
 
 .footer {
-  padding: 1rem;
 }
 
-.board-wrapper {
-    display: flex;
-  flex-direction: row;
-  max-height: 80vh;
-}
-.deck-wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: flex-start;
-}
 
 .header {
   display: flex;
@@ -257,7 +240,7 @@ main {
 
 
 .private-info {
-  padding: 1px;
+  padding: 1rem;
   display: flex;
   flex-grow: 1;
   flex-shrink: 0;

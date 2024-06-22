@@ -12,6 +12,9 @@ import { DestinationCard, cardColor } from "../types/interfaces";
 import { baseConfig } from "../types/BaseConfig";
 import { Controller } from "../types/Controller";
 
+import styles from '../styles/GameCanvas.module.css'
+import DrawPile from "./DrawPile";
+
 
 interface GameCanvasProps {
   config: baseConfig;
@@ -79,29 +82,6 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
     send({ type: 'selectedDestinationCards', selectedCards: selectedCards, discardedCards: discardedCards });
   }
 
-  // TODO: start refactoring these into their own component!
-  // const listPlayerInfo = state.context.controller.playerSequence.map(
-  //   (player) =>
-  //     <li key={player.name}>
-  //       <div className="card">
-  //         <h1 className={state.context.controller.currentPlayer === player ? player.color : ""}>
-  //           {player.name}
-  //         </h1>
-  //         <p>Number of trains: {player.trains}</p>
-  //         <p>Destinations: {player.incompleteDestStr}</p>
-  //         <p>Completed Destinations: {player.completedDestStr}</p>
-  //         <p>Score: {player.score}</p>
-  //       </div>
-  //     </li>
-  // );
-
-
-  const listOpenTrainCards = state.context.controller.openTrainDeck.map((trainCard) =>
-    <li key={trainCard.id} className='train-card-wrapper' onClick={() => send({ type: 'drawTrainCardFace', trainCardId: trainCard.id })}>
-        <img className="train-card-img" draggable={false} src={`/cards/${trainCard.cardColor}.svg?url`} alt={trainCard.cardColor}/>
-    </li>
-  );
-
   const destinationSelector = <DestinationsSelector
     destinationOptions={state.context.controller.currentPlayer.destinationOptions}
     selectDestinations={selectDestinations} />;
@@ -114,37 +94,37 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
   const displayedWinner = (state.status === 'done') ? winner : null;
 
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       {displayedWinner}
       {displayedDestinationSelector}
-      <div>
-        <div className="board-wrapper">
-          <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
-          <div className="map">
-            <config.board claimRoute={claimRoute} getTrainClass={getTrainClass} />
-          </div>
-          <div className="deck-wrapper">
-            <div className="dest-pile">
-              <button className="train-card" onClick={() => send({ type: 'drawDest' })}>
-                Draw Destination Cards?
-              </button>
-            </div>
 
-            <ul className="face-up">{listOpenTrainCards}</ul>
-            <div className="train-pile">
-              <button className="train-card" onClick={() => send({ type: 'drawTrainCardDeck' })}>
-                draw from train deck
-              </button>
-            </div>
+      <div className={styles.board}>
+
+        <div className={styles.sidebar}>
+          <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
+        </div>
+
+        <div className={styles.map}>
+          <config.board claimRoute={claimRoute} getTrainClass={getTrainClass}/>
+        </div>
+
+        <div className={styles.sidebar}>
+          <DrawPile openTrainDeck={state.context.controller.openTrainDeck}
+                    eventCallback={send}/>
+        </div>
+      </div>
+
+      <footer className="private-info">
+        <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard}
+                   selectCard={selectCard}
+                   deselectCard={deselectCard}
+                   trainHand={state.context.controller.currentPlayer.trainHand}/>
+        <div className="player-dest">
+          <div className="dest-card">
+            {state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}
           </div>
         </div>
-        <footer className="private-info">
-          <TrainHand selectedCard={state.context.controller.currentPlayer.selectedCard} selectCard={selectCard} deselectCard={deselectCard} trainHand={state.context.controller.currentPlayer.trainHand} />
-          <div className="player-dest">
-            <div className="dest-card">{state.context.controller.currentPlayer.incompleteDestStr + state.context.controller.currentPlayer.completedDestStr}</div>
-          </div>
-        </footer>
-      </div>
+      </footer>
 
     </div>
   );
