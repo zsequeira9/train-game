@@ -1,5 +1,5 @@
-import styles from '../styles/DestinationSelector.module.css'
-import { DestinationCard } from "../types/interfaces";
+import styles from './DestinationsSelector.module.css'
+import { DestinationCard } from "../../types/interfaces";
 
 export interface DestinationSelectorProps {
   destinationOptions: DestinationCard[];

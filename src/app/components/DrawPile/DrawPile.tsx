@@ -1,6 +1,6 @@
-import {trainCard} from "../types/interfaces";
+import {trainCard} from "../../types/interfaces";
 import {ActorLogic, EventFromLogic} from "xstate";
-import styles from '../styles/DrawPile.module.css';
+import styles from './DrawPile.module.css';
 
 interface DrawPileProps {
   openTrainDeck: trainCard[],

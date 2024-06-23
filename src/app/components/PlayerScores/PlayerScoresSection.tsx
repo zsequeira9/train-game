@@ -1,5 +1,5 @@
-import {Player} from "../types/Player";
-import '../styles/PlayerScoresSection.css';
+import {Player} from "../../types/Player";
+import './PlayerScoresSection.css';
 interface PlayerScoresSectionProps { playerList: Player[] }
 export default function PlayerScoresSection({playerList}: PlayerScoresSectionProps) {
 

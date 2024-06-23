@@ -3,17 +3,17 @@ import { MouseEvent } from "react";
 
 import { useMachine } from '@xstate/react';
 
-import { controllerMachine } from '../state/controllerMachine';
+import { controllerMachine } from '../../state/controllerMachine';
 
-import TrainHand from "./TrainHand";
-import DestinationsSelector from "./DestinationsSelector";
-import PlayerScoresSection from "./PlayerScoresSection";
-import { DestinationCard, cardColor } from "../types/interfaces";
-import { baseConfig } from "../types/BaseConfig";
-import { Controller } from "../types/Controller";
+import TrainHand from "../TrainHand/TrainHand";
+import DestinationsSelector from "../DestinationsSelector/DestinationsSelector";
+import PlayerScoresSection from "../PlayerScores/PlayerScoresSection";
+import { DestinationCard, cardColor } from "../../types/interfaces";
+import { baseConfig } from "../../types/BaseConfig";
+import { Controller } from "../../types/Controller";
 
-import styles from '../styles/GameCanvas.module.css'
-import DrawPile from "./DrawPile";
+import styles from './GameCanvas.module.css'
+import DrawPile from "../DrawPile/DrawPile";
 
 
 interface GameCanvasProps {

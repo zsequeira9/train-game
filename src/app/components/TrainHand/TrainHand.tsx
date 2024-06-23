@@ -1,6 +1,6 @@
-import '../styles/TrainHand.css'
+import './TrainHand.css'
 import { MouseEvent } from "react";
-import { cardColor } from '../types/interfaces';
+import { cardColor } from '../../types/interfaces';
 
 interface TrainHandProps {
     trainHand: Record<cardColor, number>;

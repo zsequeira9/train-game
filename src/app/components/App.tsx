@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import GameCanvas from "./GameCanvas";
+import GameCanvas from "./GameCanvas/GameCanvas";
 import GameConfigDialogue from "./GameConfigDialogue";
 import { USConfig } from "../config/US";
 import { PlayerColor } from "../types/interfaces";
