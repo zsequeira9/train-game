@@ -164,4 +164,9 @@ export class Player {
     get totalTrainCards(): number {
         return Object.values(this.trainHand).reduce((acc, cur) => acc + cur);
     }
+
+    /** Equality function **/
+    equals(other: this) {
+        return other.color === this.color;
+    }
 }

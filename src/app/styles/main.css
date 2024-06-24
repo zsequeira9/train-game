@@ -5,6 +5,14 @@
   --green-player-color: green;
   --yellow-player-color: yellow;
   --black-player-color: black;
+
+  --purple-player-inactive-color: rgba(128, 0, 128, .25);
+  --blue-player-inactive-color: rgba(0, 0, 255, .25);
+  --red-player-inactive-color: rgba(255, 0, 0, .25);
+  --green-player-inactive-color: rgba(0, 128, 0, .25);
+  --yellow-player-inactive-color: rgba(255, 255, 0, .25);
+  --black-player-inactive-color: rgba(0, 0, 0, .25);
+
   --main-bg-color: #440044;
   --board-bg-color: antiquewhite;
 

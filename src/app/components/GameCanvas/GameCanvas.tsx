@@ -100,7 +100,7 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
       <div className={styles.board}>
 
         <div className={styles.sidebar}>
-          <PlayerScoresSection playerList={state.context.controller.playerSequence}/>
+          <PlayerScoresSection playerList={state.context.controller.playerSequence} currentPlayer={state.context.controller.currentPlayer}/>
           {displayedDestinationSelector}
         </div>
 

@@ -1,61 +1,92 @@
-import {Player} from "../../types/Player";
-import './PlayerScoresSection.css';
-interface PlayerScoresSectionProps { playerList: Player[] }
-export default function PlayerScoresSection({playerList}: PlayerScoresSectionProps) {
+import { Player } from "../../types/Player";
+import styles from './PlayerScoresSection.module.css';
+import { PlayerColor} from "../../types/interfaces";
 
-    const renderPlayerCard = (player: Player) => {
-        let rootClass = `player-scorecard ${player.color}`
-        return <div className={rootClass}>
-            <div className="row player-name">{player.name}</div>
-            <div className="row player-cards">
-                <div className="col">
-                    <img src='https://www.optimo-it.com/wp-content/uploads/2022/09/wireframe-box-270x2031.jpg'
-                         width="45px"
-                         height="20px"
-                         alt="train cards"
-                         className="player-hand-train-image"/>
-                    <span className="player-hand-train-number">{player.totalTrainCards}</span>
-                </div>
-                <div className="col">
-                    <img src='https://www.optimo-it.com/wp-content/uploads/2022/09/wireframe-box-270x2031.jpg'
-                         width="45px"
-                         height="20px"
-                         alt="destination cards"
-                         className="player-hand-dest-image"/>
-                    <span className="player-hand-dest-number">{player.totalDestinationCards}</span>
-                </div>
-            </div>
-            <div className="row player-scores">
-                <div className="player-image col">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"
-                        alt="profile"
-                        width="50"
-                        height="50"/>
-                </div>
-                <div className="player-score col">{player.score}</div>
-                <div className="player-trains-remaining col">
-                    <div className="img row">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqk9bctThxSn5Ya0m0zwXzH4h_brx99c6TvO45cgT63w&s"
-                            alt="trains remaining"
-                            width="20"
-                            height="20"/>
-                    </div>
-                    <div className="row number">{player.trains}</div>
-                </div>
-            </div>
-        </div>
-    }
+interface PlayerScoresSectionProps {
+  playerList: Player[],
+  currentPlayer: Player,
+}
 
+export default function PlayerScoresSection({ playerList, currentPlayer }: PlayerScoresSectionProps) {
+
+  /** helper function to join multiple css class definitions together **/
+  const _c = (...classes) => classes.join(' ');
+
+  /** This function is a temporary hack to convert PlayerColor css classes into camel-cased css module format **/
+  const _playerColorCSSHack = (color: PlayerColor) => color.replace(/-./g, x => x[1].toUpperCase())
+
+  const arrowWidget = <div className={styles.turnArrow}>
+    <div><span/><span/><span/></div>
+  </div>
+
+
+  const renderPlayerCard = (player: Player) => {
     return (
-        <ul className="player-scores-section">
-            {playerList.map(player =>
-            <li key={player.name}>
-                {renderPlayerCard(player)}
-            </li>
-            )}
-      </ul>
+      <div className={_c(
+        styles.playerScorecard,
+        styles[_playerColorCSSHack(player.color)],
+        player.equals(currentPlayer) ? styles.active : null)}>
 
-    );
+        {arrowWidget}
+
+        <div className={_c(styles.row, styles.playerName)}>
+          {player.name}
+        </div>
+
+        <div className={_c(styles.row, styles.playerCards)}>
+
+          <div className={styles.col}>
+            <img src='https://www.optimo-it.com/wp-content/uploads/2022/09/wireframe-box-270x2031.jpg'
+                 width="45px" height="20px" alt="train cards"/>
+            <span>
+            {player.totalTrainCards}
+          </span>
+          </div>
+
+          <div className={styles.col}>
+            <img src='https://www.optimo-it.com/wp-content/uploads/2022/09/wireframe-box-270x2031.jpg'
+                 width="45px" height="20px" alt="destination cards"/>
+            <span>
+            {player.totalDestinationCards}
+          </span>
+          </div>
+
+        </div>
+
+        <div className={_c(styles.row, styles.playerScores)}>
+
+          <div className={_c(styles.col, styles.playerImage)}>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png"
+              alt="profile" width="50" height="50"/>
+          </div>
+          <div className={_c(styles.col, styles.playerScore)}>
+            {player.score}
+          </div>
+
+          <div className={_c(styles.col, styles.playerTrainsRemaining)}>
+            <div className={styles.row}>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqk9bctThxSn5Ya0m0zwXzH4h_brx99c6TvO45cgT63w&s"
+                alt="trains remaining" width="20" height="20"/>
+            </div>
+            <div className={styles.row}>
+              {player.trains}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <ul className={styles.playerScoresSection}>
+      {playerList.map(player =>
+        <li key={player.name}>
+          {renderPlayerCard(player)}
+        </li>
+      )}
+    </ul>
+  );
 }
