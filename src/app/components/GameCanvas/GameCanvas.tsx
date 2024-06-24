@@ -21,9 +21,9 @@ interface GameCanvasProps {
   controller: Controller;
 }
 
-export default function GameCanvas({config, controller}: GameCanvasProps) {
+export default function GameCanvas({ config, controller }: GameCanvasProps) {
 
-  const [state, send] = useMachine(controllerMachine, { input:  controller});
+  const [state, send] = useMachine(controllerMachine, { input: controller });
 
   /**
    * Attempt to claim route group of selected svg rect
@@ -44,6 +44,7 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
       }
     }
   }
+
   /**
    * Return className of a train <rect>
    * @param routeId Route group id
@@ -63,14 +64,14 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
    * @param color card color
    */
   function selectCard(color: cardColor): void {
-    send({ type: 'selectTrainCardHand', color: color});
+    send({ type: 'selectTrainCardHand', color: color });
   }
 
   /**
    * Deselect card from player's hand
    */
   function deselectCard(): void {
-    send({ type: 'deselectTrainCardHand'});
+    send({ type: 'deselectTrainCardHand' });
   }
 
   /**
@@ -84,10 +85,10 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
 
   const destinationSelector = <DestinationsSelector
     destinationOptions={state.context.controller.currentPlayer.destinationOptions}
-    selectDestinations={selectDestinations} />;
+    selectDestinations={selectDestinations}/>;
 
   const displayedDestinationSelector = (state.value === 'drawingDestinationCards' || state.value === 'initDrawingDestinationCards')
-     ? destinationSelector : null;
+    ? destinationSelector : null;
 
   const winner = <h2>Winning Player: {state.output?.controller.winningPlayer?.name}</h2>;
 
@@ -100,7 +101,9 @@ export default function GameCanvas({config, controller}: GameCanvasProps) {
       <div className={styles.board}>
 
         <div className={styles.sidebar}>
-          <PlayerScoresSection playerList={state.context.controller.playerSequence} currentPlayer={state.context.controller.currentPlayer}/>
+          <PlayerScoresSection
+            playerList={state.context.controller.playerSequence}
+            currentPlayer={state.context.controller.currentPlayer}/>
           {displayedDestinationSelector}
         </div>
 

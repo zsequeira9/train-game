@@ -1,6 +1,6 @@
 import { Player } from "../../types/Player";
 import styles from './PlayerScoresSection.module.css';
-import { PlayerColor} from "../../types/interfaces";
+import { PlayerColor } from "../../types/interfaces";
 
 interface PlayerScoresSectionProps {
   playerList: Player[],
@@ -22,10 +22,12 @@ export default function PlayerScoresSection({ playerList, currentPlayer }: Playe
 
   const renderPlayerCard = (player: Player) => {
     return (
-      <div className={_c(
-        styles.playerScorecard,
-        styles[_playerColorCSSHack(player.color)],
-        player.equals(currentPlayer) ? styles.active : null)}>
+      <li key={player.color}
+          className={_c(
+            styles.playerScorecard,
+            styles[_playerColorCSSHack(player.color)],
+            player.equals(currentPlayer) ? styles.active : null
+          )}>
 
         {arrowWidget}
 
@@ -76,17 +78,15 @@ export default function PlayerScoresSection({ playerList, currentPlayer }: Playe
           </div>
 
         </div>
-      </div>
+      </li>
     )
   }
 
   return (
     <ul className={styles.playerScoresSection}>
-      {playerList.map(player =>
-        <li key={player.name}>
-          {renderPlayerCard(player)}
-        </li>
-      )}
+      {
+        playerList.map(player => renderPlayerCard(player))
+      }
     </ul>
   );
 }

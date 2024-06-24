@@ -9,8 +9,8 @@
   position: relative;
   flex-grow: 0;
   flex-shrink: 0;
-  padding-left: 1em;
-  padding-right: 1em;
+  /*padding-left: 1em;*/
+  /*padding-right: 1em;*/
   display: flex;
 }
 
