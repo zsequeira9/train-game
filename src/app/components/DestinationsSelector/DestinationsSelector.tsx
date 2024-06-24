@@ -39,7 +39,14 @@ export default function DestinationsSelector({ destinationOptions, selectDestina
                onChange={(e) => selections[card.id].selected = e.target.checked}/>
 
         <div className={styles.destinationCard}>
-          {card.city1 + "-" + card.city2 + "-" + card.points}
+          <div className={styles.pointsRow}>
+            <span>{card.points}</span>
+          </div>
+          <div className={styles.citiesRow}>
+            <span>{card.city1}</span>
+            &nbsp;&mdash;&nbsp;
+            <span>{card.city2}</span>
+          </div>
         </div>
 
       </label>
@@ -48,7 +55,7 @@ export default function DestinationsSelector({ destinationOptions, selectDestina
 
   return (
     <div className={styles.destinationSelector}>
-      <h3>Choose a few Destinations</h3>
+      <h3>Choose 2 Destinations</h3>
       {listDestinations}
       <button className="button" onClick={() => {
         selectDestinations(getSelections(), getDiscards())

@@ -13,7 +13,6 @@
   background-color: var(--main-bg-color);
   flex-grow: 1;
   flex-shrink: 0;
-  padding-left: 1em;
   padding-right: 1em;
 }
 
@@ -24,8 +23,7 @@
   flex-grow: 0;
   flex-shrink: 1;
   width: 100%;
-  max-width: 250px;
-  margin-right: 2em;
+  margin-bottom: 1em;
   background-color: #CCC;
   position: relative;
 }
