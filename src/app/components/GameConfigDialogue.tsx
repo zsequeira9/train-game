@@ -1,5 +1,8 @@
+import { useState } from "react";
+
+import { host } from "../network/host";
+import { client } from "../network/client";
 import { PlayerColor } from "../types/interfaces";
-import initPeer from "../network/host";
 
 interface GameConfigDialogueProps {
     startingTrains: number;
@@ -27,6 +30,7 @@ export default function GameConfigDialogue({
         PlayerColor.PURPLE
     ] as PlayerColor[];
 
+    const [hostId, setHostId] = useState<string>('');
 
     const debugConfigDialogue = <div>
         <label>
@@ -39,28 +43,46 @@ export default function GameConfigDialogue({
 
     return ( <div className="destination-popup-wrapper">
         <div className="destination-popup">
-            <label>
-                Players: <input name="names"
-                    onChange={e => {
-                        let names = e.target.value.split(",");
-                        setPlayers(names.map((name, i) => [name, playerColorList[i]]))
-                    }}
-                    type="text" />
-            </label>
-            <label>
-                Debug? <input name="debug"
-                    value={debug ? 1 : 0}
-                    onChange={e => setDebug(e.target.checked)}
-                    type="checkbox" />
-            </label>
-            <button onClick={() => {initPeer()}}>
-                Start a lobby
-            </button>
-            {debug && debugConfigDialogue}
-            <button onClick={() => setSetup(false)}>
-                Start?
-            </button>
+            <div>
+                <button onClick={() => {host.initialize()}}>
+                    Start a lobby
+                </button>
+                <button onClick={() => {client.initialize()}}>
+                    Join a lobby
+                </button>
+                <label>
+                    Lobby Id: <input name="hostId"
+                        value={hostId}
+                        onChange={e => {
+                            setHostId(e.target.value);
+                        }}
+                        type="text" />
+                </label>
+                <button onClick={() => {client.join(hostId)}}>
+                    Join the lobby
+                </button>
+            </div>
+            <div>
+                <label>
+                    Players: <input name="names"
+                        onChange={e => {
+                            let names = e.target.value.split(",");
+                            setPlayers(names.map((name, i) => [name, playerColorList[i]]))
+                        }}
+                        type="text" />
+                </label>
+                <label>
+                    Debug? <input name="debug"
+                        value={debug ? 1 : 0}
+                        onChange={e => setDebug(e.target.checked)}
+                        type="checkbox" />
+                </label>
+                {debug && debugConfigDialogue}
+                <button onClick={() => setSetup(false)}>
+                    Start?
+                </button>
+            </div>
         </div>
     </div>
-    )
+    );
 }
