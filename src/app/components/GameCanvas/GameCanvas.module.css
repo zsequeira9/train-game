@@ -9,8 +9,6 @@
   position: relative;
   flex-grow: 0;
   flex-shrink: 0;
-  /*padding-left: 1em;*/
-  /*padding-right: 1em;*/
   display: flex;
 }
 
@@ -18,7 +16,7 @@
   flex-basis: 250px;
 }
 .sidebar:last-of-type {
-  flex-basis: 100px;
+  /*flex-basis: 10vw;*/
 }
 
 .board {

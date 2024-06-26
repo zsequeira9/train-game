@@ -11,7 +11,7 @@ export default function DrawPile({openTrainDeck, eventCallback}: DrawPileProps) 
 
   const listOpenTrainCards = openTrainDeck.map((trainCard) =>
     <li key={trainCard.id}
-        className='train-card-wrapper'
+        className={styles.trainCardWrapper}
         onClick={() => eventCallback({type: 'drawTrainCardFace', trainCardId: trainCard.id})}>
 
       <img className="train-card-img"
@@ -24,21 +24,17 @@ export default function DrawPile({openTrainDeck, eventCallback}: DrawPileProps) 
   return (
     <div className={styles.deck}>
 
-      <div className="dest-pile">
-        <button className="train-card"
-                onClick={() => eventCallback({type: 'drawDest'})}>
-          Draw Destination Cards?
-        </button>
-      </div>
-
-      <ul className="face-up">{listOpenTrainCards}</ul>
-
-      <div className="train-pile">
-        <button className="train-card"
-                onClick={() => eventCallback({type: 'drawTrainCardDeck'})}>
-          draw from train deck
-        </button>
-      </div>
+      <ul className={styles.faceUp}>
+        <li className={styles.trainCardWrapper}
+            onClick={() => eventCallback({type: 'drawDest'})}>
+          <img className="train-card-img" src={'/DestinationBack.svg'} alt="Draw a destination"/>
+        </li>
+        {listOpenTrainCards}
+        <li className={styles.trainCardWrapper}
+            onClick={() => eventCallback({type: 'drawTrainCardDeck'})}>
+          <img className="train-card-img" src={'/TrainBack.svg'} alt="Draw a destination"/>
+        </li>
+      </ul>
 
     </div>
   )

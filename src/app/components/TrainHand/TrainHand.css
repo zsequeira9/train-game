@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-.train-card-wrapper {
+.player-hand .train-card-wrapper {
     position: relative;
     cursor: pointer;
     width: 100px;
