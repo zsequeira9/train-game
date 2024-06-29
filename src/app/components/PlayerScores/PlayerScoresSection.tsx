@@ -38,19 +38,13 @@ export default function PlayerScoresSection({ playerList, currentPlayer }: Playe
         <div className={_c(styles.row, styles.playerCards)}>
 
           <div className={styles.col}>
-            <img src='https://www.optimo-it.com/wp-content/uploads/2022/09/wireframe-box-270x2031.jpg'
-                 width="45px" height="20px" alt="train cards"/>
-            <span>
-            {player.totalTrainCards}
-          </span>
+            <img src={'/TrainBack.svg'} alt="Train Cards" width="45px" height="20px"/>
+            <span>{player.totalTrainCards}</span>
           </div>
 
           <div className={styles.col}>
-            <img src='https://www.optimo-it.com/wp-content/uploads/2022/09/wireframe-box-270x2031.jpg'
-                 width="45px" height="20px" alt="destination cards"/>
-            <span>
-            {player.totalDestinationCards}
-          </span>
+            <img src={'/DestinationBack.svg'} alt="Destination Cards" width="45px" height="20px"/>
+            <span>{player.totalDestinationCards}</span>
           </div>
 
         </div>

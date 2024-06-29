@@ -9,9 +9,11 @@ interface DrawPileProps {
 
 export default function DrawPile({openTrainDeck, eventCallback}: DrawPileProps) {
 
+  const trainDisabled = true;
+  const destinationDisabled = false;
   const listOpenTrainCards = openTrainDeck.map((trainCard) =>
     <li key={trainCard.id}
-        className={styles.trainCardWrapper}
+        className={[styles.trainCardWrapper, trainDisabled ? styles.disabled: ""].join(' ')}
         onClick={() => eventCallback({type: 'drawTrainCardFace', trainCardId: trainCard.id})}>
 
       <img className="train-card-img"
@@ -25,12 +27,12 @@ export default function DrawPile({openTrainDeck, eventCallback}: DrawPileProps) 
     <div className={styles.deck}>
 
       <ul className={styles.faceUp}>
-        <li className={styles.trainCardWrapper}
+        <li className={[styles.trainCardWrapper, destinationDisabled ? styles.disabled : ""].join(" ")}
             onClick={() => eventCallback({type: 'drawDest'})}>
           <img className="train-card-img" src={'/DestinationBack.svg'} alt="Draw a destination"/>
         </li>
         {listOpenTrainCards}
-        <li className={styles.trainCardWrapper}
+        <li className={[styles.trainCardWrapper, trainDisabled ? styles.disabled : ""].join(" ")}
             onClick={() => eventCallback({type: 'drawTrainCardDeck'})}>
           <img className="train-card-img" src={'/TrainBack.svg'} alt="Draw a destination"/>
         </li>

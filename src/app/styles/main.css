@@ -36,6 +36,7 @@
 html,
 body {
   background-color: var(--main-bg-color);
+  overflow-x: hidden;
 }
 
 
