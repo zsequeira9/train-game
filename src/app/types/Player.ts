@@ -165,6 +165,14 @@ export class Player {
         return Object.values(this.trainHand).reduce((acc, cur) => acc + cur);
     }
 
+    get canDrawTrain(): boolean {
+        return false
+    }
+
+    get canDrawDest(): boolean {
+        return true
+    }
+
     /** Equality function **/
     equals(other: this) {
         return other.color === this.color;

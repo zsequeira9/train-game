@@ -8,7 +8,7 @@
 }
 
 .train-card-wrapper {
-  height: 12vh; /* scaling using viewport percent units */
+  height: 10vh; /* scaling using viewport percent units */
   margin: .5em 0;
   cursor: pointer;
 }

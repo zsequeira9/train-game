@@ -380,6 +380,9 @@ export class Controller {
     // set next player in sequence to current player
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.playerSequence.length;
     console.log("Current Player", this.currentPlayer);
-    
+
+  }
+  get canDrawTrain() {
+    return this.currentPlayer.canDrawTrain
   }
 }
